@@ -11,15 +11,18 @@ a,f,p,n,µ,m,c,d,da,he,k,M,G,T,P,E = 10e-18,10e-15,10e-12,10e-9,10e-6,10e-3,10e-
 # Physical constants
 c,cv,h,B = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18
 
+
+def eHyd(shell): return - B / shell**2
+
 """
 Calculates energy needed to exitate or deexitate the current electron shell,
 where n1 is the starting shell, and n2 is the ending shell.
 """
-def ehyd(n1,n2):
+def eHydDiff(n1,n2):
     """
     Joule
     """
-    return (-B/n1**2)-(-B/n2**2)
+    return eHyd(n1)-eHyd(n2)
 
 """
 Calculates Frequency by dividing speed of the wave(c or other if that is specified) by wavelength(λ)
