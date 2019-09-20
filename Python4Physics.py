@@ -18,30 +18,19 @@ def eHyd(shell): return - B / shell**2
 Calculates energy needed to exitate or deexitate the current electron shell,
 where n1 is the starting shell, and n2 is the ending shell.
 """
-def eHydDiff(n1,n2):
-    """
-    Joule
-    """
-    return eHyd(n1)-eHyd(n2)
+def eHydDiff(n1,n2): return eHyd(n1)-eHyd(n2)
 
 """
 Calculates Frequency by dividing speed of the wave(c or other if that is specified) by wavelength(λ)
 """
-def hz(λ, speed=c):
-    """
-    Hertz
-    """
-    return speed/λ
+def hz(λ, speed=c): return speed/λ
 
 """
 Calculates Energy for a given foton. 
 Takes Plancks-constant(h) and frequency(f)
 """
-def e(f):
-    """
-    Joule
-    """
-    return h*f
+def e(f): return h*f
+
 
 print('This is a modified Python Console made for Physics 1')
 print('The following variables have been defined:')
