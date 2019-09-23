@@ -6,7 +6,7 @@ Created on Thu Sep 19 10:44:08 2019
 """
 
 # SI prefixes
-a,f,p,n,µ,m,c,d,da,he,k,M,G,T,P,E = 10e-18,10e-15,10e-12,10e-9,10e-6,10e-3,10e-2,10e-1,10e1,10e2,10e3,10e6,10e9,10e12,10e15,10e18
+a,f,p,n,µ,m,c,d,da,he,k,M,G,T,P,E = e-18,e-15,e-12,e-9,e-6,e-3,e-2,e-1,e1,e2,e3,e6,e9,e12,e15,e18
 
 # Physical constants
 c,cv,h,B = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18
