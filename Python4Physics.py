@@ -32,7 +32,7 @@ def eHyd(shell): return - B / shell**2
 Calculates energy needed to exitate or deexitate the current electron shell,
 where n1 is the starting shell, and n2 is the ending shell.
 """
-def eHydDiff(n1,n2): return eHyd(n2)-eHyd(n1)
+def eHydDiff(n1,n2): return eHyd(n1)-eHyd(n2)
 
 
 """
