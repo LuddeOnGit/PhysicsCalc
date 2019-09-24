@@ -43,12 +43,12 @@ def speed(λ, f): return λ*f
 """
 Calculates Frequency by dividing speed of the wave(c or other if that is specified) by wavelength(λ)
 """
-def freq(λ, speed=c): return speed/λ
+def freq(λ, v=c): return v/λ
 
 """
-Calculates wavelength(λ) by dividing the speed of the wave(speed, implicitly c) by frequency(f)
+Calculates wavelength(λ) by dividing the velocity of the wave(v, implicitly c) by frequency(f)
 """
-def wl(f, speed=c): return speed/f
+def wl(f, v=c): return v/f
 
 """
 Calculates Energy of a given photon with frequency f. 
