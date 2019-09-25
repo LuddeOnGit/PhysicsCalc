@@ -67,6 +67,16 @@ Gives energy amount by using Einstein's formula given mass and lightspeed square
 """
 def mass(m, v=c): return m*(v**2)
 
+"""
+converts u to kg, m = mass in u
+"""
+def massConvU(m): return m*u
+
+"""
+Converts kg to kg, m = mass in kg
+"""
+def massConvKg(m): return m/u
+
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
 print(f'c : {c}\ncv : {cv}\nh : {h}\nB : {B}')
