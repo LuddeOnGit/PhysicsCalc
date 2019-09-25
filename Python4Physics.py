@@ -61,6 +61,11 @@ Plugs c=λf into E=hf to get E=hc/λ
 """
 def el(λ): return (h*c)/λ
 
+"""
+Gives energy amount by using Einstein's formula given mass and lightspeed squared
+"""
+def mass(m, v=c): return m*(v**2)
+
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
 print(f'c : {c}\ncv : {cv}\nh : {h}\nB : {B}')
