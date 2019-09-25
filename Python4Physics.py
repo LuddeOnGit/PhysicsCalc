@@ -20,8 +20,9 @@ c : The speed of light in a vacuum. In m/s
 cv: The speed of light in water. In m/s
 h : Planck constant. In Js
 B : Bohr's constant. In J
+u = atomic mass unit (mass at atomic levels)
 """
-c,cv,h,B = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18
+c,cv,h,B, u = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18, 1.66e-27
 
 """
 The energy level of a given electron shell (in Bohr's atomic model) for a hydrogen atom
