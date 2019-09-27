@@ -100,16 +100,7 @@ def wlPhoton(energy):
     f = energy/h
     return wl(f,c)
 
-"""
-Calculates electron configuration for a number of electrons (ec)
-"""
-def eConfig(ec, index = 0):
-    shells = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f"]
-    electrons_in_shells = [2, 2, 6, 2, 6, 2, 10, 6, 2, 10, 6, 2, 14]
-    if ec - electrons_in_shells[index] > 0:
-        return shells[index] + str(electrons_in_shells[index]) + ", " + eConfig(ec-electrons_in_shells[index], index + 1)
-    else:
-        return shells[index] + str(ec)
+
 
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
