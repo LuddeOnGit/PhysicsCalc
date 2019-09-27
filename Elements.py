@@ -20,6 +20,7 @@ class Element:
 
 
 elements = [
+    Element(number=  0,  symbol= "Er", name= "Error"), # So the index is the same as the atomic number
 	Element(number=  1,  symbol= "H",  name= "Hydrogen"),
 	Element(number=  2,  symbol= "He", name= "Helium"),
 	Element(number=  3,  symbol= "Li", name= "Lithium"),

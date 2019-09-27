@@ -4,6 +4,8 @@ Created on Thu Sep 19 10:44:08 2019
 @author: Ludvik Fjeld
 """
 
+import Elements
+
 # SI prefixes
 """
 Usage:
