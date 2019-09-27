@@ -21,8 +21,10 @@ cv: The speed of light in water. In m/s
 h : Planck constant. In Js
 B : Bohr's constant. In J
 u : Atomic mass unit (mass at atomic levels)
+mn: Mass neutron. In u
+mp: Mass proton. In u
 """
-c,cv,h,B, u = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18, 1.66e-27
+c,cv,h,B,u,mn,mp = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18, 1.66e-27, 1.00866491595, 1.007825032241
 
 """
 The energy level of a given electron shell (in Bohr's atomic model) for a hydrogen atom
@@ -82,7 +84,7 @@ Gives the leftover energy for a reaction. This energy is freed under the reactio
 def massLeft(before, after): return before-after
 
 """
-Converts kg to kg, m = mass in kg
+Converts kg to u, m = mass in kg
 """
 def massConvKg(m): return m/u
 
