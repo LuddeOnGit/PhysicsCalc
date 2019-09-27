@@ -3,8 +3,11 @@ Created on Thu Sep 19 10:44:08 2019
 
 @author: Ludvik Fjeld
 """
-
+"""
+If you want to get your answers written cleaner, use this in console: %precision %.4e
+"""
 import Elements
+
 
 # SI prefixes
 """
@@ -60,7 +63,7 @@ Calculates wavelength(λ) by dividing the velocity of the wave(v, implicitly c) 
 def wl(f, v=c): return v/f
 
 """
-Calculates Energy of a given photon with frequency f. 
+Calculates Energy of a given photon with frequency f.
 Takes Plancks-constant(h) and frequency(f)
 """
 def ef(f): return h*f
@@ -81,7 +84,7 @@ Converts u to kg, m = mass in u
 def massConvU(m): return m*u
 
 """
-Gives the leftover energy for a reaction. This energy is freed under the reaction. Takes before mass and subtracts the after mass. Caution! gives energy in u! 
+Gives the leftover energy for a reaction. This energy is freed under the reaction. Takes before mass and subtracts the after mass. Caution! gives energy in u!
 """
 def massLeft(before, after): return before-after
 
@@ -92,11 +95,11 @@ def massConvKg(m): return m/u
 
 """
 Calculates electron configuration for a number of electrons (ec)
-""" 
+"""
 def eConfig(ec, index = 0):
-    shells = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f"] 
+    shells = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f"]
     electrons_in_shells = [2, 2, 6, 2, 6, 2, 10, 6, 2, 10, 6, 2, 14]
-    if ec - electrons_in_shells[index] > 0:          
+    if ec - electrons_in_shells[index] > 0:
         return shells[index] + str(electrons_in_shells[index]) + ", " + eConfig(ec-electrons_in_shells[index], index + 1)
     else:
         return shells[index] + str(ec)
