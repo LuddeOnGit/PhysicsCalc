@@ -33,7 +33,7 @@ def eHyd(shell): return - B / shell**2
 Calculates energy needed to exitate or deexitate the current electron shell,
 where n1 is the starting shell, and n2 is the ending shell.
 """
-def eHydDiff(n1,n2): return eHyd(n1)-eHyd(n2)
+def eHydDiff(n1,n2): return eHyd(n2)-eHyd(n1)
 
 """
 Uses time to divide waves by time and get the frequency of a wave.
@@ -88,16 +88,12 @@ def massConvKg(m): return m/u
 
 """
 Calculates electron configuration for a number of electrons (ec)
-"""
-    
-def electronConfiguration(ec): 
-    print(find_next_shell(ec))
-    
-def find_next_shell(ec, index = 0):
+""" 
+def eConfig(ec, index = 0):
     shells = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f"] 
     electrons_in_shells = [2, 2, 6, 2, 6, 2, 10, 6, 2, 10, 6, 2, 14]
     if ec - electrons_in_shells[index] > 0:          
-        return shells[index] + str(electrons_in_shells[index]) + ", " + find_next_shell(ec-electrons_in_shells[index], index + 1)
+        return shells[index] + str(electrons_in_shells[index]) + ", " + eConfig(ec-electrons_in_shells[index], index + 1)
     else:
         return shells[index] + str(ec)
 
