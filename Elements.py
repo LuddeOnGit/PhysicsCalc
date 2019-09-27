@@ -37,10 +37,10 @@ class Element:
         if self.number <=  86: return 6
         if self.number <= 118: return 7
      
-    # Returns the electron configuration in orbitals, assuming the atom is net neutrally charged. Limited to the first 70 elements.
+    # Returns the electron configuration in orbitals, assuming the atom is net neutrally charged.
     def eConfig(self): 
-        shells = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f"]
-        electrons_in_shells = [2, 2, 6, 2, 6, 2, 10, 6, 2, 10, 6, 2, 14]
+        shells = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f", "5d", "6p", "7s", "5f", "6d", "7p"]
+        electrons_in_shells = [2, 2, 6, 2, 6, 2, 10, 6, 2, 10, 6, 2, 14, 10, 6, 2, 14, 10, 6]
         def find_next_shell(ec, index = 0):
             if ec - electrons_in_shells[index] > 0:
                 return shells[index] + str(electrons_in_shells[index]) + ", " + find_next_shell(ec-electrons_in_shells[index], index + 1)
