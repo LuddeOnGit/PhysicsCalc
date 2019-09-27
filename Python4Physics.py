@@ -36,6 +36,8 @@ where n1 is the starting shell, and n2 is the ending shell.
 def eHydDiff(n1,n2): return eHyd(n1)-eHyd(n2)
 
 
+def freqOld(T): return 1/T
+
 """
 Calculates wave speed by multiplying wavelength(λ) by frequency(f)
 """
@@ -94,4 +96,4 @@ def find_next_shell(ec, index = 0):
 
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
-print(f'c : {c}\ncv : {cv}\nh : {h}\nB : {B}')
+print(f'c : {c}\ncv : {cv}\nh : {h}\nB : {B}\nu : {u}')
