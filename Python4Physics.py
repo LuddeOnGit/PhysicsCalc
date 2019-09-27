@@ -94,6 +94,13 @@ Converts kg to u, m = mass in kg
 def massConvKg(m): return m/u
 
 """
+Gets the wavelength of the photon with the given energy
+"""
+def wlPhoton(energy):
+    f = energy/h
+    return wl(f,c)
+
+"""
 Calculates electron configuration for a number of electrons (ec)
 """
 def eConfig(ec, index = 0):
