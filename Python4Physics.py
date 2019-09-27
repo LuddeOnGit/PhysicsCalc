@@ -35,8 +35,10 @@ where n1 is the starting shell, and n2 is the ending shell.
 """
 def eHydDiff(n1,n2): return eHyd(n1)-eHyd(n2)
 
-
-def freqOld(T): return 1/T
+"""
+Uses time to divide waves by time and get the frequency of a wave.
+"""
+def freqOld(T, S=1): return S/T
 
 """
 Calculates wave speed by multiplying wavelength(λ) by frequency(f)
@@ -73,6 +75,11 @@ def mass(m, v=c): return m*(v**2)
 Converts u to kg, m = mass in u
 """
 def massConvU(m): return m*u
+
+"""
+Gives the leftover energy for a reaction. This energy is freed under the reaction. Takes before mass and subtracts the after mass. Caution! gives energy in u! 
+"""
+def massLeft(before, after): return before-after
 
 """
 Converts kg to kg, m = mass in kg
