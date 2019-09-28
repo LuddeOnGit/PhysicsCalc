@@ -8,6 +8,9 @@ def main():
     def kg_to_u():
         if len(kgInput.get()) > 0:
             uOutput["text"] = str(massConvKg(float(kgInput.get()))) + "u"
+    def foEnergyToWl():
+        if len(foEnInput.get()) > 0:
+            wlOutput["text"] = str(wlPhoton(float(foEnInput.get()))) + "m"
         
     window = Tk()
     window.title("Physics Stuff")
@@ -33,6 +36,16 @@ def main():
     uOutput.grid(row=1, column=2, sticky=W)
     Button(window, text="SUBMIT", width=6, command=kg_to_u).grid(row=1, column=3, sticky=W)
 
+    """
+    foton energy to wavelength
+    """
+    Label(window, text="Convert foton energy to wavelength: ", font="none 12").grid(row=2, column=0, sticky=W)
+    foEnInput = Entry(window, width=8)
+    foEnInput.grid(row=2, column=1, sticky=W)
+    wlOutput = Label(window, text="0m", font="none 12")
+    wlOutput.grid(row=2, column=2, sticky=W)
+    Button(window, text="SUBMIT", width=6, command=foEnergyToWl).grid(row=2, column=3, sticky=W)
+    
     window.mainloop()
 
 
