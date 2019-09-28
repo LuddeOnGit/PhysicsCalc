@@ -6,8 +6,8 @@ Created on Thu Sep 19 10:44:08 2019
 """
 If you want to get your answers written cleaner, use this in console: %precision %.4e
 """
-import Elements
-import PySimpleGUI as sg
+from Elements import *
+from GUI import *
 
 # SI prefixes
 """
@@ -105,38 +105,4 @@ print('The following constants have been defined:')
 print(f'c : {c}\ncv : {cv}\nh : {h}\nB : {B}\nu : {u}')
 
 
-"""
-GUI
-"""
 
-def massConv(kg = 0, u = 0):
-    if kg != 0:
-        return massConvKg(kg)
-    else:
-        return massConvU(u)
-
-def event_loop():
-    while True:
-        event, values = window.read()    
-        if event in (None, "Cancel"):
-            break
-        try:
-            converted_value = massConv(u = float(values["-uInput-"]))
-            print(converted_value)
-            window["-kgOutput-"].Update(converted_value)
-           
-        except:
-            pass
-        try:
-            converted_value = massConv(kg = float(values["-kgInput-"]))
-            window["-uOutput-"].Update(converted_value)
-        except:
-            pass        
-                           
-    window.Close()
-
-layout = [[sg.Text("Convert u to kg:"), sg.InputText(key="-uInput-", size=(5,1)), sg.Text("", key="-kgOutput-", size=(30,1))],
-          [sg.Text("Convert kg to u:"), sg.InputText(key="-kgInput-", size=(5,1)), sg.Text("", key="-uOutput-", size=(30,1))],
-          [sg.Button("Ok"), sg.Button("Cancel")]]
-
-window = sg.Window("Physics stuff", layout)
