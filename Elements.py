@@ -36,7 +36,29 @@ class Element:
         if self.number <=  54: return 5
         if self.number <=  86: return 6
         if self.number <= 118: return 7
+    
+    # Returns the "roman numeral" group, i.e. the group ignoring the transition metals because that's what we mostly use
+    # This implementation is kinda shit, but it's the best I could think of. If anyone has a better idea, feel free to implement it.
+    def group(self):
+        # Check if the element is a lanthanoid or an actinoid, as they have no defined group
+        if self.number >= 57 and self.number <=  71: return "Element has no group" 
+        if self.number >= 89 and self.number <= 103: return "Element has no group" 
      
+        # Hard coding in the first four because it just makes things easier
+        if self.number == 1 or self.number == 3: return 1
+        if self.number == 4: return 2
+        if self.number == 2: return 8
+        
+        # Loop from number 5 to number 12, checking whether number is in their group. This loop kinda places sodium and magnesium and every element under to the right of neon and the elements under
+        for i in range(5, 12 + 1):
+            if (self.number in [i, i + 8, i + 26, i + 44, i + 76, i + 108]): return (i - 2) % 8
+        
+        
+        # Element is a transition metal
+        return "Element is a transition metal"
+    
+    
+        
     # Returns the electron configuration in orbitals, assuming the atom is net neutrally charged.
     def eConfig(self): 
         shells = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f", "5d", "6p", "7s", "5f", "6d", "7p"]
