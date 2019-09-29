@@ -1,5 +1,6 @@
 from tkinter import * 
 from Python4Physics import *
+from Elements import *
 
 def main():
     def u_to_kg():
@@ -14,6 +15,9 @@ def main():
     def massToEnergy():
         if len(massInput.get()) > 0:
             energyOutput["text"] = str(mass(float(massInput.get()))) + "J"
+    def electronConfiguration():
+        if len(elInput.get()) > 0:
+            elOutput["text"] = str(Element.eConfig(elInput.get())) ##unsolved, gives error
         
     window = Tk()
     window.title("Physics Stuff")
@@ -59,6 +63,15 @@ def main():
     energyOutput.grid(row=3, column=2, sticky=W)
     Button(window, text="SUBMIT", width=6, command=massToEnergy).grid(row=3, column=3, sticky=W)
     
+    """
+    Electron configuration with orbital theory
+    """
+    Label(window, text="Converts electron number to electron configuration: ", font="none 12").grid(row=4, column=0, sticky=W)
+    elInput = Entry(window, width=8)
+    elInput.grid(row=4, column=1, sticky=W)
+    elOutput = Label(window, text="none", font="none 12")
+    elOutput.grid(row=4, column=2, sticky=W)
+    Button(window, text="SUBMIT", width=6, command=electronConfiguration).grid(row=4, column=3, sticky=W)    
     
     
     
