@@ -1,5 +1,6 @@
 from tkinter import * 
 from Python4Physics import *
+from Elements import *
 
 def main():
     variable_names = {}
@@ -22,12 +23,14 @@ def main():
     def massToEnergy():
         if len(variable_names["massToEnergyInput"].get()) > 0:
             variable_names["massToEnergyOutput"]["text"] = str(mass(float(variable_names["massToEnergyInput"].get()))) + "J"
+    def electronConfiguration():
+        if len(variable_names["electronConfigurationInput"].get()) > 0:
+            variable_names["electronConfigurationOutput"]["text"] = str(Element.eConfig(variable_names["electronConfigurationInput"].get())) ##unsolved, gives error
         
     window = Tk()
     window.title("Physics Stuff")
     #window.configure(background = ""
 
-    
     """
     u to kg
     """
@@ -46,6 +49,10 @@ def main():
     """
     E=mc^2
     """
-    add_formula(3, "J", massToEnergy, "Convert mass into energy using Einsteins formula:", "massToEnergy")
-        
+    add_formula(3, "J", massToEnergy, "Convert mass into energy using Einsteins formula:", "massToEnergy")   
+    """
+    Electron configuration with orbital theory
+    """
+    add_formula(4, " ", electronConfiguration, "Convert electron number to electron configuration:", "electronConfiguration")
+    
     window.mainloop()
