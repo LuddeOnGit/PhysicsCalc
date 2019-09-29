@@ -24,8 +24,10 @@ class Element:
         self.meltingPoint = meltingPoint
         self.mass = mass
         
+        
+        
     # Function to return a describing string
-    def info(self):
+    def info(self): 
         return f"{self.name} ({self.symbol}) has atomic number {self.number}, {self.mass}u atomic mass, {self.meltingPoint}K melting point and {self.boilingPoint}K boiling point."
     
     def period(self):
@@ -37,27 +39,39 @@ class Element:
         if self.number <=  86: return 6
         if self.number <= 118: return 7
     
-    # Returns the "roman numeral" group, i.e. the group ignoring the transition metals because that's what we mostly use
-    # This implementation is kinda shit, but it's the best I could think of. If anyone has a better idea, feel free to implement it.
+    
+    # Returns the group of the element
     def group(self):
+        # Redeclaring to shorten
+        n = self.number
+        
+        # Check if the element is each of the elements in each group. 
+        # This is proboably not the most efficient solution.
+        # This makes a sideways backwards periodic table.
+        if n in [1, 3,11,19,37,55, 87]: return  1
+        if n in   [ 4,12,20,38,56, 88]: return  2
+        if n in         [21,39       ]: return  3
+        if n in         [22,40,72,104]: return  4
+        if n in         [23,41,73,105]: return  5
+        if n in         [24,42,74,106]: return  6
+        if n in         [25,43,75,107]: return  7
+        if n in         [26,44,76,108]: return  8
+        if n in         [27,45,77,109]: return  9
+        if n in         [28,46,78,110]: return 10
+        if n in         [29,47,79,111]: return 11
+        if n in         [30,48,80,112]: return 12
+        if n in   [ 5,13,31,49,81,113]: return 13
+        if n in   [ 6,14,32,50,82,114]: return 14
+        if n in   [ 7,15,33,51,83,115]: return 15
+        if n in   [ 8,16,34,52,84,116]: return 16
+        if n in   [ 9,17,35,53,85,117]: return 17
+        if n in [2,10,18,36,54,86,118]: return 18
+        
         # Check if the element is a lanthanoid or an actinoid, as they have no defined group
-        if self.number >= 57 and self.number <=  71: return "Element has no group" 
-        if self.number >= 89 and self.number <= 103: return "Element has no group" 
-     
-        # Hard coding in the first four because it just makes things easier
-        if self.number == 1 or self.number == 3: return 1
-        if self.number == 4: return 2
-        if self.number == 2: return 8
-        
-        # Loop from number 5 to number 12, checking whether number is in their group. This loop kinda places sodium and magnesium and every element under to the right of neon and the elements under
-        for i in range(5, 12 + 1):
-            if (self.number in [i, i + 8, i + 26, i + 44, i + 76, i + 108]): return (i - 2) % 8
+        if n in range(57,  71+1): return "Element is a lanthanoid and thereby has no group" 
+        if n in range(89, 103+1): return "Element is a actinoid and thereby has no group" 
         
         
-        # Element is a transition metal
-        return "Element is a transition metal"
-    
-    
         
     # Returns the electron configuration in orbitals, assuming the atom is net neutrally charged.
     def eConfig(self): 
