@@ -69,3 +69,5 @@ def main():
     add_formula(4, " ", electronConfiguration, "Convert electron number to electron configuration:", "electronConfiguration")
     
     window.mainloop()
+
+main()
