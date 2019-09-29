@@ -1,3 +1,7 @@
+"""
+author: NRG
+"""
+
 from tkinter import * 
 from Python4Physics import *
 from Elements import *

@@ -1,7 +1,5 @@
 """
-Created on Thu Sep 19 10:44:08 2019
-
-@author: Ludvik Fjeld
+author: NRG
 """
 """
 If you want to get your answers written cleaner, use this in console: %precision %.4e
