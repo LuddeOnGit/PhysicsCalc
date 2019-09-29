@@ -2,64 +2,50 @@ from tkinter import *
 from Python4Physics import *
 
 def main():
+    variable_names = {}
+    def add_formula(ro, unit, functionName, txt, strFunctionName):
+        variable_names[f"{strFunctionName}Input"] = Entry(window, width=8)
+        variable_names[f"{strFunctionName}Output"] = Label(window, text="0"+unit, font="none 12")
+        Label(window, text=txt, font="none 12").grid(row=ro, column=0, sticky=W)        
+        variable_names[f"{strFunctionName}Input"].grid(row=ro, column=1, sticky=W)     
+        variable_names[f"{strFunctionName}Output"].grid(row=ro, column=2, sticky=W)
+        Button(window, text="SUBMIT", width=6, command=functionName).grid(row=ro, column=3, sticky=W)     
     def u_to_kg():
-        if len(uInput.get()) > 0:
-            kgOutput["text"] = str(massConvU(float(uInput.get()))) + "kg"
+        if len(variable_names["u_to_kgInput"].get()) > 0:
+            variable_names["u_to_kgOutput"]["text"] = str(massConvU(float(variable_names["u_to_kgInput"].get()))) + "kg"
     def kg_to_u():
-        if len(kgInput.get()) > 0:
-            uOutput["text"] = str(massConvKg(float(kgInput.get()))) + "u"
+        if len(variable_names["kg_to_uInput"].get()) > 0:
+            variable_names["kg_to_uOutput"]["text"] = str(massConvKg(float(variable_names["kg_to_uInput"].get()))) + "u"
     def foEnergyToWl():
-        if len(foEnInput.get()) > 0:
-            wlOutput["text"] = str(wlPhoton(float(foEnInput.get()))) + "m"
+        if len(variable_names["foEnergyToWlInput"].get()) > 0:
+            variable_names["foEnergyToWlOutput"]["text"] = str(wlPhoton(float(variable_names["foEnergyToWlInput"].get()))) + "m"
     def massToEnergy():
-        if len(massInput.get()) > 0:
-            energyOutput["text"] = str(mass(float(massInput.get()))) + "J"
+        if len(variable_names["massToEnergyInput"].get()) > 0:
+            variable_names["massToEnergyOutput"]["text"] = str(mass(float(variable_names["massToEnergyInput"].get()))) + "J"
         
     window = Tk()
     window.title("Physics Stuff")
-    #window.configure(background = "")
+    #window.configure(background = ""
 
+    
     """
     u to kg
     """
-    Label(window, text="Convert u to kg: ", font="none 12").grid(row=0, column=0, sticky=W)
-    uInput = Entry(window, width=8)
-    uInput.grid(row=0, column=1, sticky=W)
-    kgOutput = Label(window, text="0kg", font="none 12")
-    kgOutput.grid(row=0, column=2, sticky=W)
-    Button(window, text="SUBMIT", width=6, command=u_to_kg).grid(row=0, column=3, sticky=W)
+    add_formula(0, "kg", u_to_kg, "Convert u to kg:", "u_to_kg")
 
     """
     kg to u
     """
-    Label(window, text="Convert kg to u: ", font="none 12").grid(row=1, column=0, sticky=W)
-    kgInput = Entry(window, width=8)
-    kgInput.grid(row=1, column=1, sticky=W)
-    uOutput = Label(window, text="0u", font="none 12")
-    uOutput.grid(row=1, column=2, sticky=W)
-    Button(window, text="SUBMIT", width=6, command=kg_to_u).grid(row=1, column=3, sticky=W)
+    add_formula(1, "u", kg_to_u, "Convert kg to u:", "kg_to_u")
 
     """
     foton energy to wavelength
     """
-    Label(window, text="Convert foton energy to wavelength: ", font="none 12").grid(row=2, column=0, sticky=W)
-    foEnInput = Entry(window, width=8)
-    foEnInput.grid(row=2, column=1, sticky=W)
-    wlOutput = Label(window, text="0m", font="none 12")
-    wlOutput.grid(row=2, column=2, sticky=W)
-    Button(window, text="SUBMIT", width=6, command=foEnergyToWl).grid(row=2, column=3, sticky=W)
+    add_formula(2, "m", foEnergyToWl, "Convert foton energy to wavelength:", "foEnergyToWl")
     
     """
     E=mc^2
     """
-    Label(window, text="Converts mass into energy using Einsteins formula: ", font="none 12").grid(row=3, column=0, sticky=W)
-    massInput = Entry(window, width=8)
-    massInput.grid(row=3, column=1, sticky=W)
-    energyOutput = Label(window, text="0J", font="none 12")
-    energyOutput.grid(row=3, column=2, sticky=W)
-    Button(window, text="SUBMIT", width=6, command=massToEnergy).grid(row=3, column=3, sticky=W)
-    
-    
-    
-    
+    add_formula(3, "J", massToEnergy, "Convert mass into energy using Einsteins formula:", "massToEnergy")
+        
     window.mainloop()
