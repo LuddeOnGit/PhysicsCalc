@@ -54,7 +54,22 @@ def main():
         if len(get_input("electronConfiguration")) > 0:
             output = elements[int(get_input("electronConfiguration"))].eConfig()
             set_output("electronConfiguration", output)
-        
+
+    def enHyd():
+        if len(get_input("enHyd")) > 0:
+            output = str(eHyd(int(get_input("enHyd")))) + "J"
+            set_output("enHyd", output)
+
+    def freqFromPeriod():
+        if len(get_input("freqFromPeriod")) > 0:
+            output = str(freqOld(float(get_input("freqFromPeriod")))) + "Hz"
+            set_output("freqFromPeriod", output)
+
+    def fotonEnergy():
+        if len(get_input("fotonEnergy")) > 0:
+            output = str(ef(float(get_input("fotonEnergy")))) + "J"
+            set_output("fotonEnergy", output)
+    
     window = Tk()
     window.title("Physics Stuff")
     #window.configure(background = ""
@@ -82,6 +97,19 @@ def main():
     Electron configuration with orbital theory
     """
     add_formula(4, " ", electronConfiguration, "Convert electron number to electron configuration:", "electronConfiguration")
+    """
+    The energy level of a given electron shell (in Bohr's atomic model) for a hydrogen atom
+    """
+    add_formula(5, "J", enHyd, "energy level for given shell:", "enHyd")
+    """
+    Uses time to divide waves by time and get the frequency of a wave.
+    """
+    add_formula(6, "Hz", freqFromPeriod, "Use period in s to calculate frequency", "freqFromPeriod")
+    """
+    Calculates Energy of a given photon with frequency f.
+    Takes Plancks-constant(h) and frequency(f)
+    """
+    add_formula(7, "J", fotonEnergy, "Calculates foton energy from frequency", "fotonEnergy")
     
     window.mainloop()
 
