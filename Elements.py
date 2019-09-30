@@ -1,7 +1,6 @@
 """
 author: NRG
 """
-from tkinter import *
 
 class Element:
     
@@ -68,7 +67,7 @@ class Element:
         if n in range(57,  71+1): return "Element is a lanthanoid and thereby has no group" 
         if n in range(89, 103+1): return "Element is a actinoid and thereby has no group" 
         
-        
+      
         
     # Returns the electron configuration in orbitals, assuming the atom is net neutrally charged.
     def eConfig(self): 
