@@ -23,26 +23,37 @@ def main():
         
         Label(window, text=txt, font="none 12").grid(row=ro, column=0, sticky=W)        
         Button(window, text="SUBMIT", width=6, command=functionName).grid(row=ro, column=3, sticky=W)
+
+    def get_input(strFunctionName):
+        return inputs_and_outputs[f"{strFunctionName}_Input"].get()
+
+    def set_output(strFunctionName, output):
+        inputs_and_outputs[f"{strFunctionName}_Output"]["text"] = output
         
     def u_to_kg():
-        if len(inputs_and_outputs["u_to_kg_Input"].get()) > 0:
-            inputs_and_outputs["u_to_kg_Output"]["text"] = str(massConvU(float(inputs_and_outputs["u_to_kg_Input"].get()))) + "kg"
+        if len(get_input("u_to_kg")) > 0:
+            output = str(massConvU(float(get_input("u_to_kg")))) + "kg"
+            set_output("u_to_kg", output)
             
     def kg_to_u():
-        if len(inputs_and_outputs["kg_to_u_Input"].get()) > 0:
-            inputs_and_outputs["kg_to_u_Output"]["text"] = str(massConvKg(float(inputs_and_outputs["kg_to_u_Input"].get()))) + "u"
+        if len(get_input("kg_to_u")) > 0:
+            output = str(massConvKg(float(get_input("kg_to_u")))) + "u"
+            set_output("kg_to_u", output)
             
     def foEnergyToWl():
-        if len(inputs_and_outputs["foEnergyToWl_Input"].get()) > 0:
-            inputs_and_outputs["foEnergyToWl_Output"]["text"] = str(wlPhoton(float(inputs_and_outputs["foEnergyToWl_Input"].get()))) + "m"
+        if len(get_input("foEnergyToWl")) > 0:
+            output = str(wlPhoton(float(get_input("foEnergyToWl")))) + "m"
+            set_output("foEnergyToWl", output)
             
     def massToEnergy():
-        if len(inputs_and_outputs["massToEnergy_Input"].get()) > 0:
-            inputs_and_outputs["massToEnergy_Output"]["text"] = str(mass(float(inputs_and_outputs["massToEnergy_Input"].get()))) + "J"
+        if len(get_input("massToEnergy")) > 0:
+            output = str(mass(float(get_input("massToEnergy")))) + "J"
+            set_output("massToEnergy", output)
             
     def electronConfiguration():
-        if len(inputs_and_outputs["electronConfiguration_Input"].get()) > 0:
-            inputs_and_outputs["electronConfiguration_Output"]["text"] = elements[int(inputs_and_outputs["electronConfiguration_Input"].get())].eConfig() 
+        if len(get_input("electronConfiguration")) > 0:
+            output = elements[int(get_input("electronConfiguration"))].eConfig()
+            set_output("electronConfiguration", output)
         
     window = Tk()
     window.title("Physics Stuff")
@@ -74,4 +85,4 @@ def main():
     
     window.mainloop()
 
-main()
+
