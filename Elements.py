@@ -81,11 +81,7 @@ class Element:
                 return shells[index] + str(ec)
         return find_next_shell(self.number)
 
-    def elementInfo(self):
-        infoWindow = Tk()
-        infotxt = str(self.info())
-        infoLabel = Label(infoWindow, text=infotxt, font="none 16")
-        infoLabel.grid(row=8, column=0, pady = 10, sticky=E)
+    
         
 elements = [ # Number  | Symbol      | Element name         | Boiling point 1 atm (°K)| Melting point in 1 atm (°K)| mass (u)
     Element(number=   0, symbol= "E" , name= "Errorium"     , boilingPoint= "Error"   , meltingPoint= "Error"      , mass= "Error"  ), # So the index is the same as the atomic number
