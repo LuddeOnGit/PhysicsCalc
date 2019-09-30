@@ -28,19 +28,15 @@ def PeriodicTable():
     window = Tk()
     window.title = "Periodic Table"
 
-    
-    def elementInfo(number):
-        infoWindow = Tk()
-        infotxt = Elements.elements[number].info()
-        infoLabel = Label(infoWindow, text=infotxt, font="none 16")
-        infoLabel.grid(row=8, column=0, pady = 10, sticky=E)
     """
     Added to give the user an interactive periodic table, meant to click on an element and get pop-up with information
     """
+    elementButtons = []
         
     for element in Elements.elements:
         if type(element.group()) == int:
             button = ElementButton(element, window)
+            elementButtons.append(button)
 
     
     window.mainloop()
