@@ -64,8 +64,8 @@ class Element:
         if n in [2,10,18,36,54,86,118]: return 18
         
         # Check if the element is a lanthanoid or an actinoid, as they have no defined group
-        if n in range(57,  71+1): return "Element is a lanthanoid and thereby has no group" 
-        if n in range(89, 103+1): return "Element is a actinoid and thereby has no group" 
+        if n in range(57,  71+1): return "lanthanoids" 
+        if n in range(89, 103+1): return "actinoids" 
         
       
         
@@ -80,7 +80,7 @@ class Element:
                 return shells[index] + str(ec)
         return find_next_shell(self.number)
 
-    
+   
         
 elements = [ # Number  | Symbol      | Element name         | Boiling point 1 atm (°K)| Melting point in 1 atm (°K)| mass (u)
     Element(number=   0, symbol= "E" , name= "Errorium"     , boilingPoint= "Error"   , meltingPoint= "Error"      , mass= "Error"  ), # So the index is the same as the atomic number
