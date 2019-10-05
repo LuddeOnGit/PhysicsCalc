@@ -25,14 +25,20 @@ class ElementFrame:
         elif element.number in [5,14,32,33,51,52,85]:          color = "green3"        # Metalloids
         elif element.number in [1,6,7,8,9,15,16,17,34,35,53]:  color = "green2"        # Other nonmetals
         elif element.group() == 18:                            color = "deep sky blue" # Noble gases
-        else:                                                  color = "pink"          # Assumed transition metals
+        elif element.number in range(57,71+1):                 color = "sandy brown"   # Lanthanoids
+        elif element.number in range(89,103+1):                color = "lightpink1"    # Actinoids
+        else:                                                  color = "darksalmon"    # Assumed transition metals. Dark Salmon sounds like a band name. Or a sith.
 
         # TODO: Find some way of giving info whereever you click on the frame. Maybe background hitbox?
         
         self.element = element
 
-        self.frame = Frame(window, height = 2, width = self.width, bg=color, bd=2,highlightbackground="black", highlightcolor="black", highlightthickness=1)
-        self.frame.grid(row=element.period(), column=element.group())
+        # The variables for the row and column of the element frame. All those ternary operators are to place lanthanoids and actinoids below the table.
+        r = element.period() if not (element.number in range(57,71+1) or element.number in range(89,103+1)) else (9 if element.number in range(57,71+1) else 10)
+        c = element.group()  if not (element.number in range(57,71+1) or element.number in range(89,103+1)) else ((element.number - 53) if element.group() == "lanthanoids" else element.number - 85) 
+        
+        self.frame = Frame(window, height = 2, width = self.width, bg=color, bd=3, highlightbackground="white", highlightthickness=1)
+        self.frame.grid(row=r, column=c)
 
         self.numberLabel = Label(self.frame, text=element.number, font= "none 12", bg=color, height=1, width= 2)
         self.numberLabel.grid(row=0, column=0)
@@ -65,16 +71,18 @@ def PeriodicTable():
     elementFrames = []
         
     for element in Elements.elements:
-        if type(element.group()) == int:
-            f = ElementFrame(element, window)
-            elementFrames.append(f)
-        elif element.number != 0:
-            
+        if element.number == 0: continue
+       
+        f = ElementFrame(element, window)
+        elementFrames.append(f)
+        
+        if type(element.group()) == str:
             text = "57-71" if element.number in range(57,71+1) else "89-103"
             l = Label(window, text=text, font= "none 16", bg="white", height=2, width= 5)
             l.grid(row=element.period(), column=3)
 
-    # TODO: Add lanthanoids and actinoids
+    # Adds an empty label at row 8, to space the detached element block from the rest of the table. Adjust its height to adjust the spacing.
+    Label(window, text=" ", font= "none 16", bg="white", height=1, width= 0).grid(row=8, column=1)
     
     window.mainloop()
 
