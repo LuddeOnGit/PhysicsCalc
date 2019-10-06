@@ -10,7 +10,7 @@ import Elements
 class ElementFrame:
    
     # The width variable for the fram and its equally wide contents
-    width = 4
+    width = 5
 
 
     def __init__(self, element, window):
@@ -37,20 +37,24 @@ class ElementFrame:
         r = element.period() if not (element.number in range(57,71+1) or element.number in range(89,103+1)) else (9 if element.number in range(57,71+1) else 10)
         c = element.group()  if not (element.number in range(57,71+1) or element.number in range(89,103+1)) else ((element.number - 53) if element.group() == "lanthanoids" else element.number - 85) 
         
-        self.frame = Frame(window, height = 2, width = self.width, bg=color, bd=3, highlightbackground="white", highlightthickness=1)
+        self.frame = Frame(window, height=2, width= self.width, bg=color, bd=3, highlightbackground="white", highlightthickness=1)
         self.frame.grid(row=r, column=c)
 
-        self.numberLabel = Label(self.frame, text=element.number, font= "none 12", bg=color, height=1, width= 2)
-        self.numberLabel.grid(row=0, column=0)
+        # Frame for the top row, containing the numberLabel and infoButton. To avoid having a column 1 at below rows.
+        topFrame = Frame(self.frame, height=1, width= self.width, bg=color, bd=0)
+        topFrame.grid(row=0,column=0, sticky=E)
+        
+        self.numberLabel = Label(topFrame, text=element.number, font= "none 12", bg=color, height=1, width= 5)
+        self.numberLabel.grid(row=0, column=0, sticky=W)
 
-        self.infoButton = Button(self.frame, text="i", font="none 12", command= lambda: self.elementInfo(), bg= color, height=1, width= 1)
-        self.infoButton.grid(row=0, column=1)
+        self.infoButton = Button(topFrame, text="i", font="none 12", command= lambda: self.elementInfo(), bg= color, height=1, width=1)
+        self.infoButton.grid(row=0, column=2, sticky=E)
         
         self.symbolLabel = Label(self.frame, text=element.symbol, font= "none 18", bg=color, height=1, width= self.width)
         self.symbolLabel.grid(row=1, column=0)
 
-        # The name of some of the longer named elements is cut off because TKinter imagines a cell at r2c1. Possible fix in making a frame just for the top row (number and i)
-        self.nameLabel = Label(self.frame, text=element.name, font= "none 8", bg=color, height=1, width = self.width)
+        # Extend width beyond the frame to prevent the name of some of the longer named elements being cut off 
+        self.nameLabel = Label(self.frame, text=element.name, font= "none 8", bg=color, height=1, width = self.width + 4)
         self.nameLabel.grid(row=2, column=0)
         
     def elementInfo(self):
