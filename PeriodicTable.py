@@ -18,15 +18,15 @@ class ElementFrame:
         # Coloring elements
         # TKinter color name chart: http://www.science.smith.edu/dftwiki/index.php/Color_Charts_for_TKinter
         color = "white"
-        if element.number in [109,110,111,113,115,116,117,118]:color = "gray76"        # No defined group
-        elif element.group() == 1 and element.number != 1:     color = "orange"        # Alkali metals
-        elif element.group() == 2:                             color = "yellow2"       # Alkaline earth metals
+        if element.number in [109,110,111,113,115,116,117,118]:color = "gray76"        # No defined section
+        elif element.group == 1 and element.number != 1:       color = "orange"        # Alkali metals
+        elif element.group == 2:                               color = "yellow2"       # Alkaline earth metals
         elif element.number in [13,31,49,50,81,82,83,84,114]:  color = "turquoise"     # Post-transition metals
         elif element.number in [5,14,32,33,51,52,85]:          color = "green3"        # Metalloids
         elif element.number in [1,6,7,8,9,15,16,17,34,35,53]:  color = "green2"        # Other nonmetals
-        elif element.group() == 18:                            color = "deep sky blue" # Noble gases
-        elif element.number in range(57,71+1):                 color = "sandy brown"   # Lanthanoids
-        elif element.number in range(89,103+1):                color = "lightpink1"    # Actinoids
+        elif element.group == 18:                              color = "deep sky blue" # Noble gases
+        elif element.group == "l":                             color = "lightpink1"    # Lanthanoids
+        elif element.group == "a":                             color = "sandy brown"   # Actinoids
         else:                                                  color = "darksalmon"    # Assumed transition metals. Dark Salmon sounds like a band name. Or a sith.
 
         # TODO: Find some way of giving info whereever you click on the frame. Maybe background hitbox?
@@ -34,8 +34,8 @@ class ElementFrame:
         self.element = element
 
         # The variables for the row and column of the element frame. All those ternary operators are to place lanthanoids and actinoids below the table.
-        r = element.period() if not (element.number in range(57,71+1) or element.number in range(89,103+1)) else (9 if element.number in range(57,71+1) else 10)
-        c = element.group()  if not (element.number in range(57,71+1) or element.number in range(89,103+1)) else ((element.number - 53) if element.group() == "lanthanoids" else element.number - 85) 
+        r = element.period if not (element.group == "a" or element.group == "l") else (9 if element.group == "a" else 10)
+        c = element.group  if not (element.group == "a" or element.group == "l") else ((element.number - 53) if element.group == "l" else element.number - 85) 
         
         self.frame = Frame(window, height=2, width= self.width, bg=color, bd=3, highlightbackground="white", highlightthickness=1)
         self.frame.grid(row=r, column=c)
@@ -81,10 +81,10 @@ def PeriodicTable():
         f = ElementFrame(element, window)
         elementFrames.append(f)
         
-        if type(element.group()) == str:
+        if type(element.group) == str:
             text = "57-71" if element.number in range(57,71+1) else "89-103"
             l = Label(window, text=text, font= "none 16", bg="white", height=2, width= 5)
-            l.grid(row=element.period(), column=3)
+            l.grid(row=element.period, column=3)
 
     # Adds an empty label at row 8, to space the detached element block from the rest of the table. Adjust its height to adjust the spacing.
     Label(window, text=" ", font= "none 16", bg="white", height=1, width= 0).grid(row=8, column=1)

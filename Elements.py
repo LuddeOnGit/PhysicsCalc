@@ -5,12 +5,6 @@ author: NRG
 class Element:
     
     # TODO: add isotopes
-    name = ""
-    number = 0
-    symbol = ""
-    boilingPoint = ""
-    meltingPoint = ""
-    mass = ""
     
     def __init__(self, number, symbol, name, boilingPoint, meltingPoint, mass):
         self.number = number
@@ -20,65 +14,72 @@ class Element:
         self.meltingPoint = meltingPoint
         self.mass = mass
         
+        # group and period are functions here because them being able to return makes things more efficient
+        
+        def period():
+            if self.number <=   2: return 1
+            if self.number <=  10: return 2
+            if self.number <=  18: return 3
+            if self.number <=  36: return 4
+            if self.number <=  54: return 5
+            if self.number <=  86: return 6
+            if self.number <= 118: return 7
+        
+        # Returns the group of the element
+        def group():
+            # Redeclaring to shorten
+            n = self.number
+            
+            # Check if the element is each of the elements in each group. 
+            # This is proboably not the most efficient solution.
+            # This makes a sideways backwards periodic table.
+            if n in [1, 3,11,19,37,55, 87]: return  1
+            if n in   [ 4,12,20,38,56, 88]: return  2
+            if n in         [21,39       ]: return  3
+            if n in         [22,40,72,104]: return  4
+            if n in         [23,41,73,105]: return  5
+            if n in         [24,42,74,106]: return  6
+            if n in         [25,43,75,107]: return  7
+            if n in         [26,44,76,108]: return  8
+            if n in         [27,45,77,109]: return  9
+            if n in         [28,46,78,110]: return 10
+            if n in         [29,47,79,111]: return 11
+            if n in         [30,48,80,112]: return 12
+            if n in   [ 5,13,31,49,81,113]: return 13
+            if n in   [ 6,14,32,50,82,114]: return 14
+            if n in   [ 7,15,33,51,83,115]: return 15
+            if n in   [ 8,16,34,52,84,116]: return 16
+            if n in   [ 9,17,35,53,85,117]: return 17
+            if n in [2,10,18,36,54,86,118]: return 18
+            
+            # Check if the element is a lanthanoid or an actinoid, as they have no defined group
+            if n in range(57,  71+1): return "l" 
+            if n in range(89, 103+1): return "a"
+        
+        
+        self.group = group()
+        self.period = period()
+        
+        # Returns the electron configuration in orbitals, assuming the atom is net neutrally charged.
+        def electronConfiguration(): 
+            shells = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f", "5d", "6p", "7s", "5f", "6d", "7p"]
+            electrons_in_shells = [2, 2, 6, 2, 6, 2, 10, 6, 2, 10, 6, 2, 14, 10, 6, 2, 14, 10, 6]
+            def find_next_shell(ec, index = 0):
+                if ec - electrons_in_shells[index] > 0:
+                    return shells[index] + str(electrons_in_shells[index]) + ", " + find_next_shell(ec-electrons_in_shells[index], index + 1)
+                else:
+                    return shells[index] + str(ec)
+            return find_next_shell(self.number)
+        
+        self.eConfig = electronConfiguration()
         
         
     # Function to return a describing string
     def info(self): 
-        return f"{self.name} ({self.symbol}) has atomic number {self.number}, {self.mass}u atomic mass, {self.meltingPoint}K melting point and {self.boilingPoint}K boiling point."
-    
-    def period(self):
-        if self.number <=   2: return 1
-        if self.number <=  10: return 2
-        if self.number <=  18: return 3
-        if self.number <=  36: return 4
-        if self.number <=  54: return 5
-        if self.number <=  86: return 6
-        if self.number <= 118: return 7
-    
-    
-    # Returns the group of the element
-    def group(self):
-        # Redeclaring to shorten
-        n = self.number
-        
-        # Check if the element is each of the elements in each group. 
-        # This is proboably not the most efficient solution.
-        # This makes a sideways backwards periodic table.
-        if n in [1, 3,11,19,37,55, 87]: return  1
-        if n in   [ 4,12,20,38,56, 88]: return  2
-        if n in         [21,39       ]: return  3
-        if n in         [22,40,72,104]: return  4
-        if n in         [23,41,73,105]: return  5
-        if n in         [24,42,74,106]: return  6
-        if n in         [25,43,75,107]: return  7
-        if n in         [26,44,76,108]: return  8
-        if n in         [27,45,77,109]: return  9
-        if n in         [28,46,78,110]: return 10
-        if n in         [29,47,79,111]: return 11
-        if n in         [30,48,80,112]: return 12
-        if n in   [ 5,13,31,49,81,113]: return 13
-        if n in   [ 6,14,32,50,82,114]: return 14
-        if n in   [ 7,15,33,51,83,115]: return 15
-        if n in   [ 8,16,34,52,84,116]: return 16
-        if n in   [ 9,17,35,53,85,117]: return 17
-        if n in [2,10,18,36,54,86,118]: return 18
-        
-        # Check if the element is a lanthanoid or an actinoid, as they have no defined group
-        if n in range(57,  71+1): return "lanthanoids" 
-        if n in range(89, 103+1): return "actinoids" 
+        return f"{self.name} ({self.symbol}) has atomic number {self.number}, {self.mass}u atomic mass, {self.meltingPoint}K melting point and {self.boilingPoint}K boiling point. It is in group {self.group} and period {self.period}. It has electron configuration {self.eConfig}"
+     
         
       
-        
-    # Returns the electron configuration in orbitals, assuming the atom is net neutrally charged.
-    def eConfig(self): 
-        shells = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f", "5d", "6p", "7s", "5f", "6d", "7p"]
-        electrons_in_shells = [2, 2, 6, 2, 6, 2, 10, 6, 2, 10, 6, 2, 14, 10, 6, 2, 14, 10, 6]
-        def find_next_shell(ec, index = 0):
-            if ec - electrons_in_shells[index] > 0:
-                return shells[index] + str(electrons_in_shells[index]) + ", " + find_next_shell(ec-electrons_in_shells[index], index + 1)
-            else:
-                return shells[index] + str(ec)
-        return find_next_shell(self.number)
 
    
         
