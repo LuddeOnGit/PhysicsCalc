@@ -64,6 +64,7 @@ class ElementFrame:
 def PeriodicTable():
     window = Tk()
     window.title = "Periodic Table"
+    window.resizable(width=False, height=False)
 
     """
     Added to give the user an interactive periodic table, meant to click on an element and get pop-up with information
