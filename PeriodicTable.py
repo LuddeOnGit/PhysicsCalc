@@ -26,15 +26,15 @@ class ElementFrame:
         elif element.number in [1,6,7,8,9,15,16,17,34,35,53]:  color = "green2"        # Other nonmetals
         elif element.group == 18:                              color = "deep sky blue" # Noble gases
         elif element.group == "l":                             color = "lightpink1"    # Lanthanoids
-        elif element.group == "a":                             color = "sandy brown"   # Actinoids
-        else:                                                  color = "darksalmon"    # Assumed transition metals. Dark Salmon sounds like a band name. Or a sith.
+        elif element.group == "a":                             color = "darksalmon"    # Actinoids
+        else:                                                  color = "sandy brown"   # Assumed transition metals. Dark Salmon sounds like a band name. Or a sith.
 
         # TODO: Find some way of giving info whereever you click on the frame. Maybe background hitbox?
         
         self.element = element
 
         # The variables for the row and column of the element frame. All those ternary operators are to place lanthanoids and actinoids below the table.
-        r = element.period if not (element.group == "a" or element.group == "l") else (9 if element.group == "a" else 10)
+        r = element.period if not (element.group == "a" or element.group == "l") else (9 if element.group == "l" else 10)
         c = element.group  if not (element.group == "a" or element.group == "l") else ((element.number - 53) if element.group == "l" else element.number - 85) 
         
         self.frame = Frame(window, height=2, width= self.width, bg=color, bd=3, highlightbackground="white", highlightthickness=1)
