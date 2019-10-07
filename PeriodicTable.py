@@ -47,10 +47,10 @@ class ElementFrame:
         self.numberLabel = Label(self.topFrame, text=element.number, font= "none 10", bg=color, height=1, width= self.width-1)
         self.numberLabel.grid(row=0, column=0, sticky=W)
 
-        self.infoButton = Button(self.topFrame, text="i", font="none 10", command= lambda: self.elementInfo(), bg= color, height=1, width=1)
+        self.infoButton = Button(self.topFrame, text="i", font="none 6", command= lambda: self.elementInfo(), bg= color, height=1, width=1)
         self.infoButton.grid(row=0, column=2, sticky=E)
         
-        self.symbolLabel = Label(self.frame, text=element.symbol, font= "none 14", bg=color, height=1, width= self.width)
+        self.symbolLabel = Label(self.frame, text=element.symbol, font= "none 12", bg=color, height=1, width= self.width)
         self.symbolLabel.grid(row=1, column=0)
 
         # Extend width beyond the frame to prevent the name of some of the longer named elements being cut off 
@@ -67,7 +67,7 @@ class ElementFrame:
 def PeriodicTable():
     window = Tk()
     window.title = "Periodic Table"
-    window.resizable(width=False, height=False)
+    window.resizable(width=True, height=True)
 
     window.configure(background="white")
 
