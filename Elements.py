@@ -78,8 +78,15 @@ class Element:
     def info(self): 
         return f"{self.name} ({self.symbol}) has atomic number {self.number}, {self.mass}u atomic mass, {self.meltingPoint}K melting point and {self.boilingPoint}K boiling point. It is in group {self.group} and period {self.period}. It has electron configuration {self.eConfig}"
      
-        
-      
+
+    # Returns what state the element is in at a given temperature in Kelvin
+    def stateAt(self, temp):
+        if type(self.meltingPoint) != str:
+            if temp < self.meltingPoint: return "solid"
+        if type(self.boilingPoint) != str:
+            if temp < self.boilingPoint: return "liquid"
+            else: return "gas"
+        return "Unknown"
 
    
         

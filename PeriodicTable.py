@@ -33,6 +33,11 @@ class ElementFrame:
         
         self.element = element
 
+        # Determine the symbol text color according to state at 300K
+        state = element.stateAt(300)
+        textColor = "red" if state == "gas" else "blue" if state == "liquid" else "black" if state == "solid" else "gray20"
+
+
         # The variables for the row and column of the element frame. All those ternary operators are to place lanthanoids and actinoids below the table.
         r = element.period if not (element.group == "a" or element.group == "l") else (9 if element.group == "l" else 10)
         c = element.group  if not (element.group == "a" or element.group == "l") else ((element.number - 53) if element.group == "l" else element.number - 85) 
@@ -50,8 +55,9 @@ class ElementFrame:
         self.infoButton = Button(self.topFrame, text="i", font="none 6", command= lambda: self.elementInfo(), bg= color, height=1, width=1)
         self.infoButton.grid(row=0, column=2, sticky=E)
         
-        self.symbolLabel = Label(self.frame, text=element.symbol, font= "none 12", bg=color, height=1, width= self.width)
+        self.symbolLabel = Label(self.frame, text=element.symbol, font= "none 14", bg=color, height=1, width= self.width)
         self.symbolLabel.grid(row=1, column=0)
+        self.symbolLabel.config(fg=textColor)
 
         # Extend width beyond the frame to prevent the name of some of the longer named elements being cut off 
         self.nameLabel = Label(self.frame, text=element.name, font= "none 8", bg=color, height=1, width = self.width + 4)
