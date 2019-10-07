@@ -33,7 +33,7 @@ class ElementFrame:
         
         self.element = element
 
-        # Determine the symbol text color according to state at 300K
+        # Determine the symbol text color according to state at 300K. Red is gas, blue is liquid, gray is solid.
         state = element.stateAt(300)
         textColor = "red" if state == "gas" else "blue" if state == "liquid" else "black" if state == "solid" else "gray20"
 
@@ -94,8 +94,18 @@ def PeriodicTable():
             l = Label(window, text=text, font= "none 16", bg="white", height=2, width= 5)
             l.grid(row=element.period, column=3)
 
-    # Adds an empty label at row 8, to space the detached element block from the rest of the table. Adjust its height to adjust the spacing.
+    # Add an empty label at row 8, to space the detached element block from the rest of the table. Adjust its height to adjust the spacing.
     Label(window, text=" ", font= "none 16", bg="white", height=1, width= 0).grid(row=8, column=1)
+
+    # Add label for periods
+    for p in range(1,8):
+        l = Label(window, text=p, font= "none 14", bg="white", height= 1, width=1)
+        l.grid(row=p, column= 0)
+
+    # Add label for groups
+    for g in range(1,19):
+        l = Label(window, text=g, font= "none 14", bg="white", height= 1, width=2)
+        l.grid(row=0, column= g)
 
     window.mainloop()
 
