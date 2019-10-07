@@ -10,7 +10,7 @@ import Elements
 class ElementFrame:
    
     # The width variable for the fram and its equally wide contents
-    width = 5
+    width = 4
 
 
     def __init__(self, element, window):
@@ -26,8 +26,8 @@ class ElementFrame:
         elif element.number in [1,6,7,8,9,15,16,17,34,35,53]:  color = "green2"        # Other nonmetals
         elif element.group == 18:                              color = "deep sky blue" # Noble gases
         elif element.group == "l":                             color = "lightpink1"    # Lanthanoids
-        elif element.group == "a":                             color = "darksalmon"    # Actinoids
-        else:                                                  color = "sandy brown"   # Assumed transition metals. Dark Salmon sounds like a band name. Or a sith.
+        elif element.group == "a":                             color = "darksalmon"    # Actinoids. Dark Salmon sounds like a band name. Or a sith.
+        else:                                                  color = "sandy brown"   # Assumed transition metals
 
         # TODO: Find some way of giving info whereever you click on the frame. Maybe background hitbox?
         
@@ -41,16 +41,16 @@ class ElementFrame:
         self.frame.grid(row=r, column=c)
 
         # Frame for the top row, containing the numberLabel and infoButton. To avoid having a column 1 at below rows.
-        topFrame = Frame(self.frame, height=1, width= self.width, bg=color, bd=0)
-        topFrame.grid(row=0,column=0, sticky=E)
+        self.topFrame = Frame(self.frame, height=1, width= self.width, bg=color, bd=0)
+        self.topFrame.grid(row=0,column=0, sticky=E)
         
-        self.numberLabel = Label(topFrame, text=element.number, font= "none 12", bg=color, height=1, width= 5)
+        self.numberLabel = Label(self.topFrame, text=element.number, font= "none 10", bg=color, height=1, width= self.width-1)
         self.numberLabel.grid(row=0, column=0, sticky=W)
 
-        self.infoButton = Button(topFrame, text="i", font="none 12", command= lambda: self.elementInfo(), bg= color, height=1, width=1)
+        self.infoButton = Button(self.topFrame, text="i", font="none 10", command= lambda: self.elementInfo(), bg= color, height=1, width=1)
         self.infoButton.grid(row=0, column=2, sticky=E)
         
-        self.symbolLabel = Label(self.frame, text=element.symbol, font= "none 18", bg=color, height=1, width= self.width)
+        self.symbolLabel = Label(self.frame, text=element.symbol, font= "none 14", bg=color, height=1, width= self.width)
         self.symbolLabel.grid(row=1, column=0)
 
         # Extend width beyond the frame to prevent the name of some of the longer named elements being cut off 
@@ -63,12 +63,13 @@ class ElementFrame:
         infoLabel = Label(infoWindow, text=infotxt, font="none 16")
         infoLabel.grid(row=8, column=0, pady = 10, sticky=E)
 
-
    
 def PeriodicTable():
     window = Tk()
     window.title = "Periodic Table"
     window.resizable(width=False, height=False)
+
+    window.configure(background="white")
 
     """
     Added to give the user an interactive periodic table, meant to click on an element and get pop-up with information
@@ -88,7 +89,7 @@ def PeriodicTable():
 
     # Adds an empty label at row 8, to space the detached element block from the rest of the table. Adjust its height to adjust the spacing.
     Label(window, text=" ", font= "none 16", bg="white", height=1, width= 0).grid(row=8, column=1)
-    
+
     window.mainloop()
 
 PeriodicTable()
