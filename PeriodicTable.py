@@ -65,6 +65,7 @@ class ElementFrame:
         
     def elementInfo(self):
         infoWindow = Tk()
+        infoWindow.title("Element info")
         infotxt = self.element.info()
         infoLabel = Label(infoWindow, text=infotxt, font="none 16")
         infoLabel.grid(row=8, column=0, pady = 10, sticky=E)
@@ -72,7 +73,7 @@ class ElementFrame:
    
 def PeriodicTable():
     window = Tk()
-    window.title = "Periodic Table"
+    window.title("Periodic Table")
     window.resizable(width=True, height=True)
 
     window.configure(background="white")
