@@ -6,13 +6,14 @@ class Element:
     
     # TODO: add isotopes
     
-    def __init__(self, number, symbol, name, boilingPoint, meltingPoint, mass):
+    def __init__(self, number, symbol, name, boilingPoint, meltingPoint, mass, isotopes={}):
         self.number = number
         self.symbol = symbol
         self.name = name
         self.boilingPoint = boilingPoint
         self.meltingPoint = meltingPoint
         self.mass = mass
+        self.isotopes = isotopes
         
         # group and period are functions here because them being able to return makes things more efficient
         
@@ -88,23 +89,61 @@ class Element:
             else: return "gas"
         return "Unknown"
 
+class Isotope:
+    def __init__(self, Z, A, mass, decayMode=0):
+        self.protons = Z
+        self.nucleons = A
+        self.neutrons = A - Z
+        self.mass = mass
+        self.decayMode = decayMode
    
+    # Returns the isotope it would be after the given decay
+    def radiate(self, mode):
+       if self.decayMode & mode == 0: return "This isotope can't radiate at that mode"
+       
+       A = self.nucleons
+       Z = self.protons
+       
+       if mode == alpha:
+           # A helium-4 core is emitted
+           A -= 4
+           Z -= 2
+       elif mode == betaN:
+           # A neutron turns into a proton and an electron
+           Z += 1
+       elif mode == betaP:
+           # A proton turns into a neutron and a positron
+           Z -= 1
+       elif mode == gamma:
+           # A gamma ray is emitted
+           A -= 0
+    
+       if A in elements[Z].isotopes: 
+           return elements[Z].isotopes[A]
+       
+       # If we add all possible isotopes, this line should never need to be called
+       return Isotope(Z= Z, A= A, mass="?")
+    
+alpha = 1 << 3
+betaN = 1 << 2
+betaP = 1 << 1
+gamma = 1 << 0
         
 elements = [ # Number  | Symbol      | Element name         | Boiling point 1 atm (°K)| Melting point in 1 atm (°K)| mass (u)
     Element(number=   0, symbol= "E" , name= "Errorium"     , boilingPoint= "Error"   , meltingPoint= "Error"      , mass= "Error"  ), # So the index is the same as the atomic number
-    Element(number=   1, symbol= "H" , name= "Hydrogen"     , boilingPoint=     20.28 , meltingPoint=         13.81, mass=   1.00794),
-    Element(number=   2, symbol= "He", name= "Helium"       , boilingPoint=      4.216, meltingPoint=          0.95, mass=   4.0026 ),
-    Element(number=   3, symbol= "Li", name= "Lithium"      , boilingPoint=   1615    , meltingPoint=        453.7 , mass=   6.941  ),
-    Element(number=   4, symbol= "Be", name= "Beryllium"    , boilingPoint=   3243    , meltingPoint=       1560   , mass=   9.01218),
-    Element(number=   5, symbol= "B" , name= "Boron"        , boilingPoint=   4275    , meltingPoint=       2365   , mass=  10.811  ),
-    Element(number=   6, symbol= "C" , name= "Carbon"       , boilingPoint=   5100    , meltingPoint=       3825   , mass=  12.011  ),
-    Element(number=   7, symbol= "N" , name= "Nitrogen"     , boilingPoint=     77.344, meltingPoint=         63.15, mass=  14.0067 ),
-    Element(number=   8, symbol= "O" , name= "Oxygen"       , boilingPoint=     90.188, meltingPoint=         54.8 , mass=  15.9994 ),
-    Element(number=   9, symbol= "F" , name= "Fluorine"     , boilingPoint=     85    , meltingPoint=         53.55, mass=  18.9984 ),
-    Element(number=  10, symbol= "Ne", name= "Neon"         , boilingPoint=     27.1  , meltingPoint=         24.55, mass=  20.1797 ),
-    Element(number=  11, symbol= "Na", name= "Sodium"       , boilingPoint=   1156    , meltingPoint=        371   , mass=  22.98977),
-    Element(number=  12, symbol= "Mg", name= "Magnesium"    , boilingPoint=   1380    , meltingPoint=        922   , mass=  24.305  ),
-    Element(number=  13, symbol= "Al", name= "Aluminium"    , boilingPoint=   2740    , meltingPoint=        933.5 , mass=  26.98154),
+    Element(number=   1, symbol= "H" , name= "Hydrogen"     , boilingPoint=     20.28 , meltingPoint=         13.81, mass=   1.00794, isotopes= { 1:Isotope(Z= 1,A= 1,mass= 1.00783),  2:Isotope(Z=1,A= 2,mass= 2.0141),  3:Isotope(Z=1,A=3,mass=3.01605,decayMode=betaN)}),
+    Element(number=   2, symbol= "He", name= "Helium"       , boilingPoint=      4.216, meltingPoint=          0.95, mass=   4.0026 , isotopes= { 3:Isotope(Z= 2,A= 3,mass= 3.01603),  4:Isotope(Z=2,A= 4,mass= 4.0026)}),
+    Element(number=   3, symbol= "Li", name= "Lithium"      , boilingPoint=   1615    , meltingPoint=        453.7 , mass=   6.941  , isotopes= { 6:Isotope(Z= 3,A= 6,mass= 6.01512),  7:Isotope(Z=3,A= 7,mass= 7.0160)}),
+    Element(number=   4, symbol= "Be", name= "Beryllium"    , boilingPoint=   3243    , meltingPoint=       1560   , mass=   9.01218, isotopes= { 9:Isotope(Z= 4,A= 9,mass= 9.01218)}),
+    Element(number=   5, symbol= "B" , name= "Boron"        , boilingPoint=   4275    , meltingPoint=       2365   , mass=  10.811  , isotopes= {10:Isotope(Z= 5,A=10,mass=10.01294), 11:Isotope(Z=5,A=11,mass=11.00931)}),
+    Element(number=   6, symbol= "C" , name= "Carbon"       , boilingPoint=   5100    , meltingPoint=       3825   , mass=  12.011  , isotopes= {12:Isotope(Z= 6,A=12,mass=12), 13:Isotope(Z=6,A=13,mass=13.00335), 14:Isotope(Z=6,A=14,mass=14.00324,decayMode=betaN)}),
+    Element(number=   7, symbol= "N" , name= "Nitrogen"     , boilingPoint=     77.344, meltingPoint=         63.15, mass=  14.0067 , isotopes= {13:Isotope(Z= 7,A=13,mass=13.00574,decayMode=betaP), 14:Isotope(Z=7,A=14,mass=14.00307), 15:Isotope(Z=7,A=15,mass=15.00011)}),
+    Element(number=   8, symbol= "O" , name= "Oxygen"       , boilingPoint=     90.188, meltingPoint=         54.8 , mass=  15.9994 , isotopes= {15:Isotope(Z= 8,A=15,mass=15.00307,decayMode=betaP+gamma), 16:Isotope(Z=8,A=16,mass=15.99491), 17:Isotope(Z=8,A=17,mass=16.99913)}),
+    Element(number=   9, symbol= "F" , name= "Fluorine"     , boilingPoint=     85    , meltingPoint=         53.55, mass=  18.9984 , isotopes= {18:Isotope(Z= 9,A=18,mass=18.00094,decayMode=betaP+gamma), 19:Isotope(Z=9,A=19,mass=18.9984)}),
+    Element(number=  10, symbol= "Ne", name= "Neon"         , boilingPoint=     27.1  , meltingPoint=         24.55, mass=  20.1797 , isotopes= {20:Isotope(Z=10,A=20,mass=19.99244)}),
+    Element(number=  11, symbol= "Na", name= "Sodium"       , boilingPoint=   1156    , meltingPoint=        371   , mass=  22.98977, isotopes= {22:Isotope(Z=11,A=22,mass=21.99443,decayMode=betaP+gamma), 23:Isotope(Z=11,A=23,mass=22.98977), 24:Isotope(Z=11,A=24,mass=23.99096,decayMode=betaN+gamma)}),
+    Element(number=  12, symbol= "Mg", name= "Magnesium"    , boilingPoint=   1380    , meltingPoint=        922   , mass=  24.305  , isotopes= {26:Isotope(Z=12,A=26,mass=25.98259)}),
+    Element(number=  13, symbol= "Al", name= "Aluminium"    , boilingPoint=   2740    , meltingPoint=        933.5 , mass=  26.98154, isotopes= {26:Isotope(Z=13,A=26,mass=25.98689,decayMode=betaP+gamma), 27:Isotope(Z=13,A=27,mass=26.98154)}),
     Element(number=  14, symbol= "Si", name= "Silicon"      , boilingPoint=   2630    , meltingPoint=       1683   , mass=  28.0855 ),
     Element(number=  15, symbol= "P" , name= "Phosphorus"   , boilingPoint=    553    , meltingPoint=        317.3 , mass=  30.97376),
     Element(number=  16, symbol= "S" , name= "Sulfur"       , boilingPoint=    717.82 , meltingPoint=        392.2 , mass=  32.066  ),
