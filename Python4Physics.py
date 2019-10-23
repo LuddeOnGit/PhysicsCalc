@@ -98,9 +98,30 @@ def wlPhoton(energy): #GUI done
     f = energy/h
     return wl(f,c)
 
+"""
+Calculates final speed from known start speed, acceleration and time from start to end
+"""
+def first_equation_of_motion(v_start, a, delta_time):
+    return v_start + a * delta_time
+
+"""
+Calculates length something has moved from known start speed, end speed and time from start to end
+"""
+def second_equation_of_motion(v_start, v_end, delta_time):
+    return delta_time/2 * (v_start+v_end)
+
+"""
+Calculates length something has moved from known start speed, time from start to end and acceleration 
+"""
+def third_equation_of_motion(v_start, delta_time, a):
+    return v_start * delta_time + (1/2) * a * delta_time ** 2
+
+"""
+"Timeless formula" Calculates the value of 2 * acceleration * end position from known start speed and end speed
+"""
+def fourth_equation_of_motion(v_start, v_end):
+    return v_end ** 2 - v_start ** 2
+
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
 print(f'c : {c}\ncv : {cv}\nh : {h}\nB : {B}\nu : {u}')
-
-
-
