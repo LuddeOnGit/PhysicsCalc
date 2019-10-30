@@ -10,66 +10,96 @@ import Elements
 class ElementFrame:
    
     # The width variable for the fram and its equally wide contents
-    width = 4
+    #width = 4
 
-
-    def __init__(self, element, window):
-
+    def makeSquare(self, window, r, c, showInfoButton=True, showName=True, width=4, height=4, largeFont= "none 14", smallFont= "none 8"):
         # Coloring elements
         # TKinter color name chart: http://www.science.smith.edu/dftwiki/index.php/Color_Charts_for_TKinter
         color = "white"
-        if element.number in [109,110,111,113,115,116,117,118]:color = "gray76"        # No defined section
-        elif element.group == 1 and element.number != 1:       color = "orange"        # Alkali metals
-        elif element.group == 2:                               color = "yellow2"       # Alkaline earth metals
-        elif element.number in [13,31,49,50,81,82,83,84,114]:  color = "turquoise"     # Post-transition metals
-        elif element.number in [5,14,32,33,51,52,85]:          color = "green3"        # Metalloids
-        elif element.number in [1,6,7,8,9,15,16,17,34,35,53]:  color = "green2"        # Other nonmetals
-        elif element.group == 18:                              color = "deep sky blue" # Noble gases
-        elif element.group == "l":                             color = "lightpink1"    # Lanthanoids
-        elif element.group == "a":                             color = "darksalmon"    # Actinoids. Dark Salmon sounds like a band name. Or a sith.
-        else:                                                  color = "sandy brown"   # Assumed transition metals
+        if self.element.number in [109,110,111,113,115,116,117,118]:color = "gray76"        # No defined section
+        elif self.element.group == 1 and self.element.number != 1:  color = "orange"        # Alkali metals
+        elif self.element.group == 2:                               color = "yellow2"       # Alkaline earth metals
+        elif self.element.number in [13,31,49,50,81,82,83,84,114]:  color = "turquoise"     # Post-transition metals
+        elif self.element.number in [5,14,32,33,51,52,85]:          color = "green3"        # Metalloids
+        elif self.element.number in [1,6,7,8,9,15,16,17,34,35,53]:  color = "green2"        # Other nonmetals
+        elif self.element.group == 18:                              color = "deep sky blue" # Noble gases
+        elif self.element.group == "l":                             color = "lightpink1"    # Lanthanoids
+        elif self.element.group == "a":                             color = "darksalmon"    # Actinoids. Dark Salmon sounds like a band name. Or a sith.
+        else:                                                       color = "sandy brown"   # Assumed transition metals
 
+        # Determine the symbol text color according to state at 300K. Red is gas, blue is liquid, gray is solid.
+        state = self.element.stateAt(300)
+        textColor = "red" if state == "gas" else "blue" if state == "liquid" else "black" if state == "solid" else "gray20"
+
+        frame = Frame(window, height=2, width= width, bg=color, bd=3, highlightbackground="white", highlightthickness=1)
+        frame.grid(row=r, column=c)
+
+        # Frame for the top row, containing the numberLabel and infoButton. To avoid having a column 1 at below rows.
+        topFrame = Frame(frame, height=1, width= width, bg=color, bd=0)
+        topFrame.grid(row=0,column=0, sticky=E)
+        
+        numberLabel = Label(topFrame, text=self.element.number, font= smallFont, bg=color, height=1, width= width-1)
+        numberLabel.grid(row=0, column=0, sticky=W)
+
+        if showInfoButton:
+            infoButton = Button(topFrame, text="i", font="none 6", command= lambda: self.elementInfo(), bg= color, height=1, width=1)
+            infoButton.grid(row=0, column=2, sticky=E)
+        
+        symbolLabel = Label(frame, text=self.element.symbol, font= largeFont, bg=color, height=1, width= width)
+        symbolLabel.grid(row=1, column=0)
+        symbolLabel.config(fg=textColor)
+
+        if showName:
+            # Extend width beyond the frame to prevent the name of some of the longer named elements being cut off 
+            nameLabel = Label(frame, text=self.element.name, font= smallFont, bg=color, height=1, width = width + 4)
+            nameLabel.grid(row=2, column=0)
+
+        
+
+    def __init__(self, element, window):
+
+        
         # TODO: Find some way of giving info whereever you click on the frame. Maybe background hitbox?
         
         self.element = element
-
-        # Determine the symbol text color according to state at 300K. Red is gas, blue is liquid, gray is solid.
-        state = element.stateAt(300)
-        textColor = "red" if state == "gas" else "blue" if state == "liquid" else "black" if state == "solid" else "gray20"
-
 
         # The variables for the row and column of the element frame. All those ternary operators are to place lanthanoids and actinoids below the table.
         r = element.period if not (element.group == "a" or element.group == "l") else (9 if element.group == "l" else 10)
         c = element.group  if not (element.group == "a" or element.group == "l") else ((element.number - 53) if element.group == "l" else element.number - 85) 
         
-        self.frame = Frame(window, height=2, width= self.width, bg=color, bd=3, highlightbackground="white", highlightthickness=1)
-        self.frame.grid(row=r, column=c)
-
-        # Frame for the top row, containing the numberLabel and infoButton. To avoid having a column 1 at below rows.
-        self.topFrame = Frame(self.frame, height=1, width= self.width, bg=color, bd=0)
-        self.topFrame.grid(row=0,column=0, sticky=E)
-        
-        self.numberLabel = Label(self.topFrame, text=element.number, font= "none 10", bg=color, height=1, width= self.width-1)
-        self.numberLabel.grid(row=0, column=0, sticky=W)
-
-        self.infoButton = Button(self.topFrame, text="i", font="none 6", command= lambda: self.elementInfo(), bg= color, height=1, width=1)
-        self.infoButton.grid(row=0, column=2, sticky=E)
-        
-        self.symbolLabel = Label(self.frame, text=element.symbol, font= "none 14", bg=color, height=1, width= self.width)
-        self.symbolLabel.grid(row=1, column=0)
-        self.symbolLabel.config(fg=textColor)
-
-        # Extend width beyond the frame to prevent the name of some of the longer named elements being cut off 
-        self.nameLabel = Label(self.frame, text=element.name, font= "none 8", bg=color, height=1, width = self.width + 4)
-        self.nameLabel.grid(row=2, column=0)
+        self.makeSquare(window, r, c)
         
     def elementInfo(self):
+        
         infoWindow = Tk()
         infoWindow.title("Element info")
-        infotxt = self.element.info()
-        infoLabel = Label(infoWindow, text=infotxt, font="none 16")
-        infoLabel.grid(row=8, column=0, pady = 10, sticky=E)
 
+
+        topFrame = Frame(infoWindow, height=2, width= 10, bg="white", bd=3, highlightbackground="white", highlightthickness=1)
+        topFrame.grid(row=0,column=0, sticky=W)
+        
+        self.makeSquare(topFrame, 0, 0, showInfoButton=False, showName=True, width=5, height=6, largeFont= "none 22", smallFont="none 14")
+
+        topRightFrame = Frame(topFrame, height=2, width= 4, bg="white", bd=3, highlightbackground="white", highlightthickness=1)
+        topRightFrame.grid(row=0,column=1)
+        
+        massLabel = Label(topRightFrame, text="Mass: " + str(self.element.mass) + "u", font="none 16")
+        massLabel.grid(row=0, column=0, pady=2, sticky=W)
+
+        boilingLabel = Label(topRightFrame, text="Boiling Point: " + str(self.element.boilingPoint) + "°K", font="none 16")
+        boilingLabel.grid(row=1, column=0, pady=2, sticky=W)
+
+        meltingLabel = Label(topRightFrame, text="Melting Point: " + str(self.element.meltingPoint) + "°K", font="none 16")
+        meltingLabel.grid(row=2, column=0, pady=2, sticky=W)
+
+        rcLabel = Label(infoWindow, text= "Group: " + str(self.element.group) + ", Period: " + str(self.element.period), font="none 16")
+        rcLabel.grid(row=1, column=0, sticky=W)
+        
+        eConfigLabel = Label(infoWindow, text=self.element.eConfig, font = "none 14")
+        eConfigLabel.grid(row=2, column=0, pady=2, sticky=W)
+
+        #nameLabel.grid(row=0, column=1, pady=2, sticky=W)
+        
    
 def PeriodicTable():
     window = Tk()
