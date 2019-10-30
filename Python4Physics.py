@@ -57,14 +57,9 @@ def freq(λ, v=c): return v/λ
 
 """
 Calculates wavelength(λ) by dividing the velocity of the wave(v, implicitly c) by frequency(f)
+This function is the same as freq, as they both divide param2 by param1, but it would be confusing to merge them
 """
 def wl(f, v=c): return v/f
-
-"""
-Calculates Energy of a given photon with frequency f.
-Takes Plancks-constant(h) and frequency(f)
-"""
-def ef(f): return h*f
 
 """
 Plugs c=λf into E=hf to get E=hc/λ
@@ -94,9 +89,17 @@ def massConvKg(m): return m/u #GUI done
 """
 Gets the wavelength of the photon with the given energy
 """
-def wlPhoton(energy): #GUI done
+def photonWl(energy): #GUI done
     f = energy/h
     return wl(f,c)
+
+"""
+Calculates the energy of a given photon based on either its wavelength or frequency
+"""
+def photonEnergy(f= "",wl = ""):
+    if f == "" and wl == "": return "Insufficient data"
+    if f == "": f = freq(wl)
+    return f*h
 
 
 print('This is a modified Python Console made for Physics 1')
