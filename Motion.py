@@ -6,7 +6,9 @@ Created on Tue Oct 29 15:16:29 2019
 @author: victorapeland
 """
 
-# Usage: use the factor you want as the function name and type in what you already have as parameters. Don't enter the ones you don't have
+import Python4Physics
+
+# Usage: use the factor you want as the function name and type in the three values you already have as parameters. Don't enter the ones you don't have
 
 def endVelocity(startV="", a="", dt="", ds=""):
     if "" not in [startV,a,dt] : return startV + a * dt # Formula 1
@@ -18,10 +20,10 @@ def time(startV="", endV="",  a="", ds=""):
     if "" not in [startV,endV, a]: return (endV - startV)/a
     if "" not in [endV,startV,ds]: return ds/((startV + endV)/2)
     if "" not in [startV,a,ds]: 
-        sqrt = startV**2 + 2*a(ds)
+        sqrt = startV**2 + 2*a*ds
         if sqrt >= 0:
             value1 = (startV + sqrt**(1/2))/a
-            value2 = (startV - sqrt**(1/2))/a # TODO: find some way of determine which value is relevant
+            value2 = (startV - sqrt**(1/2))/a # TODO: find some way to determine which value is relevant
             return value1
     return "Insufficient data entered."
     
@@ -66,3 +68,14 @@ def third_equation_of_motion(v_start, delta_time, a):
 """
 def fourth_equation_of_motion(v_start, v_end):
     return v_end ** 2 - v_start ** 2
+
+print()
+print("----Motion-py----")
+print("The defined formulae are as follows: ")
+print("endVelocity")
+print("time")
+print("acceleration")
+print("distance")
+print("startVelocity")
+print("With the following parameter names: startV, endV, a, dt, ds")
+print()
