@@ -21,7 +21,7 @@ def time(startV="", endV="",  a="", ds=""):
         sqrt = startV**2 + 2*a(ds)
         if sqrt < 0: return
         value1 = (startV + sqrt**(1/2))/a
-        value2 = (startV - sqrt**(1/2))/a
+        value2 = (startV - sqrt**(1/2))/a # TODO: find some way of determinint which value is relevant
         return value1
     
 
@@ -48,3 +48,28 @@ def startVelocity(ds="", a="", endV="", dt=""):
     if "" not in [ds, endV, dt]: return 2 * ds / dt - endV
     if "" not in [ds, endV, a]: return (endV * 2 - 2 * a * ds) * (1/2)
     return "You noob!!"
+
+# If you want the straight formulae without any funny business, here you go:
+"""
+Calculates final speed from known start speed, acceleration and time from start to end
+"""
+def first_equation_of_motion(v_start, a, delta_time):
+    return v_start + a * delta_time
+
+"""
+Calculates length something has moved from known start speed, end speed and time from start to end
+"""
+def second_equation_of_motion(v_start, v_end, delta_time):
+    return delta_time/2 * (v_start+v_end)
+
+"""
+Calculates length something has moved from known start speed, time from start to end and acceleration 
+"""
+def third_equation_of_motion(v_start, delta_time, a):
+    return v_start * delta_time + (1/2) * a * delta_time ** 2
+
+"""
+"Timeless formula" Calculates the value of 2 * acceleration * end position from known start speed and end speed
+"""
+def fourth_equation_of_motion(v_start, v_end):
+    return v_end ** 2 - v_start ** 2
