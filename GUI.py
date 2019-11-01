@@ -41,12 +41,12 @@ def main():
             
     def foEnergyToWl(row):
         if len(get_input(row)) > 0:
-            output = str(wlPhoton(float(get_input(row)))) + "m"
+            output = str(photonWl(float(get_input(row)))) + "m"
             set_output(row, output)
             
     def massToEnergy(row):
         if len(get_input(row)) > 0:
-            output = str(mass(float(get_input(row)))) + "J"
+            output = str(einstein(float(get_input(row)))) + "J"
             set_output(row, output)
             
     def electronConfiguration(row):
@@ -66,7 +66,7 @@ def main():
 
     def fotonEnergy(row):
         if len(get_input(row)) > 0:
-            output = str(ef(float(get_input(row)))) + "J"
+            output = str(photonEnergy(float(get_input(row)))) + "J"
             set_output(row, output)
     
     window = Tk()

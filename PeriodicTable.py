@@ -8,9 +8,6 @@ from tkinter import *
 import Elements
 
 class ElementFrame:
-   
-    # The width variable for the fram and its equally wide contents
-    #width = 4
 
     def makeSquare(self, window, r, c, showInfoButton=True, showName=True, width=4, height=4, largeFont= "none 14", smallFont= "none 8"):
         # Coloring elements
@@ -67,7 +64,7 @@ class ElementFrame:
         r = element.period if not (element.group == "a" or element.group == "l") else (9 if element.group == "l" else 10)
         c = element.group  if not (element.group == "a" or element.group == "l") else ((element.number - 53) if element.group == "l" else element.number - 85) 
         
-        self.makeSquare(window, r, c)
+        self.makeSquare(window, r, c, showName=False)
         
     def elementInfo(self):
         
@@ -97,8 +94,6 @@ class ElementFrame:
         
         eConfigLabel = Label(infoWindow, text=self.element.eConfig, font = "none 14")
         eConfigLabel.grid(row=2, column=0, pady=2, sticky=W)
-
-        #nameLabel.grid(row=0, column=1, pady=2, sticky=W)
         
    
 def PeriodicTable():
@@ -121,7 +116,7 @@ def PeriodicTable():
         
         if type(element.group) == str:
             text = "57-71" if element.number in range(57,71+1) else "89-103"
-            l = Label(window, text=text, font= "none 16", bg="white", height=2, width= 5)
+            l = Label(window, text=text, font= "none 12", bg="white", height=2, width= 4)
             l.grid(row=element.period, column=3)
 
     # Add an empty label at row 8, to space the detached element block from the rest of the table. Adjust its height to adjust the spacing.
