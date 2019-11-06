@@ -84,7 +84,42 @@ def gaussian_elimination(m, eps = 1.0/(10**10)):
 Calculate determinant of given matrix
 """
 def calculate_determinant(A):
-    np.linalg.det(A)
+    return np.linalg.det(A)
+
+"""
+Calculate determinant, but better. (no decimals, more efficient). Only for square matrices for now.
+"""
+def determinant(matrix):
+    
+    # Check if matrix is just 1x1. The exit clause for the recursion
+    if len(matrix) == 1 and len(matrix[0]) == 1: return matrix[0][0]
+    
+    result = 0    
+    r = 0    
+    for c in range(len(matrix[r])):        
+        # The previous value
+        p = matrix[r][c]
+        
+        # Rest value is telling what matrix remains after the row and column of the inspecting value are gone
+        # Copy the matrix. Way too long because Python likes passing pointers instead of copying values 
+        rest = []
+        for v in matrix:
+            x = []
+            for w in v: x.append(w)
+            rest.append(x)
+        
+        del rest[r] # Delete the current row
+        
+        # Delete the current column
+        for i in range(len(rest)):
+            del rest[i][c] # Delete the at the same column in row i 
+            
+        sign = (1 if (c % 2 == r % 2) else -1)
+        result += sign * p * determinant(rest)
+        
+    return result
+    
+
 
 """
 Use Cramer's rule to find the value of the variables from given matrix

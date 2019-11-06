@@ -123,6 +123,11 @@ class Isotope:
        
        # If we add all possible isotopes, this line should never need to be called
        return Isotope(Z= Z, A= A, mass="?")
+
+def indexBySymbol(symbol):
+    for element in elements:
+        if element.symbol == symbol: return element.number
+
     
 alpha = 1 << 3
 betaN = 1 << 2
