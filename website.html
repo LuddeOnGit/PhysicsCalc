@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<h1>Welcome To NRG's Physics Calculator</h1>
+	</head>
+	<body>
+		<script>
+			function find_function() {
+				let object = document.getElementById("function").value
+				switch (object) {
+					case "Einstein":
+						Einstein()
+						break;
+					case "wl":
+						wl()
+						break;
+					default:
+						break;
+				}
+			}
+
+			const c = 3e+8, h = 6.63e-34, B = 2.18e-18, u = 1.66e-27, mn = 1.00866491595, mp = 1.007825032241
+			function Einstein() {
+				let m = document.getElementById("item").value
+				document.getElementById("output").value = (m * c ** 2).toExponential(2)
+			}
+
+			function wl() {
+				let f = document.getElementById("item").value
+				document.getElementById("output").value = (c / f).toExponential(2)
+			}
+
+		</script>	
+		<select id="function">
+			<option value="Einstein">Einsteins formula</option>
+			<option value="wl">Wavelength from frequency</option>
+		</select>
+		<input id="item">
+		<label>Output:</label>
+		<input id="output">
+		<input value="Submit item" type="button" onclick="find_function()">
+	</body>
+</html>
+

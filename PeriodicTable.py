@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 @author: NRG
 """
@@ -44,7 +42,6 @@ class ElementFrame:
         
         symbolLabel = Label(frame, text=self.element.symbol, font= largeFont, bg=color, height=1, width= width)
         symbolLabel.grid(row=1, column=0)
-        symbolLabel.config(fg=textColor)
 
         if showName:
             # Extend width beyond the frame to prevent the name of some of the longer named elements being cut off 
@@ -54,9 +51,6 @@ class ElementFrame:
         
 
     def __init__(self, element, window):
-
-        
-        # TODO: Find some way of giving info whereever you click on the frame. Maybe background hitbox?
         
         self.element = element
 
