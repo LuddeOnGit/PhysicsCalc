@@ -69,7 +69,7 @@ class ElementFrame:
         topFrame = Frame(infoWindow, height=2, width= 10, bg="white", bd=3, highlightbackground="white", highlightthickness=1)
         topFrame.grid(row=0,column=0, sticky=W)
         
-        self.makeSquare(topFrame, 0, 0, showInfoButton=False, showName=True, width=5, height=6, largeFont= "none 22", smallFont="none 14")
+        self.makeSquare(topFrame, 0, 0, showInfoButton=False, showName=True, width=5, height=6, largeFont= "none 28", smallFont="none 14")
 
         topRightFrame = Frame(topFrame, height=2, width= 4, bg="white", bd=3, highlightbackground="white", highlightthickness=1)
         topRightFrame.grid(row=0,column=1)
@@ -88,8 +88,45 @@ class ElementFrame:
         
         eConfigLabel = Label(infoWindow, text=self.element.eConfig, font = "none 14")
         eConfigLabel.grid(row=2, column=0, pady=2, sticky=W)
+
+        isotopesFrame = Frame(infoWindow, height=3, width= 10)
+        isotopesFrame.grid(row=3, column=0, sticky=W)
+
+        i = 0
+        for A in self.element.isotopes:
+            isotope = self.element.isotopes[A]
+            isotopeFrame = IsotopeFrame(isotopesFrame, isotope, i)
+            i += 1
         
-   
+
+class IsotopeFrame:
+    def __init__(self, window, isotope, c):
+        self.isotope = isotope
+
+        frame = Frame(window, height=4, width=4, bg="white", bd=3, highlightbackground="black", highlightthickness=1)
+        frame.grid(row=0, column=c)
+
+        topFrame = Frame(frame, height=2, width=3, bg="white")
+        topFrame.grid(row=0, column=0)
+
+        symbol = Elements.elements[isotope.protons].symbol    
+        symbolLabel = Label(topFrame, text=symbol, font="none 28", width=2, height=2)
+        symbolLabel.grid(row=0, column=1, sticky=W)
+
+        # Frame for the numbers
+        leftFrame = Frame(topFrame, height=2, width=1, bg="white")
+        leftFrame.grid(row=0, column=0)
+        aLabel = Label(leftFrame, text=isotope.nucleons, font="none 14", bg="white", height=1, width=1)
+        zLabel = Label(leftFrame, text=isotope.protons , font="none 14", bg="white", height=1, width=1)
+        aLabel.grid(row=0, column=0, sticky=E)
+        zLabel.grid(row=1, column=0, sticky=E)
+
+        massLabel = Label(frame, text=str(isotope.mass) + "u", font="none 10", bg="white", height=1, width=4)
+        massLabel.grid(row=1, column=0, sticky=W+E)
+
+        # TODO: Add decay modes and an add button
+
+
 def PeriodicTable():
     window = Tk()
     window.title("Periodic Table")
