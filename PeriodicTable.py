@@ -63,6 +63,7 @@ class ElementFrame:
     def elementInfo(self):
         
         infoWindow = Tk()
+        infoWindow.config(bg="white")
         infoWindow.title("Element info")
 
 
@@ -74,22 +75,22 @@ class ElementFrame:
         topRightFrame = Frame(topFrame, height=2, width= 4, bg="white", bd=3, highlightbackground="white", highlightthickness=1)
         topRightFrame.grid(row=0,column=1)
         
-        massLabel = Label(topRightFrame, text="Mass: " + str(self.element.mass) + "u", font="none 16")
+        massLabel = Label(topRightFrame, text="Mass: " + str(self.element.mass) + "u", font="none 16", bg="white")
         massLabel.grid(row=0, column=0, pady=2, sticky=W)
 
-        boilingLabel = Label(topRightFrame, text="Boiling Point: " + str(self.element.boilingPoint) + "°K", font="none 16")
+        boilingLabel = Label(topRightFrame, text="Boiling Point: " + str(self.element.boilingPoint) + "°K", font="none 16", bg="white")
         boilingLabel.grid(row=1, column=0, pady=2, sticky=W)
 
-        meltingLabel = Label(topRightFrame, text="Melting Point: " + str(self.element.meltingPoint) + "°K", font="none 16")
+        meltingLabel = Label(topRightFrame, text="Melting Point: " + str(self.element.meltingPoint) + "°K", font="none 16", bg="white")
         meltingLabel.grid(row=2, column=0, pady=2, sticky=W)
 
-        rcLabel = Label(infoWindow, text= "Group: " + str(self.element.group) + ", Period: " + str(self.element.period), font="none 16")
+        rcLabel = Label(infoWindow, text= "Group: " + str(self.element.group) + ", Period: " + str(self.element.period), font="none 16", bg="white")
         rcLabel.grid(row=1, column=0, sticky=W)
         
-        eConfigLabel = Label(infoWindow, text=self.element.eConfig, font = "none 14")
+        eConfigLabel = Label(infoWindow, text=self.element.eConfig, font = "none 14", bg="white")
         eConfigLabel.grid(row=2, column=0, pady=2, sticky=W)
 
-        isotopesFrame = Frame(infoWindow, height=3, width= 10)
+        isotopesFrame = Frame(infoWindow, height=3, width= 10, bg="white")
         isotopesFrame.grid(row=3, column=0, sticky=W)
 
         i = 0
@@ -110,14 +111,14 @@ class IsotopeFrame:
         topFrame.grid(row=0, column=0)
 
         symbol = Elements.elements[isotope.protons].symbol    
-        symbolLabel = Label(topFrame, text=symbol, font="none 28", width=2, height=2)
+        symbolLabel = Label(topFrame, text=symbol, font="none 28", width=2, height=2, bg="white")
         symbolLabel.grid(row=0, column=1, sticky=W)
 
         # Frame for the numbers
         leftFrame = Frame(topFrame, height=2, width=1, bg="white")
         leftFrame.grid(row=0, column=0)
-        aLabel = Label(leftFrame, text=isotope.nucleons, font="none 14", bg="white", height=1, width=1)
-        zLabel = Label(leftFrame, text=isotope.protons , font="none 14", bg="white", height=1, width=1)
+        aLabel = Label(leftFrame, text=isotope.nucleons, font="none 11", bg="white", height=1, width=1)
+        zLabel = Label(leftFrame, text=isotope.protons , font="none 11", bg="white", height=1, width=1)
         aLabel.grid(row=0, column=0, sticky=E)
         zLabel.grid(row=1, column=0, sticky=E)
 
