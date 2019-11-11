@@ -15,6 +15,12 @@
 					case "wl":
 						wl()
 						break;
+					case "ehyd":
+						ehyd()
+						break;
+					case "wavespeed":
+						wavespeed()
+						break;
 					default:
 						break;
 				}
@@ -31,12 +37,27 @@
 				document.getElementById("output").value = (c / f).toExponential(2)
 			}
 
+			function ehyd() {
+				let shell = document.getElementById("item").value
+				document.getElementById("output").value = (- B / shell ** 2).toExponential(2)
+			}
+
+			function wavespeed() {
+				let lambda = document.getElementById("item").value
+				let frequency = document.getElementById("item2").value
+				document.getElementById("output").value = (lambda * frequency).toExponential(2)
+
+			}
+
 		</script>	
 		<select id="function">
 			<option value="Einstein">Einsteins formula</option>
 			<option value="wl">Wavelength from frequency</option>
+			<option value="ehyd">Energy level of shell</option>
+			<option value="wavespeed">Wavespeed (lambda, freq)</option>
 		</select>
 		<input id="item">
+		<input id="item2">
 		<label>Output:</label>
 		<input id="output">
 		<input value="Submit item" type="button" onclick="find_function()">
