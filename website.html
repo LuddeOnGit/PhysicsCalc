@@ -7,19 +7,32 @@
 	<body>
 		<script>
 			function find_function() {
-				let object = document.getElementById("function").value
-				switch (object) {
-					case "Einstein":
-						Einstein()
+				let chosenFunction = document.getElementById("function").value
+				let value1 = document.getElementById("item").value
+				let value2 = document.getElementById("item2").value
+				let outputObject = document.getElementById("output")
+
+				switch (chosenFunction) {
+					case "einstein":
+						outputObject.value = Einstein(value1)
 						break;
 					case "wl":
-						wl()
+						outputObject.value = wl(value1)
 						break;
-					case "ehyd":
-						ehyd()
+					case "eHyd":
+						outputObject.value = ehyd(value1)
 						break;
 					case "wavespeed":
-						wavespeed()
+						outputObject.value = wavespeed(value1, value2)
+						break;
+					case "eHydDiff":
+						outputObject.value = EHydDiff(value1, value2)
+						break;
+					case "photonEnergy":
+						outputObject.value = photonEnergy(value1, value2)
+						break;
+					case "freq":
+						outputObject.value = freq(value1, value2)
 						break;
 					default:
 						break;
@@ -27,40 +40,64 @@
 			}
 
 			const c = 3e+8, h = 6.63e-34, B = 2.18e-18, u = 1.66e-27, mn = 1.00866491595, mp = 1.007825032241
-			function Einstein() {
-				let m = document.getElementById("item").value
-				document.getElementById("output").value = (m * c ** 2).toExponential(2)
+
+			function einstein(value) {
+				return (value * c ** 2).toExponential(2)
 			}
 
-			function wl() {
-				let f = document.getElementById("item").value
-				document.getElementById("output").value = (c / f).toExponential(2)
+			function wl(value) {
+				return (c / value).toExponential(2)
 			}
 
-			function ehyd() {
-				let shell = document.getElementById("item").value
-				document.getElementById("output").value = (- B / shell ** 2).toExponential(2)
+			function eHyd(value) {	
+				return (- B / value ** 2).toExponential(2)
 			}
 
-			function wavespeed() {
-				let lambda = document.getElementById("item").value
-				let frequency = document.getElementById("item2").value
-				document.getElementById("output").value = (lambda * frequency).toExponential(2)
-
+			function wavespeed(value1, value2) {
+				return (value1 * value2).toExponential(2)
 			}
+
+			function eHydDiff(value1, value2) {
+				return Math.abs((eHyd(value1) - eHyd(value2)).toExponential(2))
+			}
+
+			function photonEnergy(value1 = "", value2 = "") {
+    			if (value1 === "" && value2 === "") { 
+    				return "Insufficient data"
+    			}
+
+    			if (value1 === "") {
+    				value1 = freq(value2)
+    			}
+
+    			return value1 * h
+    		}
+
+    		function freq(value1, value2 = "") {
+    			if (value2 === "") {
+    				value2 = c
+    			}
+
+    			return value2 / value1
+    		}
 
 		</script>	
 		<select id="function">
-			<option value="Einstein">Einsteins formula</option>
-			<option value="wl">Wavelength from frequency</option>
-			<option value="ehyd">Energy level of shell</option>
-			<option value="wavespeed">Wavespeed (lambda, freq)</option>
+			<option value="einstein">Einsteins formula (mass in kg)</option>
+			<option value="wl">Wavelength (freq)</option>
+			<option value="ehyd">Energy level of shell (shell)</option>
+			<option value="wavespeed">Wavespeed (length, freq)</option>
+			<option value="eHydDiff">Energy difference (start, end)</option>
+			<option value="photonEnergy">Photon Energy (freq)</option>
+			<option value="freq">Frequency (length, speed)</option>
 		</select>
 		<input id="item">
 		<input id="item2">
 		<label>Output:</label>
 		<input id="output">
-		<input value="Submit item" type="button" onclick="find_function()">
+		<input value="Submit item/items" type="button" onclick="find_function()">
+		<br><br><br>
+		<img src="bear.jpg" width="800" height="400">
 	</body>
 </html>
 
