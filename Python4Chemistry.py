@@ -30,31 +30,32 @@ def massFromFormula(formula):
     mass = elements[symbol].mass #find the mass per atom for that atom
     
     return float(count) * mass + massFromFormula(formula[i:]) #using recursion and adding the mass of one atom times the number of that atom
-    
-    
 
+def empirical(fReactNum, fReactWeight, sReactNum, aWeight, delta = 1/3):
+    """
+    Takes the first reactant weight in gram and name, second reactant weight in gram and name and after weight.
+    """
     
+    sReactWeight = aWeight - fReactWeight
     
+    fMol = fReactWeight/elements[fReactNum].mass
+    sMol = sReactWeight/elements[sReactNum].mass
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    if fMol < sMol:
+        sMol /= fMol
+        fMol = 1
+        while True:
+            if abs(sMol - round(sMol)) > delta:
+                sMol *= 1.1
+                fMol *= 1.1
+            else:
+                return f"{elements[fReactNum].symbol}{int(round(fMol, 0))}{elements[sReactNum].symbol}{int(round(sMol, 0))}"
+    else:
+        fMol/= sMol
+        sMol = 1
+        while True:
+            if abs(fMol - round(fMol)) > delta:
+                sMol *= 1.1
+                fMol *= 1.1
+            else:
+                return f"{elements[fReactNum].symbol}{int(round(fMol, 0))}{elements[sReactNum].symbol}{int(round(sMol, 0))}"
