@@ -39,6 +39,47 @@
 				}
 			}
 
+			// Function to update placeholder text and other UI
+			function updateUI() {
+				let chosenFunction = document.getElementById("function").value
+				let field1 = document.getElementById("item")
+				let field2 = document.getElementById("item2")
+
+
+				switch (chosenFunction) {
+					case "einstein":
+						field1.placeholder = "mass"
+						field2.placeholder = ""
+						break;
+					case "wl":
+						field1.placeholder = "frequency"
+						field2.placeholder = ""
+						break;
+					case "eHyd":
+						field1.placeholder = "Electron shell"
+						field2.placeholder = ""
+						break;
+					case "wavespeed":
+						field1.placeholder = "Wavelength"
+						field2.placeholder = "Frequency"
+						break;
+					case "eHydDiff":
+						field1.placeholder = "Start shell"
+						field2.placeholder = "End shell"
+						break;
+					case "photonEnergy":
+						field1.placeholder = "Frequency"
+						field2.placeholder = ""
+						break;
+					case "freq":
+						field1.placeholder = "Wavelength"
+						field2.placeholder = "Speed"
+						break;
+					default:
+						break;
+				}
+			}
+
 			const c = 3e+8, h = 6.63e-34, B = 2.18e-18, u = 1.66e-27, mn = 1.00866491595, mp = 1.007825032241
 
 			function einstein(value) {
@@ -82,7 +123,7 @@
     		}
 
 		</script>	
-		<select id="function">
+		<select id="function" onchange="updateUI()">
 			<option value="einstein">Einsteins formula (mass in kg)</option>
 			<option value="wl">Wavelength (freq)</option>
 			<option value="eHyd">Energy level of shell (shell)</option>
