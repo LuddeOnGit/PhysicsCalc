@@ -64,7 +64,4 @@ def empirical(fReactNum, fReactWeight, sReactNum, aWeight, delta = 1/3):
             else:
                 return f"{elements[fReactNum].symbol}{int(round(fMol, 0))}{elements[sReactNum].symbol}{int(round(sMol, 0))}"
 
-def gibbs(temp, dH, dS):
-    dH *= 1000
-    if dH - temp * dS < 0: return "Spontaneous"
-    else: return "Not spontaneous"
+def gibbs(temp, dH, dS): return "Spontaneous" if (dH*1000) - temp * dS < 0 else "Not spontaneous"
