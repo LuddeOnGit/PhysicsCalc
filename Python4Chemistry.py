@@ -1,5 +1,9 @@
 from Elements import *
 
+def toK(celsius): return celsius + 273.15
+
+def toC(kelvin): return kelvin - 273.15
+
 def find_number_of_particles(grams, atom_number):
     return grams / elements[atom_number].mass  #N = g / Mm
 
