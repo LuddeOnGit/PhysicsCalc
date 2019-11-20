@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<script src="PhysicsScripts.js"></script>
+		<link rel="stylesheet" href="style.css">
+		<h1 id="welcome">Welcome to NRG's Physics Calculator</h1>
+	</head>
+	<body onload="JavaScript:updateUI()">
+		<div class="PhysicsCalculator">
+			<h3>Physics</h3>
+			<select id="function" onchange="JavaScript:updateUI()">
+				<option value="einstein">Einsteins formula (mass in kg)</option>
+				<option value="wl">Wavelength (freq)</option>
+				<option value="eHyd">Energy level of shell (shell)</option>
+				<option value="wavespeed">Wavespeed (length, freq)</option>
+				<option value="eHydDiff">Energy difference (start, end)</option>
+				<option value="photonEnergy">Photon Energy (freq)</option>
+				<option value="freq">Frequency (length, speed)</option>
+			</select>
+			<input id="item">
+			<input id="item2">
+			<label>Output:</label>
+			<input id="output">
+			<input value="Submit item/items" type="button" class="submitBtn" onclick="JavaScript:find_function()">
+		</div>
+		<button type="button" id="PhysicsCalc" onclick="JavaScript:thereIsAnother()">Add another calculation (Not functional)</button>
+		<h3>Bear Olaf</h3>
+		<img src="bear.jpg" width="800" height="400">
+	</body>
+</html>
+

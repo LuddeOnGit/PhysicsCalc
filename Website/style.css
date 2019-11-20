@@ -1,0 +1,31 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: azure;
+    text-align: center;
+
+}
+
+
+.submitBtn{
+    text-align: center;
+    font-size: 16px;
+    background-color: rgb(109, 148, 221);
+    border-color: rgb(99, 99, 209);
+    color: whitesmoke;
+}
+
+h1{
+    text-align: center;
+}
+
+.PhysicsCalculator{
+    margin: 20px, 20px, 20px, 20px;
+}
+
+button{
+    background-color: rgb(70, 161, 70);
+    border-color: rgb(57, 160, 57);
+    font-size: 25px;
+    margin: 1%;
+    color: azure;
+}
