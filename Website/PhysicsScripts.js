@@ -134,24 +134,17 @@ function freq(value1, value2 = "") {
 
     return value2 / value1
 }
+let physicsTitle   = "Welcome to NRG's Physics Calculator"
+let chemistryTitle = "Welcome to NRG's Chemistry Calculator"
 
 function updateWelcome(){
-    //Not working
-    if (document.getElementsById("welcome").innerHTML === "Welcome to NRG's Chemistry Calculator"){
-        document.getElementById("welcome").innerHTML = "Welcome to NRG's Physics Calculator"; 
-    } 
-    else{
-            document.getElementById("welcome").innerHTML = "Welcome to NRG's Chemistry Calculator"; 
-        }
-    }
+	document.getElementById("welcome").innerHTML = (document.getElementById("welcome").innerHTML === physicsTitle) ? chemistryTitle : physicsTitle;
+}
+
+//setInterval(updateWelcome(), 3000); 
 
 
-
-setInterval(updateWelcome(), 3000); 
-
-/*
 function thereIsAnother() {
     let clone = document.querySelector('#PhysicsOriginal').cloneNode( true );
     document.querySelector('.PhysicsCalculator').appendChild(clone)
 }
-*/
