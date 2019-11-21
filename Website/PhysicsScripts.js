@@ -151,7 +151,7 @@ setInterval(updateWelcome(), 3000);
 
 /*
 function thereIsAnother() {
-    let clone = document.querySelector('#PhysicsOriginal').cloneNode( true );
-    document.querySelector('.PhysicsCalculator').appendChild(clone)
+    let clone = document.querySelector('.PhysicsCalculator').cloneNode( true );
+    document.querySelector('body').appendChild(clone)
 }
 */
