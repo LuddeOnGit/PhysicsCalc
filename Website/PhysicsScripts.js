@@ -1,4 +1,4 @@
-function find_function() {
+function findFunction() {
     let chosenFunction = document.getElementById("function").value
     let value1 = document.getElementById("item").value
     let value2 = document.getElementById("item2").value
@@ -36,61 +36,44 @@ function updateUI() {
     let chosenFunction = document.getElementById("function").value
     let field1 = document.getElementById("item")
     let field2 = document.getElementById("item2")
-
+    let outputField = document.getElementById("output")
 
     switch (chosenFunction) {
         case "einstein":
-            field1.placeholder = "mass"
-            if (field2.style.display != "none"){
-                field2.style.display = "none"
-            }
-            field2.placeholder = ""
+            field1.placeholder = "Mass"
+            field2.style.display = "none"
             break;
         case "wl":
-            field1.placeholder = "frequency"
-            if (field2.style.display != "none"){
-                field2.style.display = "none"
-            }
-            field2.placeholder = ""
+            field1.placeholder = "Wave Frequency"
+            field2.style.display = "none"
             break;
         case "eHyd":
             field1.placeholder = "Electron shell"
-            if (field2.style.display != "none"){
-                field2.style.display = "none"
-            }
-            field2.placeholder = ""
+            field2.style.display = "none"
             break;
         case "wavespeed":
             field1.placeholder = "Wavelength"
-            if (field2.style.display === "none"){
-                field2.style.display = "inline"
-            }
+            field2.style.display = "inline"
             field2.placeholder = "Frequency"
             break;
         case "eHydDiff":
             field1.placeholder = "Start shell"
-            if (field2.style.display === "none"){
-                field2.style.display = "inline"
-            }
+            field2.style.display = "inline"
             field2.placeholder = "End shell"
             break;
         case "photonEnergy":
             field1.placeholder = "Frequency"
-            if (field2.style.display != "none"){
-                field2.style.display = "none"
-            }
-            field2.placeholder = ""
+            field2.style.display = "none"
             break;
         case "freq":
             field1.placeholder = "Wavelength"
-            if (field2.style.display === "none"){
-                field2.style.display = "inline"
-            }
-            field2.placeholder = "Speed"
+            field2.style.display = "inline"
+            field2.placeholder = "Wave Speed"
             break;
         default:
             break;
     }
+    outputField.value = ""
 }
 
 const c = 3e+8, h = 6.63e-34, B = 2.18e-18, u = 1.66e-27, mn = 1.00866491595, mp = 1.007825032241
@@ -134,24 +117,17 @@ function freq(value1, value2 = "") {
 
     return value2 / value1
 }
+let physicsTitle   = "Welcome to NRG's Physics Calculator"
+let chemistryTitle = "Welcome to NRG's Chemistry Calculator"
 
 function updateWelcome(){
-    //Not working
-    if (document.getElementsById("welcome").innerHTML === "Welcome to NRG's Chemistry Calculator"){
-        document.getElementById("welcome").innerHTML = "Welcome to NRG's Physics Calculator"; 
-    } 
-    else{
-            document.getElementById("welcome").innerHTML = "Welcome to NRG's Chemistry Calculator"; 
-        }
-    }
+	document.getElementById("welcome").innerHTML = (document.getElementById("welcome").innerHTML === physicsTitle) ? chemistryTitle : physicsTitle;
+}
+
+//setInterval(updateWelcome(), 3000); 
 
 
-
-setInterval(updateWelcome(), 3000); 
-
-/*
 function thereIsAnother() {
     let clone = document.querySelector('.PhysicsCalculator').cloneNode( true );
     document.querySelector('body').appendChild(clone)
 }
-*/
