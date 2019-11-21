@@ -1,4 +1,5 @@
 from Elements import *
+from Subscript import *
 
 def toK(celsius): return celsius + 273.15
 
@@ -36,9 +37,7 @@ def massFromFormula(formula):
     return float(count) * mass + massFromFormula(formula[i:]) #using recursion and adding the mass of one atom times the number of that atom
 
 def empirical(fReactNum, fReactWeight, sReactNum, aWeight, delta = 1/3):
-    """
-    Takes the first reactant weight in gram and name, second reactant weight in gram and name and after weight.
-    """
+    #Takes the first reactant weight in gram and name, second reactant weight in gram and name and after weight.
     
     sReactWeight = aWeight - fReactWeight
     
@@ -53,7 +52,7 @@ def empirical(fReactNum, fReactWeight, sReactNum, aWeight, delta = 1/3):
                 sMol *= 1.1
                 fMol *= 1.1
             else:
-                return f"{elements[fReactNum].symbol}{int(round(fMol, 0))}{elements[sReactNum].symbol}{int(round(sMol, 0))}"
+                return f"{elements[fReactNum].symbol}{subscriptString(int(round(fMol, 0)))}{elements[sReactNum].symbol}{subscriptString(int(round(sMol, 0)))}"
     else:
         fMol/= sMol
         sMol = 1
@@ -62,7 +61,7 @@ def empirical(fReactNum, fReactWeight, sReactNum, aWeight, delta = 1/3):
                 sMol *= 1.1
                 fMol *= 1.1
             else:
-                return f"{elements[fReactNum].symbol}{int(round(fMol, 0))}{elements[sReactNum].symbol}{int(round(sMol, 0))}"
+                return f"{elements[fReactNum].symbol}{subscriptString(int(round(fMol, 0)))}{elements[sReactNum].symbol}{subscriptString(int(round(sMol, 0)))}"
 
 # Takes temperature (°C), difference in Enthalpy (KJ/mol), and difference in Enthropy (J/mol*K). 
 # Gives whether the reaction with the given parameters is spontaneous.
