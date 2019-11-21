@@ -134,35 +134,42 @@ function photonEnergy(value1 = "", value2 = "") {
 
 function freq(value1, value2 = "") {
     if (value2 === "") {
-        value2 = c
+        value2 = c;
     }
 
-    return value2 / value1
+    return value2 / value1;
 }
 
 function uToKg(value) {
-    return (value * u).toExponential(3)
+    return (value * u).toExponential(3);
 }
 
 function kgToU(value) {
-    return (value / u).toExponential(3)
+    return (value / u).toExponential(3);
 }
 
 function extraEnergy(value1, value2) {
-    return einstein(uToKg(value2 - value1))
+    return einstein(uToKg(value2 - value1));
 }
 
-let physicsTitle   = "Welcome to NRG's Physics Calculator"
-let chemistryTitle = "Welcome to NRG's Chemistry Calculator"
+let physicsTitle   = "Welcome to NRG's Physics Calculator";
+let chemistryTitle = "Welcome to NRG's Chemistry Calculator";
 
 function updateWelcome(){
 	document.getElementById("welcome").innerHTML = (document.getElementById("welcome").innerHTML === physicsTitle) ? chemistryTitle : physicsTitle;
 }
 
-//setInterval(updateWelcome(), 3000); 
-
-
 function thereIsAnother() {
     let clone = document.querySelector('.PhysicsCalculator').cloneNode( true );
-    document.querySelector('body').appendChild(clone)
+    document.querySelector('body').appendChild(clone);
+}
+
+
+function copyToClipboard(){
+    var copyText = document.getElementById("output");
+
+    copyText.select();
+    copyText.setSelectionRange(0,99999)
+
+    document.execCommand("copy")
 }

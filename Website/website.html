@@ -3,11 +3,14 @@
 <html>
 	<head>
 		<script src="PhysicsScripts.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 		<link rel="stylesheet" href="style.css">
 		<h1 id="welcome">Welcome to NRG's Physics Calculator</h1>
 	</head>
+
+
 	<body onload="JavaScript:updateUI()">
-		<div class="PhysicsCalculator">
+		<div class="PhysicsCalculator" ng-app="">
 			<h3>Physics</h3>
 			<select id="function" onchange="JavaScript:updateUI()">
 				<option value="einstein">Einsteins formula</option>
@@ -23,9 +26,10 @@
 			</select>
 			<input id="item">
 			<input id="item2">
-			<label>Output:</label>
-			<input id="output">
+			<label>Output: <input id="output"></label>
+			
 			<input value="Submit item/items" type="button" class="submitBtn" onclick="JavaScript:findFunction()">
+			<button class="copyBtn" onclick="JavaScript:copyToClipboard()"><img src="clipboard.png" width="16" height="16"></button>
 		</div>
 		<button type="button" id="PhysicsCalc" onclick="JavaScript:thereIsAnother()">Add another calculation (Not functional)</button>
 		<h3>Bear Olaf</h3>
