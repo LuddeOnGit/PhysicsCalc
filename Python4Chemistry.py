@@ -64,4 +64,10 @@ def empirical(fReactNum, fReactWeight, sReactNum, aWeight, delta = 1/3):
             else:
                 return f"{elements[fReactNum].symbol}{int(round(fMol, 0))}{elements[sReactNum].symbol}{int(round(sMol, 0))}"
 
-def gibbs(temp, dH, dS): return "Spontaneous" if dH - toK(temp) * dS / 1000 < 0 else "Not spontaneous"
+# Takes temperature (°C), difference in Enthalpy (KJ/mol), and difference in Enthropy (J/mol*K). 
+# Gives whether the reaction with the given parameters is spontaneous.
+def isSpontaneous(temp, dH, dS): return dH - toK(temp) * dS / 1000 < 0
+
+# Takes temperature (°C), difference in Enthalpy (KJ/mol), and difference in Enthropy (J/mol*K). 
+# Gives the value
+def gibbsValue(temp, dH, dS): return dH - toK(temp) * dS / 1000 
