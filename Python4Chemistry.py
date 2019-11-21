@@ -69,5 +69,5 @@ def empirical(fReactNum, fReactWeight, sReactNum, aWeight, delta = 1/3):
 def isSpontaneous(temp, dH, dS): return dH - toK(temp) * dS / 1000 < 0
 
 # Takes temperature (°C), difference in Enthalpy (KJ/mol), and difference in Enthropy (J/mol*K). 
-# Gives the value
-def gibbsValue(temp, dH, dS): return dH - toK(temp) * dS / 1000 
+# Gives the value in kJ
+def gibbsValue(temp, dH, dS): return dH - toK(temp) * dS / 1000
