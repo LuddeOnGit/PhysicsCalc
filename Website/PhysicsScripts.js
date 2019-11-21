@@ -26,6 +26,15 @@ function findFunction() {
         case "freq":
             outputObject.value = freq(value1, value2)
             break;
+        case "uToKg":
+            outputObject.value = uToKg(value1)
+            break;
+        case "kgToU":
+            outputObject.value = kgToU(value1)
+            break;
+        case "extraEnergy":
+            outputObject.value = extraEnergy(value1, value2)
+            break;
         default:
             break;
     }
@@ -69,6 +78,19 @@ function updateUI() {
             field1.placeholder = "Wavelength"
             field2.style.display = "inline"
             field2.placeholder = "Wave Speed"
+            break;
+        case "uToKg":
+            field1.placeholder = "mass in u"
+            field2.style.display = "none"
+            break;
+        case "kgToU":
+            field1.placeholder = "mass in Kg"
+            field2.style.display = "none"
+            break;
+        case "extraEnergy":
+            field1.placeholder = "mass start"
+            field2.style.display = "inline"
+            field2.placeholder = "mass end"
             break;
         default:
             break;
@@ -117,6 +139,19 @@ function freq(value1, value2 = "") {
 
     return value2 / value1
 }
+
+function uToKg(value) {
+    return (value * u).toExponential(3)
+}
+
+function kgToU(value) {
+    return (value / u).toExponential(3)
+}
+
+function extraEnergy(value1, value2) {
+    return einstein(uToKg(value2 - value1))
+}
+
 let physicsTitle   = "Welcome to NRG's Physics Calculator"
 let chemistryTitle = "Welcome to NRG's Chemistry Calculator"
 
