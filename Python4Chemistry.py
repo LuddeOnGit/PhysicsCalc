@@ -71,18 +71,21 @@ def isSpontaneous(temp, dH, dS): return dH - toK(temp) * dS / 1000 < 0
 # Gives the value in kJ
 def gibbsValue(temp, dH, dS): return dH - toK(temp) * dS / 1000
 
-def enthalpy(testIn):
+def enthalpy(testIn, justVal = False):
     reactants = testIn.split(" = ")
     product = reactants.pop()
     reactants = reactants[0].split(" + ")
     product = product.split(" + ")
     
-    sumReactants = sumReact(reactants)
-    sumProduct = sumProd(product)
+    sumReactants = enthalpySumReact(reactants)
+    sumProduct = enthalpySumProd(product)
     dH = round(sumProduct-sumReactants,2)
-    return f"The reaction is endothermic with the ΔH value: {dH}" if dH > 0 else f"The reaction is exothermic with the ΔH value: {dH}"
+    if justVal != True:
+        return f"The reaction is endothermic with the ΔH value: {dH}" if dH > 0 else f"The reaction is exothermic with the ΔH value: {dH}"
+    else:
+        return dH
     
-def sumReact(reactants):
+def enthalpySumReact(reactants):
     endSum = 0
     for i in range(len(reactants)):
         split = reactants[i].rfind("(")
@@ -92,7 +95,7 @@ def sumReact(reactants):
                 break
     return endSum
     
-def sumProd(product):
+def enthalpySumProd(product):
     endSum = 0
     for i in range(len(product)):
         split = product[i].rfind("(")
@@ -101,3 +104,39 @@ def sumProd(product):
                 endSum += STV[j].dEnthalpy
                 break
     return endSum
+
+def entropy(testIn, justVal = False):
+    reactants = testIn.split(" = ")
+    product = reactants.pop()
+    reactants = reactants[0].split(" + ")
+    product = product.split(" + ")
+    
+    sumReactants = entropySumReact(reactants)
+    sumProduct = entropySumProd(product)
+    dS = round(sumProduct-sumReactants,2)
+    if justVal != True:
+        return f"The reaction gets more caotic with the ΔS value: {dS}" if dS > 0 else f"The reaction gets less chaotic with the ΔS value: {dS}"
+    else: 
+        return dS
+    
+def entropySumReact(reactants):
+    endSum = 0
+    for i in range(len(reactants)):
+        split = reactants[i].rfind("(")
+        for j in range(len(STV)):
+            if STV[j].formula == reactants[i][:split] and STV[j].state == reactants[i][split+1:-1]:
+                endSum += STV[j].dEntropy
+                break
+    return endSum
+    
+def entropySumProd(product):
+    endSum = 0
+    for i in range(len(product)):
+        split = product[i].rfind("(")
+        for j in range(len(STV)):
+            if STV[j].formula == product[i][:split] and STV[j].state == product[i][split+1:-1]:
+                endSum += STV[j].dEntropy
+                break
+    return endSum
+
+def gibbsFull(testIn, temp = 25): return gibbsValue(temp, enthalpy(testIn, True), entropy(testIn, True))
