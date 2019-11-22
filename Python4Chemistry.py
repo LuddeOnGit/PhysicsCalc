@@ -70,3 +70,30 @@ def isSpontaneous(temp, dH, dS): return dH - toK(temp) * dS / 1000 < 0
 # Takes temperature (°C), difference in Enthalpy (KJ/mol), and difference in Enthropy (J/mol*K). 
 # Gives the value in kJ
 def gibbsValue(temp, dH, dS): return dH - toK(temp) * dS / 1000
+
+def enthalpy(testIn):
+    reactants = testIn.split(" = ")
+    product = reactants.pop()
+    reactants = reactants[0].split(" + ")
+    product = product.split(" + ")
+    
+    sumReactants = sumReact(reactants)
+    sumProduct = sumProd(product)
+    dH = sumProduct-sumReactants
+    return f"The reaction is endothermic with the ΔH value: {dH}" if dH > 0 else f"The reaction is exothermic with the ΔH value: {dH}"
+    
+def sumReact(reactants):
+    endSum = 0
+    for i in range(len(reactants)):
+        for j in range(len(STV)):
+            endSum += STV[j].dEnthalpy if STV[j].formula == reactants[i] else 0
+            continue
+    return endSum
+    
+def sumProd(product):
+    endSum = 0
+    for i in range(len(product)):
+        for j in range(len(STV)):
+            endSum += STV[j].dEnthalpy if STV[j].formula == product[i] else 0
+            continue
+    return endSum
