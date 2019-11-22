@@ -6,6 +6,7 @@ If you want to get your answers written cleaner, use this in console: %precision
 """
 from Elements import *
 from GUI import *
+from math import *
 
 # SI prefixes
 """
@@ -100,6 +101,16 @@ def photonEnergy(f= "",wl = ""):
     if f == "" and wl == "": return "Insufficient data"
     if f == "": f = freq(wl)
     return f*h
+
+def kineticEnergy(m,v): return (1/2)*m*(v**2)
+
+def potentialEnergy(m,g,h): return
+
+def effect(m,g,h,t): return (m*g*h)/t
+
+def efficiency(n,u): return n/u
+
+def work(F,s,a = 0): return (F*s*cos(a))
 
 
 print('This is a modified Python Console made for Physics 1')

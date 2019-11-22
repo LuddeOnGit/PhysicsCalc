@@ -381,6 +381,29 @@ STV = [#formula | state | dEnthalpy | dGibbs | dEntropy |
        STVFormula("C(g)",716.682,671.257,158.096),
        STVFormula("(Ch3)2O(g)",-184.05,-112.59,266.38),
        STVFormula("C2H2(g)",226.73,209.2,200.94),
-       #STVFormula("","",,,), template
+       """
+       STVFormula("C2H4(g)",,,),
+       STVFormula("C2H5OH(g)",,,),
+       STVFormula("C2H5OH(l)",,,),
+       STVFormula("C2H6(g)",,,),
+       STVFormula("C2O4^2-(aq)",,,),
+       STVFormula("C3H6(g)",,,),
+       STVFormula("C3H8(g)",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       STVFormula("",,,),
+       """
        
        ]
