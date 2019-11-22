@@ -110,7 +110,7 @@ def effect(m,g,h,t): return (m*g*h)/t
 
 def efficiency(n,u): return n/u
 
-def work(F,s,a = 0): return (F*s*cos(a))
+def work(F,s,a = 0): return (F*s*cos(radians(a)))
 
 
 print('This is a modified Python Console made for Physics 1')

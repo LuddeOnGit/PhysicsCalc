@@ -79,21 +79,25 @@ def enthalpy(testIn):
     
     sumReactants = sumReact(reactants)
     sumProduct = sumProd(product)
-    dH = sumProduct-sumReactants
+    dH = round(sumProduct-sumReactants,2)
     return f"The reaction is endothermic with the ΔH value: {dH}" if dH > 0 else f"The reaction is exothermic with the ΔH value: {dH}"
     
 def sumReact(reactants):
     endSum = 0
     for i in range(len(reactants)):
+        split = reactants[i].rfind("(")
         for j in range(len(STV)):
-            endSum += STV[j].dEnthalpy if STV[j].formula == reactants[i] else 0
-            continue
+            if STV[j].formula == reactants[i][:split] and STV[j].state == reactants[i][split+1:-1]:
+                endSum += STV[j].dEnthalpy
+                break
     return endSum
     
 def sumProd(product):
     endSum = 0
     for i in range(len(product)):
+        split = product[i].rfind("(")
         for j in range(len(STV)):
-            endSum += STV[j].dEnthalpy if STV[j].formula == product[i] else 0
-            continue
+            if STV[j].formula == product[i][:split] and STV[j].state == product[i][split+1:-1]:
+                endSum += STV[j].dEnthalpy
+                break
     return endSum
