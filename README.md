@@ -1,4 +1,6 @@
 # PhysicsCalc
-A python program that makes calculations in physics easier
+A program developed by students at NRG to make Physics and Chemistry easier.
 
-Elements.py and PhysicsCalc.py only to be used for functions and classes, GUI can be edited mainly in GUI-specific files such as GUI.py and PeriodicTable.py. If this leads to issues, then contact fellow comitters for advice or solution with the problem.
+A website is under development to further ease the use for non-programmers. The main programs can be found in Python4Physics.py and Python4Chemistry.py. A periodic table can be found in the PeriodicTable.py.
+
+This is a program which is under constant development. It gets developed as we progress in the subjects.
