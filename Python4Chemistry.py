@@ -1,6 +1,8 @@
 from Elements import *
 from Subscript import *
 
+numbers = '0123456789'
+
 def toK(celsius): return celsius + 273.15
 
 def toC(kelvin): return kelvin - 273.15
@@ -87,21 +89,37 @@ def enthalpy(testIn, justVal = False):
     
 def enthalpySumReact(reactants):
     endSum = 0
+    cof = 1
     for i in range(len(reactants)):
         split = reactants[i].rfind("(")
+        
+        if reactants[i][0] in numbers:
+            for t in range(len(reactants[i][:+4])):
+                if reactants[i][t] not in numbers:
+                    break
+            cof = int(reactants[i][:t])
+        
         for j in range(len(STV)):
-            if STV[j].formula == reactants[i][:split] and STV[j].state == reactants[i][split+1:-1]:
-                endSum += STV[j].dEnthalpy
+            if STV[j].formula == reactants[i][t:split] and STV[j].state == reactants[i][split+1:-1]:
+                endSum += cof*STV[j].dEnthalpy
                 break
     return endSum
     
 def enthalpySumProd(product):
     endSum = 0
+    cof = 1
     for i in range(len(product)):
         split = product[i].rfind("(")
+
+        if product[i][0] in numbers:
+            for t in range(len(product[i][:+4])):
+                if product[i][t] not in numbers:
+                    break
+            cof = int(product[i][:t])
+        
         for j in range(len(STV)):
-            if STV[j].formula == product[i][:split] and STV[j].state == product[i][split+1:-1]:
-                endSum += STV[j].dEnthalpy
+            if STV[j].formula == product[i][t:split] and STV[j].state == product[i][split+1:-1]:
+                endSum += cof*STV[j].dEnthalpy
                 break
     return endSum
 
@@ -121,22 +139,41 @@ def entropy(testIn, justVal = False):
     
 def entropySumReact(reactants):
     endSum = 0
+    cof = 1
     for i in range(len(reactants)):
         split = reactants[i].rfind("(")
+        
+        if reactants[i][0] in numbers:
+            for t in range(len(reactants[i][:+4])):
+                if reactants[i][t] not in numbers:
+                    break
+            cof = int(reactants[i][:t])
+        
         for j in range(len(STV)):
-            if STV[j].formula == reactants[i][:split] and STV[j].state == reactants[i][split+1:-1]:
-                endSum += STV[j].dEntropy
+            print(reactants[i][:split])
+            if STV[j].formula == reactants[i][t:split] and STV[j].state == reactants[i][split+1:-1]:
+                endSum += cof*STV[j].dEntropy
                 break
     return endSum
     
 def entropySumProd(product):
     endSum = 0
+    cof = 1
     for i in range(len(product)):
         split = product[i].rfind("(")
+        
+        if product[i][0] in numbers:
+            for t in range(len(product[i][:+4])):
+                if product[i][t] not in numbers:
+                    break
+            cof = int(product[i][:t])
+        
         for j in range(len(STV)):
-            if STV[j].formula == product[i][:split] and STV[j].state == product[i][split+1:-1]:
-                endSum += STV[j].dEntropy
+            if STV[j].formula == product[i][t:split] and STV[j].state == product[i][split+1:-1]:
+                endSum += cof*STV[j].dEntropy
                 break
     return endSum
 
 def gibbsFull(testIn, temp = 25): return gibbsValue(temp, enthalpy(testIn, True), entropy(testIn, True))
+
+print(enthalpy("20CO2(g) + O2(g) = CH4(g) + Ar(s)"))
