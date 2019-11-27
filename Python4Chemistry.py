@@ -98,6 +98,8 @@ def enthalpySumReact(reactants):
                 if reactants[i][t] not in numbers:
                     break
             cof = int(reactants[i][:t])
+        else:
+            t = 0
         
         for j in range(len(STV)):
             if STV[j].formula == reactants[i][t:split] and STV[j].state == reactants[i][split+1:-1]:
@@ -116,6 +118,9 @@ def enthalpySumProd(product):
                 if product[i][t] not in numbers:
                     break
             cof = int(product[i][:t])
+            
+        else:
+            t = 0
         
         for j in range(len(STV)):
             if STV[j].formula == product[i][t:split] and STV[j].state == product[i][split+1:-1]:
@@ -148,6 +153,8 @@ def entropySumReact(reactants):
                 if reactants[i][t] not in numbers:
                     break
             cof = int(reactants[i][:t])
+        else:
+            t = 0
         
         for j in range(len(STV)):
             print(reactants[i][:split])
@@ -167,6 +174,8 @@ def entropySumProd(product):
                 if product[i][t] not in numbers:
                     break
             cof = int(product[i][:t])
+        else:
+            t = 0
         
         for j in range(len(STV)):
             if STV[j].formula == product[i][t:split] and STV[j].state == product[i][split+1:-1]:
