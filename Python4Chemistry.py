@@ -175,5 +175,3 @@ def entropySumProd(product):
     return endSum
 
 def gibbsFull(testIn, temp = 25): return gibbsValue(temp, enthalpy(testIn, True), entropy(testIn, True))
-
-print(enthalpy("20CO2(g) + O2(g) = CH4(g) + Ar(s)"))
