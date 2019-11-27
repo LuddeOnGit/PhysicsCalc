@@ -1,3 +1,7 @@
+var script = document. createElement('script');
+script. src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js';
+document. getElementsByTagName('head')[0]. appendChild(script);
+
 function findFunction() {
     let chosenFunction = document.getElementById("function").value
     let value1 = document.getElementById("item").value
@@ -34,6 +38,18 @@ function findFunction() {
             break;
         case "extraEnergy":
             outputObject.value = extraEnergy(value1, value2)
+            break;
+        case "el":
+            console.log("hello")
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/input",
+                data: JSON.stringify(["el", parseFloat(value1), 1]),
+                success: function(result){
+                    outputObject.value = result
+                }
+            })
             break;
         default:
             break;
@@ -92,6 +108,9 @@ function updateUI() {
             field2.style.display = "inline"
             field2.placeholder = "mass end"
             break;
+        case "el":
+            field1.placeholder = "wavelength"
+            field2.style.display = "none" 
         default:
             break;
     }

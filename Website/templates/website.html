@@ -2,12 +2,11 @@
 
 <html>
 	<head>
-		<script src="PhysicsScripts.js"></script>
+		<script src="static/scripts/PhysicsScripts.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="static/styles/style.css">
 		<h1 id="welcome">Welcome to NRG's Physics Calculator</h1>
 	</head>
-
 
 	<body onload="JavaScript:updateUI()">
 		<div class="PhysicsCalculator" ng-app="">
@@ -23,17 +22,17 @@
 				<option value="uToKg">Convert u to Kg</option>
 				<option value="kgToU">Convert Kg to u</option>
 				<option value="extraEnergy">Energy released</option>
+				<option value="el">Foton energy</option>
 			</select>
 			<input id="item">
 			<input id="item2">
 			<label>Output: <input id="output"></label>
-			
 			<input value="Submit item/items" type="button" class="submitBtn" onclick="JavaScript:findFunction()">
-			<button class="copyBtn" onclick="JavaScript:copyToClipboard()"><img src="clipboard.png" width="16" height="16"></button>
+			<button class="copyBtn" onclick="JavaScript:copyToClipboard()"><img src="static/images/clipboard.png" width="16" height="16"></button>
 		</div>
 		<button type="button" id="PhysicsCalc" onclick="JavaScript:thereIsAnother()">Add another calculation (Not functional)</button>
 		<h3>Bear Olaf</h3>
-		<img src="bear.jpg" width="800" height="600">
+		<img src="static/images/bear.jpg" width="800" height="600">
 	</body>
 </html>
 
