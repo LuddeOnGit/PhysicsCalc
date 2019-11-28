@@ -1,59 +1,17 @@
-var script = document. createElement('script');
-script. src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js';
-document. getElementsByTagName('head')[0]. appendChild(script);
-
-function findFunction() {
+function sendInputs() {
     let chosenFunction = document.getElementById("function").value
     let value1 = document.getElementById("item").value
     let value2 = document.getElementById("item2").value
     let outputObject = document.getElementById("output")
-
-    switch (chosenFunction) {
-        case "einstein":
-            outputObject.value = einstein(value1)
-            break;
-        case "wl":
-            outputObject.value = wl(value1)
-            break;
-        case "eHyd":
-            outputObject.value = eHyd(value1)
-            break;
-        case "wavespeed":
-            outputObject.value = wavespeed(value1, value2)
-            break;
-        case "eHydDiff":
-            outputObject.value = eHydDiff(value1, value2)
-            break;
-        case "photonEnergy":
-            outputObject.value = photonEnergy(value1, value2)
-            break;
-        case "freq":
-            outputObject.value = freq(value1, value2)
-            break;
-        case "uToKg":
-            outputObject.value = uToKg(value1)
-            break;
-        case "kgToU":
-            outputObject.value = kgToU(value1)
-            break;
-        case "extraEnergy":
-            outputObject.value = extraEnergy(value1, value2)
-            break;
-        case "el":
-            console.log("hello")
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "/input",
-                data: JSON.stringify(["el", parseFloat(value1), 1]),
-                success: function(result){
-                    outputObject.value = result
-                }
-            })
-            break;
-        default:
-            break;
-    }
+    $.ajax({
+        type: "POST",
+        contentType: "application/JSON",
+        url: "/input",
+        data: JSON.stringify([chosenFunction, value1, value2]),
+        success: function(result){
+            outputObject.value = result
+        }
+    })
 }
 
 // Function to update placeholder text and other UI
@@ -61,7 +19,7 @@ function updateUI() {
     let chosenFunction = document.getElementById("function").value
     let field1 = document.getElementById("item")
     let field2 = document.getElementById("item2")
-    let outputField = document.getElementById("output")
+    document.getElementById("output").value = ""
 
     switch (chosenFunction) {
         case "einstein":
@@ -110,11 +68,16 @@ function updateUI() {
             break;
         case "el":
             field1.placeholder = "wavelength"
-            field2.style.display = "none" 
+            field2.style.display = "none"
+            break; 
+        case "freqOld":
+            field1.placeholder = "waves"
+            field2.style.display = "inline"
+            field2.placeholder = "seconds, default = 1"
+            break;
         default:
             break;
     }
-    outputField.value = ""
 }
 
 const c = 3e+8, h = 6.63e-34, B = 2.18e-18, u = 1.66e-27, mn = 1.00866491595, mp = 1.007825032241
@@ -127,16 +90,8 @@ function wl(value) {
     return (c / value).toExponential(2)
 }
 
-function eHyd(value) {	
-    return (- B / value ** 2).toExponential(2)
-}
-
 function wavespeed(value1, value2) {
     return (value1 * value2).toExponential(2)
-}
-
-function eHydDiff(value1, value2) {
-    return Math.abs((eHyd(value1) - eHyd(value2)).toExponential(2))
 }
 
 function photonEnergy(value1 = "", value2 = "") {
@@ -182,7 +137,6 @@ function thereIsAnother() {
     let clone = document.querySelector('.PhysicsCalculator').cloneNode( true );
     document.querySelector('body').appendChild(clone);
 }
-
 
 function copyToClipboard(){
     var copyText = document.getElementById("output");
