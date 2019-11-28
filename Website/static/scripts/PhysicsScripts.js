@@ -1,68 +1,17 @@
-function findFunction() {
+function sendInputs() {
     let chosenFunction = document.getElementById("function").value
     let value1 = document.getElementById("item").value
     let value2 = document.getElementById("item2").value
     let outputObject = document.getElementById("output")
-
-    switch (chosenFunction) {
-        case "einstein":
-            outputObject.value = einstein(value1)
-            break;
-        case "wl":
-            outputObject.value = wl(value1)
-            break;
-        case "eHyd":
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "/input",
-                data: JSON.stringify(["eHyd", value1, 1]),
-                success: function(result){
-                    outputObject.value = result
-                }})
-            break;
-        case "wavespeed":
-            outputObject.value = wavespeed(value1, value2)
-            break;
-        case "eHydDiff":
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "/input",
-                data: JSON.stringify(["eHydDiff", value1, value2]),
-                success: function(result){
-                    outputObject.value = result
-                }})
-            break;
-        case "photonEnergy":
-            outputObject.value = photonEnergy(value1, value2)
-            break;
-        case "freq":
-            outputObject.value = freq(value1, value2)
-            break;
-        case "uToKg":
-            outputObject.value = uToKg(value1)
-            break;
-        case "kgToU":
-            outputObject.value = kgToU(value1)
-            break;
-        case "extraEnergy":
-            outputObject.value = extraEnergy(value1, value2)
-            break;
-        case "el":
-            console.log("hello")
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "/input",
-                data: JSON.stringify(["el", value1, 1]),
-                success: function(result){
-                    outputObject.value = result
-                }})
-            break;
-        default:
-            break;
-    }
+    $.ajax({
+        type: "POST",
+        contentType: "application/JSON",
+        url: "/input",
+        data: JSON.stringify([chosenFunction, value1, value2]),
+        success: function(result){
+            outputObject.value = result
+        }
+    })
 }
 
 // Function to update placeholder text and other UI
@@ -188,7 +137,6 @@ function thereIsAnother() {
     let clone = document.querySelector('.PhysicsCalculator').cloneNode( true );
     document.querySelector('body').appendChild(clone);
 }
-
 
 function copyToClipboard(){
     var copyText = document.getElementById("output");
