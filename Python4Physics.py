@@ -4,9 +4,7 @@ author: NRG
 """
 If you want to get your answers written cleaner, use this in console: %precision %.4e
 """
-from Elements import *
-from GUI import *
-from math import *
+from math import cos, radians
 
 # SI prefixes
 """
@@ -33,18 +31,18 @@ c,cv,h,B,u,mn,mp = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18, 1.66e-27, 1.00866491595, 
 """
 The energy level of a given electron shell (in Bohr's atomic model) for a hydrogen atom
 """
-def eHyd(shell): return - B / shell**2
+def eHyd(shell): return - B / shell**2 #available through website
 
 """
 Calculates energy needed to exitate or deexitate the current electron shell,
 where n1 is the starting shell, and n2 is the ending shell.
 """
-def eHydDiff(n1,n2): return abs(eHyd(n1)-eHyd(n2))
+def eHydDiff(start, end): return abs(eHyd(end)-eHyd(start)) #available through website
 
 """
 Uses time to divide waves by time and get the frequency of a wave.
 """
-def freqOld(T, S=1): return S/T
+def freqOld(T, S=1): return S/T #next
 
 """
 Calculates wave speed by multiplying wavelength(λ) by frequency(f)
@@ -65,32 +63,32 @@ def wl(f, v=c): return v/f
 """
 Plugs c=λf into E=hf to get E=hc/λ
 """
-def el(λ): return (h*c)/λ
+def el(λ): return (h*c)/λ #available through website
 
 """
 Gives energy amount by using Einstein's formula given mass and lightspeed squared
 """
-def einstein(m): return m*(c**2) #GUI done
+def einstein(m): return m*(c**2) 
 
 """
 Converts u to kg, m = mass in u
 """
-def massConvU(m): return m*u #GUI done
+def massConvU(m): return m*u 
 
 """
 Gives the leftover energy for a reaction. This energy is freed under the reaction. Takes before mass and subtracts the after mass. Caution! gives energy in u!
 """
-def massLeft(before, after): return before-after #GUI done
+def massLeft(before, after): return before-after 
 
 """
 Converts kg to u, m = mass in kg
 """
-def massConvKg(m): return m/u #GUI done
+def massConvKg(m): return m/u
 
 """
 Gets the wavelength of the photon with the given energy
 """
-def photonWl(energy): #GUI done
+def photonWl(energy):
     f = energy/h
     return wl(f,c)
 
