@@ -89,10 +89,9 @@ def enthalpy(testIn, justVal = False):
     
 def enthalpySumReact(reactants):
     endSum = 0
-    cof = 1
     for i in range(len(reactants)):
         split = reactants[i].rfind("(")
-        
+        cof = coefficient(i, reactants)
         if reactants[i][0] in numbers:
             for t in range(len(reactants[i][:+4])):
                 if reactants[i][t] not in numbers:
@@ -109,10 +108,9 @@ def enthalpySumReact(reactants):
     
 def enthalpySumProd(product):
     endSum = 0
-    cof = 1
     for i in range(len(product)):
         split = product[i].rfind("(")
-
+        cof = coefficient(i, product)
         if product[i][0] in numbers:
             for t in range(len(product[i][:+4])):
                 if product[i][t] not in numbers:
@@ -144,10 +142,9 @@ def entropy(testIn, justVal = False):
     
 def entropySumReact(reactants):
     endSum = 0
-    cof = 1
     for i in range(len(reactants)):
         split = reactants[i].rfind("(")
-        
+        cof = coefficient(i, reactants)
         if reactants[i][0] in numbers:
             for t in range(len(reactants[i][:+4])):
                 if reactants[i][t] not in numbers:
@@ -157,7 +154,6 @@ def entropySumReact(reactants):
             t = 0
         
         for j in range(len(STV)):
-            print(reactants[i][:split])
             if STV[j].formula == reactants[i][t:split] and STV[j].state == reactants[i][split+1:-1]:
                 endSum += cof*STV[j].dEntropy
                 break
@@ -165,10 +161,9 @@ def entropySumReact(reactants):
     
 def entropySumProd(product):
     endSum = 0
-    cof = 1
     for i in range(len(product)):
         split = product[i].rfind("(")
-        
+        cof = coefficient(i, product)
         if product[i][0] in numbers:
             for t in range(len(product[i][:+4])):
                 if product[i][t] not in numbers:
@@ -182,5 +177,14 @@ def entropySumProd(product):
                 endSum += cof*STV[j].dEntropy
                 break
     return endSum
+
+def coefficient(num, varList):
+    if varList[num][0] in numbers:
+            for t in range(len(varList[num][:+4])):
+                if varList[num][t] not in numbers:
+                    break
+            return int(varList[num][:t])
+    else:
+        return 1
 
 def gibbsFull(testIn, temp = 25): return gibbsValue(temp, enthalpy(testIn, True), entropy(testIn, True))
