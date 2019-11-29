@@ -408,7 +408,7 @@ STV = [#formula | state | dEnthalpy | dGibbs | dEntropy |
        STVFormula("Fe","s",0,0,27.28),
        STVFormula("Fe(CN)6^3-","aq",561.9,729.4,270.3),
        STVFormula("Fe(CN)6^4-","aq",455.6,695.08,95),
-       STVFormula("Fe(CNS)^2+","aq",23.4,71.1,-130),
+       STVFormula("Fe(SCN)^2+","aq",23.4,71.1,-130),
        STVFormula("Fe","g",416.3,370.7,180.49),
        STVFormula("Fe(OH)3","s",-823,-696.5,106.7),
        STVFormula("Fe2(SO4)3","s",-2581.5,None,None),
@@ -574,6 +574,7 @@ STV = [#formula | state | dEnthalpy | dGibbs | dEntropy |
        #Monoclinic is available for S, but value over is rhombic
        STVFormula("S","g",278.805,238.25,167.821),
        STVFormula("S^2-","aq",33.1,85.8,-14.6),
+       STVFormula("SCN^-","aq",76.44,92.71,144.3),
        STVFormula("S2O3^2-","aq",-648.5,-522.5,67),
        STVFormula("S4O6^2-","aq",-1224.2,-1040.4,257.3),
        STVFormula("SO2","g",-296.83,-300.194,248.22),
