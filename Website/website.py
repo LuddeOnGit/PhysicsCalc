@@ -12,9 +12,9 @@ def find_function(function, input1, input2):
     elif function == "eHyd":
         return eHyd(input1)
     elif function == "eHydDiff":
-        return eHydDiff(input1, input2)
+        return eHydDiff(input1, float(input2))
     elif function == "freqOld":
-        return freqOld(input1, input2)
+        return freqOld(input1, float(input2))
 
 @app.route("/")
 def output():
@@ -23,7 +23,7 @@ def output():
 @app.route('/input', methods=['POST'])
 def return_answer():
     data = request.get_json()
-    result = find_function(data[0], data[1], data[2])
+    result = find_function(data[0], float(data[1]), data[2])
     return str(result)
 
 if __name__ == '__main__':
