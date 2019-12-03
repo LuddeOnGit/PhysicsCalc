@@ -4,7 +4,7 @@ author: NRG
 """
 If you want to get your answers written cleaner, use this in console: %precision %.4e
 """
-from math import cos, radians
+from math import cos, radians, sqrt
 
 # SI prefixes
 """
@@ -102,13 +102,15 @@ def photonEnergy(f= "",wl = ""):
 
 def kineticEnergy(m,v): return (1/2)*m*(v**2)
 
-def potentialEnergy(m,g,h): return
+def potentialEnergy(m, h, g = 9.81): return m*g*h
 
 def effect(m,g,h,t): return (m*g*h)/t
 
 def efficiency(n,u): return n/u
 
 def work(F,s,a = 0): return (F*s*cos(radians(a)))
+
+def endVelocity(m,bh,ah,v,f=0,s=0,a=0,g = 9.81): return sqrt(((((potentialEnergy(m,bh)+kineticEnergy(m,v))+work(f,s,a))-potentialEnergy(m,ah))/0.5)/m)
 
 
 print('This is a modified Python Console made for Physics 1')
