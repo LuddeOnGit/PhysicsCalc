@@ -9,7 +9,7 @@ function sendInputs() {
         url: "/input",
         data: JSON.stringify([chosenFunction, value1, value2]),
         success: function(result){
-            outputObject.value = result
+            outputObject.value = result 
         }
     })
 }
