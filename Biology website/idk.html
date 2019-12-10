@@ -3,19 +3,45 @@
 <html>
     <head>
         <script src="facts.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body>
-        <select name="class" id="class" onchange="JavaScript:UpdateAnimals()">
-            <option value="mammal">Mammal</option>
-            <option value="birds">Birds</option>
-            <option value="fish">Fish</option>
+    <body onload="JavaScript:populateSelect(0)">
+        <select name="domain" id="Domain" onchange="JavaScript:populateSelect(1)">
         </select>
-        <select name="phylum" id="phylum" onchange="JavaScript: UpdateClasses()">
-            <option value="chordata">Chordata</option>
-            <option valaue="flat worm">Flat worm</option>
-            <option value="arthropod">Arthropod</option>
-            <option value="cnidaria">Cnidaria</option> <!--jellyfish and corals-->
-            <option value="mollusca">Mollusca</option> <!--snails, octopi, -->
+        <select name="kingdom" id="Kingdom" onchange="JavaScript:populateSelect(2)">
         </select>
+        <select name="phylum" id="Phylum" onchange="JavaScript:populateSelect(3)">
+        </select>
+        <select name="class" id="Class" onchange="JavaScript:populateSelect(4)">
+        </select>
+        <select name="order" id="Order" onchange="JavaScript:populateSelect(5)">
+        </select>
+        <select name="family" id="Family" onchange="JavaScript:populateSelect(6)">
+        </select>
+        <select name="genus" id="Genus" onchange="JavaScript:populateSelect(7)">
+        </select>
+        <select name="species" id="Species" >      
+        </select>
+
+        <button type="submit" onclick="JavaScript:appendToTable()">Add to table</button>
+        <h2>Table of comparison</h2>
+        <!--Add table here-->
+        <table style="width:80%">
+                <tr>
+                    <th>Domain</th>
+                    <th>Kingdom</th>
+                    <th>Phylum</th>
+                    <th>Class</th>
+                    <th>Order</th>
+                    <th>Family</th>
+                    <th>Species</th>
+                    <th style="width: 5%; background-color: black; border: none;"></th>
+                    <th>Circulatory system</th>
+                    <th>Resparatory system</th>
+                    <th>Waste production</th>
+                    <th>Reproduction</th>
+                    <th>Picture</th>
+                </tr>
+              </table>
     </body>
 </html>

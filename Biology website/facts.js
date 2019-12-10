@@ -1,28 +1,76 @@
-function UpdateAnimals() {
-    var select = document.getElementById("class")
-    select.options[select.options.length] = new Option("hello")
-    select.options[select.selectedIndex] = null // This just sets it to the top value
-}
-// Maybe have the class itself be ignorant of kingdom and shit, and categorize that in a nested ditionary? 
-//okay
+//select.options[select.options.length] = new Option("hello") (Adds new item to end of dropdown)
+//select.options[select.selectedIndex] = null  (Removes selected item)
 
-// Depends on how many unique types there are, might just want a fuckton of bools
+function emptySelect(selectObject) {
+    selectObject.options.length = 0
+    return selectObject
+}
+
+function populateSelect(level) {
+    // We need to add a null value to every select
+    let levels = ["Domain", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"]
+    
+    // Path is an array of the selected taxonomy levels so far
+    var path = []
+    for (var i = 0; i < level; i++) {
+        var levelName = levels[i]
+        var value = document.getElementById(levelName).value
+        if (value !== " ") {
+            path.push(value)            
+        }
+    }
+    
+    // Get the apporopriate select and replace its values with the options
+    var select = document.getElementById(levels[path.length])
+    select.style.display = "inline"
+    emptySelect(select)
+
+    var values = taxonomy
+    for (var i = 0; i < path.length; i++){
+        values = values[path[i]]
+    }
+
+    // Set the options of the select to a null value and the options
+    var options = [" "]
+    try {
+        var names = Object.getOwnPropertyNames(values)
+        for (var i = 0; i < names.length; i++) {
+            options.push(names[i])
+        }
+    }
+    catch (TypeError){
+    }
+
+    
+    for (var i = 0; i < options.length; i++) {
+        select.options[i] = new Option(options[i])
+    }
+
+    // Hide the rest
+    for (var i = level + 1; i < levels.length; i++) {
+        document.getElementById(levels[i]).style.display = "none"
+    }
+}
+function displayInfo() {
+    //print some text to the user about the organ systems in the chosen animal
+}
+
+function addToTable() {
+    //appends characteristics of current animal in table of comparison
+}
 
 class Organism {
     // Do we need to declare these before initialization as well, or is that just Swift?
     // should i just add it here then?
     // Yea
-    constructor(kingdom, division, aclass, order, family, genus, species, circl, resp, waste, reprod, picture){
-        this.circl  = circl
-        this.resp   = resp
-        this.waste  = waste
-        this.reprod = reprod
+    constructor(circl, resp, waste, reprod, picture){
+        this.circl   = circl
+        this.resp    = resp
+        this.waste   = waste
+        this.reprod  = reprod
+        this.picture = picture
     }
-
-
 }
-snek = new Organism("SnekKingdom", "snekDivision")
-console.log(snek.kingdom)
 
 // Info it we need for every instance, written in biological and scientifically advanced language:
 // * Circulatory system
@@ -30,50 +78,74 @@ console.log(snek.kingdom)
 // * Shit system
 // * Fuck system
 
-// I think object for categorization might work
-// We just need Object.getOwnPropertyNames(object1) to get the keys
-
-// alright how do we do that
-
-// We only need to specify down to the level at which the organ systems differ
-//that is just down below kingdom kinda isn't it? on average
-// In that case, we'll have string values at that level
-
 const taxonomy = {
     // Domain
-    prokaryote: {
+    "Prokaryote": {
         // Kingdom
-        bacteria: {
+        "Bacteria": {
             // Whatever kinds of bacteria exist
         },
-        archea: {
+        "Archea": {
             // Noahs ark
             // A4
         }
     },
-    eukaryote: {
+    "Eukaryote": {
         // Kingdom
-        animal: { // I guess most of what we've learnt falls under here
+        "Animal": { // I guess most of what we've learnt falls under here
             //animals
             //yup
-            porifera: { // im gonna have no idea how to use this site with all these big boy words
-                //spongebob
+            "Porifera": new Organism(circl = "dunno", resp = "", waste = "Osmosis", reprod = "", picture = "Spongebob.jpg"),
+            "Cnidaria": {
+                // Anders
             },
-            cnidaria: {
-                //
+            "Chordata": {
+                "Mammals": {
+                    "Gay Sapiens": {
+
+                    },
+                    "Carnivora": {
+                        "Canidae": {
+                            "Canis": {
+                                "Canis Lupus": new Organism(circl = "Lung", resp = "air", waste = "PeePeePooPoo", reprod = "sex", picture = "fant.png")
+                            },
+                        }
+                    }
+                    
+                },
+                "Birds": {
+                    "Eagle": {
+                        
+                    }
+                },
+                "Fish": {
+                    "Salmon": {
+                        
+                    }
+                },
+                "Amphibia": {
+                    "Frog": {
+                        
+                    }
+                },
+                "Reptilia": {
+                    "Snek": {
+                        "Titanboa": new Organism()
+                    }
+                }
             }
         },
-        plant: { // how do plants poop
+        "Plant": { // how do plants poop
             //plants
             //chernobyl nuclear power plant 5
         },
-        protozoa: {
+        "Protozoa": {
             //shoeanimal
         },
-        fungi: {
+        "Fungi": {
             //shrooms
         },
-        chromista: {
+        "Chromista": {
             //ocean plant
             //wikipedia said it
         }
