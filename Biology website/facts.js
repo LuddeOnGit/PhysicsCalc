@@ -1,15 +1,13 @@
 //select.options[select.options.length] = new Option("hello") (Adds new item to end of dropdown)
 //select.options[select.selectedIndex] = null  (Removes selected item)
-
 function emptySelect(selectObject) {
     selectObject.options.length = 0
     return selectObject
 }
 
-function populateSelect(level) {
-    // We need to add a null value to every select
-    let levels = ["Domain", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"]
-    
+let levels = ["Domain", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"]
+
+function findPath(level = 8) {
     // Path is an array of the selected taxonomy levels so far
     var path = []
     for (var i = 0; i < level; i++) {
@@ -19,6 +17,12 @@ function populateSelect(level) {
             path.push(value)            
         }
     }
+    return path
+}
+
+function populateSelect(level) {
+    document.getElementById("addToTableButton").disabled = true
+    var path = findPath(level)
     
     // Get the apporopriate select and replace its values with the options
     var select = document.getElementById(levels[path.length])
@@ -41,7 +45,6 @@ function populateSelect(level) {
     catch (TypeError){
     }
 
-    
     for (var i = 0; i < options.length; i++) {
         select.options[i] = new Option(options[i])
     }
@@ -50,33 +53,79 @@ function populateSelect(level) {
     for (var i = level + 1; i < levels.length; i++) {
         document.getElementById(levels[i]).style.display = "none"
     }
+
+    // Check if the current level contains an organism object to determine whether to show the add button
+    //setAddButtonState(typeof(Object.values(organismAt(path)[0]) == Organism))
 }
+
 function displayInfo() {
     //print some text to the user about the organ systems in the chosen animal
 }
 
 function addToTable() {
+    var path = findPath()
+    var table = document.getElementById("comTable")
+    var newRow = table.insertRow(-1)
+
+    // Add the path to the right side of the divider
+    for (var i = 1; i < path.length - 2; i++) {
+        var newCell = newRow.insertCell(-1)
+        newCell.innerHTML = path[i]
+    }
+    // Combine the Genus and the Species because that's how it's usually written
+    var lastCell = newRow.insertCell(-1)
+    lastCell.innerHTML = path[6].toString() + " " + path[7].toString()
+    newRow.insertCell(-1) // Spacing cell
+    var data = Object.values(organismAt(path))
+    console.log(data)
+
+    // Insert the data
+    for (j = 0; j <= 4; j++){
+        var newCell = newRow.insertCell(-1)
+        newCell.innerHTML = data[j]
+    }
+}
+    
+
     //appends characteristics of current animal in table of comparison
+
+function setAddButtonState(state) {
+    // true is shown, false is hidden
+    document.getElementById("addToTableButton").disabled = !state
+}
+
+
+function startUp() {
+    populateSelect(0)
+    
+}
+
+function organismAt(path) {
+    var values = taxonomy
+    for (var i = 0; i < path.length; i++) {
+        values = values[path[i]]
+    }
+    console.log(values)
+    return values
 }
 
 class Organism {
-    // Do we need to declare these before initialization as well, or is that just Swift?
-    // should i just add it here then?
-    // Yea
     constructor(circl, resp, waste, reprod, picture){
-        this.circl   = circl
-        this.resp    = resp
-        this.waste   = waste
-        this.reprod  = reprod
+        this.circl = circl
+        this.resp = resp
+        this.waste = waste
+        this.reprod = reprod
         this.picture = picture
     }
 }
-
 // Info it we need for every instance, written in biological and scientifically advanced language:
 // * Circulatory system
 // * Respiratory system
 // * Shit system
 // * Fuck system
+
+// Does the order matter?
+// Circulatory system interferes a lot with resp and waste, might want it between them
 
 const taxonomy = {
     // Domain
@@ -107,7 +156,7 @@ const taxonomy = {
                     "Carnivora": {
                         "Canidae": {
                             "Canis": {
-                                "Canis Lupus": new Organism(circl = "Lung", resp = "air", waste = "PeePeePooPoo", reprod = "sex", picture = "fant.png")
+                                "Lupus": new Organism(circl = "Lung", resp = "air", waste = "PeePeePooPoo", reprod = "sex", picture = "/fant.png")
                             },
                         }
                     }

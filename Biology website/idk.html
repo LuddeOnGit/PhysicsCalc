@@ -5,7 +5,7 @@
         <script src="facts.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body onload="JavaScript:populateSelect(0)">
+    <body onload="JavaScript:startUp()">
         <select name="domain" id="Domain" onchange="JavaScript:populateSelect(1)">
         </select>
         <select name="kingdom" id="Kingdom" onchange="JavaScript:populateSelect(2)">
@@ -20,22 +20,22 @@
         </select>
         <select name="genus" id="Genus" onchange="JavaScript:populateSelect(7)">
         </select>
-        <select name="species" id="Species" >      
+        <select name="species" id="Species" onchange="JavaScript:enableAddButton()">      
         </select>
 
-        <button type="submit" onclick="JavaScript:appendToTable()">Add to table</button>
+        <button type="submit" id="addToTableButton" onclick="JavaScript:addToTable()">Add to table</button>
         <h2>Table of comparison</h2>
         <!--Add table here-->
-        <table style="width:80%;">
+        <table style="width:80%;" id="comTable">
                 <tr>
-                    <th>Domain</th>
+                    <!--<th>Domain</th>-->
                     <th>Kingdom</th>
                     <th>Phylum</th>
                     <th>Class</th>
                     <th>Order</th>
                     <th>Family</th>
                     <th>Species</th>
-                    <th style="width: 5%; background-color: black; border: none;"></th>
+                    <th style="width: 5px;"></th> 
                     <th>Circulatory system</th>
                     <th>Resparatory system</th>
                     <th>Waste production</th>
