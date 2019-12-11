@@ -1,6 +1,7 @@
 body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 15px;
+  background-color: ghostwhite;
 }
 h2{
   font-size: 30px;
@@ -20,3 +21,88 @@ img {
 p{
   width: 60%;
 }
+
+select{
+  padding: 5px;
+}
+
+button{
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#infoTables{
+  border-style: solid;
+  border-width: 5px;
+  border-color: gray;
+  margin-top: 20px;
+  padding-left: 25px;
+  padding-bottom: 20px;
+  /* Fix bobbing when image is enlarged */
+}
+
+#wordList{
+  border-style: solid;
+  border-width: 5px;
+  border-color: gray;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 25px;
+}
+
+#compTable{
+  padding-left: 20px;
+}
+
+img:hover {
+  transform: scale(3.5);
+  border: grey;
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* Dropdown Button */
+.menu {
+  background-color: #4CAF50;
+  color: white;
+  padding-left: 25px;
+  padding-right: 30px;
+  font-size: 16px;
+  border: none;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+#headerNRG {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  /*background-color: #f1f1f1; */
+  background-color: #4CAF50;;
+  min-width: 16px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-left: 5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: rgb(75, 156, 78);;}
+
+/* Show the dropdown menu on hover */
+#headerNRG:hover .dropdown-content {display: block;}

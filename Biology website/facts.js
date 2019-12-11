@@ -166,19 +166,19 @@ const taxonomy = {
                     "Primates": {
                         "Homonidae": {
                             "Homo": {
-                                "Sapiens": new Organism("<a href='#circ:double'>Double circulation<!a> with a <a href='#circ:fourChamber'>4-chambered heart<!a>",  "<a href='resp:lungs'>Lungs</a>","Kidneys to dispose of urea", "Internal Fertilization (no egg)", "<img src='https://static.tildacdn.com/tild3338-6436-4031-b039-323439643964/Ansatt_bilde_2SssSss.JPG'>")
+                                "Sapiens": new Organism("<a href='#circ:double'>Double circulation</a> with a <a href='#circ:fourChamber'>4-chambered heart</a>",  "<a href='resp:lungs'>Lungs</a>","Kidneys to dispose of urea", "Internal Fertilization (no egg)", "<img src='https://static.tildacdn.com/tild3338-6436-4031-b039-323439643964/Ansatt_bilde_2SssSss.JPG'>")
                             }
                         }
                     },
                     "Carnivora": {
                         "Canidae": {
                             "Canis": {
-                                "Lupus": new Organism("<a href='#circ:double'>Double circulation<!a> with a <a href='#circ:fourChamber'>4-chambered heart<!a>", "<a href='resp:lungs'>Lungs</a>", "Kidneys to dispose of urea", "Internal fertilization (no egg)", "<img src='https://imgur.com/RVcmipS.jpg'>")
+                                "Lupus": new Organism("<a href='#circ:double'>Double circulation</a> with a <a href='#circ:fourChamber'>4-chambered heart</a>", "<a href='resp:lungs'>Lungs</a>", "Kidneys to dispose of urea", "Internal fertilization (no egg)", "<img src='https://imgur.com/RVcmipS.jpg'>")
                             },
                         },
                         "Felidae": {
                             "Felis": {
-                                "Catus": new Organism("<a href='#circ:double'>Double circulation<!a> with a <a href='#circ:fourChamber'>4-chambered heart<!a>", "<a href='#circ:lungs'>Lungs<!a>", "Kidneys to dispose of urea", "Internal fertilization (no egg)", "<img src='https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png'>")
+                                "Catus": new Organism("<a href='#circ:double'>Double circulation</a> with a <a href='#circ:fourChamber'>4-chambered heart</a>", "<a href='#circ:lungs'>Lungs</a>", "Kidneys to dispose of urea", "Internal fertilization (no egg)", "<img src='https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png'>")
                             }
                         }
                     }
@@ -187,7 +187,7 @@ const taxonomy = {
                 "Aves": {
                     "Accipitriformes": {
                         "Accipitridae": {
-                            "Haliaeetus": new Organism("<a href='#circ:fourChamber'>4-chambered heart<!a>", "Two <a href='#resp:airSacks'>air sacks</a>", "Get rid of uric acid through mute", "External Fertilization (hard eggs)", "<img src='https://vignette.wikia.nocookie.net/angry-birds-universe/images/4/4f/MovieMightyEagle.png/revision/latest?cb=20181121061955'>")
+                            "Haliaeetus": new Organism("<a href='#circ:fourChamber'>4-chambered heart</a>", "Two <a href='#resp:airSacks'>air sacks</a>", "Get rid of uric acid through mute", "External Fertilization (hard eggs)", "<img src='https://vignette.wikia.nocookie.net/angry-birds-universe/images/4/4f/MovieMightyEagle.png/revision/latest?cb=20181121061955'>")
                         }
                     }
                 },
