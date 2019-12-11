@@ -1,43 +1,64 @@
+// Made in like a week by Ludvik, Jakob and Victor. Don't believe the git blame.
+
 //select.options[select.options.length] = new Option("hello") (Adds new item to end of dropdown)
 //select.options[select.selectedIndex] = null  (Removes selected item)
+
 function emptySelect(selectObject) {
     selectObject.options.length = 0
     return selectObject
 }
 
-let levels = ["Domain", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"]
+function findLevel() {
+    // Find the level to which the path is specified, basically the index of the last used select
+    for (var i = 0; i < levels.length; i++) {
+        if (document.getElementById(levels[i]).style.display == "none") {
+            return i
+        }
+    } 
+    return 8
+}
 
-function findPath(level = 8) {
+function findSelectedPath(level) {
     // Path is an array of the selected taxonomy levels so far
     var path = []
     for (var i = 0; i < level; i++) {
         var levelName = levels[i]
         var value = document.getElementById(levelName).value
-        if (value !== " ") {
+        if (value !== "") {
             path.push(value)            
         }
-    }
+    }   
     return path
 }
 
 function populateSelect(level) {
-    document.getElementById("addToTableButton").disabled = true
-    var path = findPath(level)
-    
-    // Get the apporopriate select and replace its values with the options
-    var select = document.getElementById(levels[path.length])
-    select.style.display = "inline"
-    emptySelect(select)
 
-    var values = taxonomy
-    for (var i = 0; i < path.length; i++){
-        values = values[path[i]]
+    let path = findSelectedPath(level)
+    let object = objectAt(path)
+
+    // Hide the rest of the selects
+    for (var i = level; i < levels.length; i++) {
+        document.getElementById(levels[i]).style.display = "none"
     }
 
+    // Check if the current level contains an organism object to determine whether to show the add button
+    if (object instanceof Organism) {
+        setAddButtonState(true)
+        return // Don't show the rest of the selects
+    }else {
+        setAddButtonState(false)
+    }
+
+    // Get the apporopriate select and replace its values with the options
+    var select = document.getElementById(levels[path.length])
+    
+    select.style.display = "inline"
+    emptySelect(select)
+    
     // Set the options of the select to a null value and the options
-    var options = [" "]
+    var options = [""]
     try {
-        var names = Object.getOwnPropertyNames(values)
+        var names = Object.getOwnPropertyNames(object)
         for (var i = 0; i < names.length; i++) {
             options.push(names[i])
         }
@@ -48,14 +69,7 @@ function populateSelect(level) {
     for (var i = 0; i < options.length; i++) {
         select.options[i] = new Option(options[i])
     }
-
-    // Hide the rest
-    for (var i = level + 1; i < levels.length; i++) {
-        document.getElementById(levels[i]).style.display = "none"
-    }
-
-    // Check if the current level contains an organism object to determine whether to show the add button
-    //setAddButtonState(typeof(Object.values(organismAt(path)[0]) == Organism))
+    
 }
 
 function displayInfo() {
@@ -63,34 +77,40 @@ function displayInfo() {
 }
 
 function addToTable() {
-    var path = findPath()
+    var path = findSelectedPath(findLevel())
     var table = document.getElementById("comTable")
     var newRow = table.insertRow(-1)
 
-    // Add the path to the right side of the divider
-    for (var i = 1; i < path.length - 2; i++) {
+    // Add the path to the table
+    for (var i = 1; i < path.length; i++) {
         var newCell = newRow.insertCell(-1)
+        if (i == 7) {continue}
         newCell.innerHTML = path[i]
+
+        if ((i == 6) && (path.length == 8)) {
+            // Combine the Genus and the Species because that's how it's usually written
+            newCell.innerHTML = path[6].toString() + " " + path[7].toString()
+        }
     }
-    // Combine the Genus and the Species because that's how it's usually written
-    var lastCell = newRow.insertCell(-1)
-    lastCell.innerHTML = path[6].toString() + " " + path[7].toString()
-    newRow.insertCell(-1) // Spacing cell
-    var data = Object.values(organismAt(path))
-    console.log(data)
+
+    // Add cells for the missing levels, and a spacing cell
+    for (var i = path.length; i < levels.length; i++) {
+        newRow.insertCell(-1)
+    }
+    let data = Object.values(objectAt(path)) //find the data for the selected species
 
     // Insert the data
     for (j = 0; j <= 4; j++){
         var newCell = newRow.insertCell(-1)
         newCell.innerHTML = data[j]
     }
-}
-    
 
-    //appends characteristics of current animal in table of comparison
+    // Add a remove button
+    
+}
 
 function setAddButtonState(state) {
-    // true is shown, false is hidden
+    // true is enabled, false is disabled
     document.getElementById("addToTableButton").disabled = !state
 }
 
@@ -100,13 +120,13 @@ function startUp() {
     
 }
 
-function organismAt(path) {
-    var values = taxonomy
+function objectAt(path) {
+    var object = taxonomy
     for (var i = 0; i < path.length; i++) {
-        values = values[path[i]]
+        object = object[path[i]]
     }
-    console.log(values)
-    return values
+    console.log(object)
+    return object
 }
 
 class Organism {
@@ -124,47 +144,51 @@ class Organism {
 // * Shit system
 // * Fuck system
 
-// Does the order matter?
-// Circulatory system interferes a lot with resp and waste, might want it between them
+let levels = ["Domain", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"]
 
 const taxonomy = {
     // Domain
     "Prokaryote": {
         // Kingdom
-        "Bacteria": {
-            // Whatever kinds of bacteria exist
-        },
-        "Archea": {
-            // Noahs ark
-            // A4
-        }
+        "Bacteria": new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "Diffusion", "Mitosis", "Archaea.jpg"),
+        "Archea":   new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "Diffusion", "Mitosis", "Bacterium.jpg")
     },
     "Eukaryote": {
         // Kingdom
-        "Animal": { // I guess most of what we've learnt falls under here
+        "Animal": {
             //animals
-            //yup
-            "Porifera": new Organism(circl = "dunno", resp = "", waste = "Osmosis", reprod = "", picture = "Spongebob.jpg"),
+            "Porifera": new Organism("Doesn't have", "<a href='#resp:diffusion'>Diffusion</a>", "Diffusion", "fragments regrow, two genders at the same time", "Spongebob.jpg"),
             "Cnidaria": {
                 // Anders
             },
             "Chordata": {
                 "Mammals": {
-                    "Gay Sapiens": {
-
+                    "Primates": {
+                        "Homonidae": {
+                            "Homo": {
+                                "Sapiens": new Organism("<a href='#circ:double'>Double circulation<!a> with a <a href='#circ:fourChamber'>4-chambered heart<!a>",  "<a href='resp:lungs'>Lungs</a>","Kidneys to dispose of urea", "Internal Fertilization (no egg)", "<img src='https://static.tildacdn.com/tild3338-6436-4031-b039-323439643964/Ansatt_bilde_2SssSss.JPG'>")
+                            }
+                        }
                     },
                     "Carnivora": {
                         "Canidae": {
                             "Canis": {
-                                "Lupus": new Organism(circl = "Lung", resp = "air", waste = "PeePeePooPoo", reprod = "sex", picture = "/fant.png")
+                                "Lupus": new Organism("<a href='#circ:double'>Double circulation<!a> with a <a href='#circ:fourChamber'>4-chambered heart<!a>", "<a href='resp:lungs'>Lungs</a>", "Kidneys to dispose of urea", "Internal fertilization (no egg)", "<img src='https://imgur.com/RVcmipS.jpg'>")
                             },
+                        },
+                        "Felidae": {
+                            "Felis": {
+                                "Catus": new Organism("<a href='#circ:double'>Double circulation<!a> with a <a href='#circ:fourChamber'>4-chambered heart<!a>", "<a href='#circ:lungs'>Lungs<!a>", "Kidneys to dispose of urea", "Internal fertilization (no egg)", "<img src='https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png'>")
+                            }
                         }
                     }
                     
                 },
-                "Birds": {
-                    "Eagle": {
-                        
+                "Aves": {
+                    "Accipitriformes": {
+                        "Accipitridae": {
+                            "Haliaeetus": new Organism("<a href='#circ:fourChamber'>4-chambered heart<!a>", "Two <a href='#resp:airSacks'>air sacks</a>", "Get rid of uric acid through mute", "External Fertilization (hard eggs)", "<img src='https://vignette.wikia.nocookie.net/angry-birds-universe/images/4/4f/MovieMightyEagle.png/revision/latest?cb=20181121061955'>")
+                        }
                     }
                 },
                 "Fish": {
@@ -199,4 +223,4 @@ const taxonomy = {
             //wikipedia said it
         }
     }
-};
+}; 

@@ -1,3 +1,22 @@
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+}
+h2{
+  font-size: 30px;
+}
 table, th, td {
     border: 1px solid black;
+    text-align: left;
   }
+
+img {
+  max-width: 150px;
+  max-height: 200px;
+  height: auto;
+  width: auto;
+}
+
+p{
+  width: 60%;
+}
