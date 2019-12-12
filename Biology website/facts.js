@@ -146,6 +146,14 @@ class Organism {
 
 let levels = ["Domain", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"]
 
+// The string for the basic mammmal systems, because I'm sick of copying them and they take up a lot of space
+let dcw4ch = "<a href='#circ:double'>Double circulation</a> with a <a href='#circ:fourChamber'>4-chambered heart</a>"
+let lungs = "<a href='resp:lungs'>Lungs</a>"
+let kidneys = "Kidneys to dispose of <a href='exc:medium:urea'>urea</a>"
+let intFert = "Internal Fertilization (no egg)"
+
+// I'll make an inheretance system later
+
 const taxonomy = {
     // Domain
     "Prokaryote": {
@@ -157,7 +165,7 @@ const taxonomy = {
         // Kingdom
         "Animal": {
             //animals
-            "Porifera": new Organism("Doesn't have", "<a href='#resp:diffusion'>Diffusion</a>", "Diffusion", "fragments regrow, two genders at the same time", "Spongebob.jpg"),
+            "Porifera": new Organism("None", "<a href='#resp:diffusion'>Diffusion</a>", "Diffusion", "fragments regrow, two genders at the same time", "Spongebob.jpg"),
             "Cnidaria": {
                 // Anders
             },
@@ -166,19 +174,22 @@ const taxonomy = {
                     "Primates": {
                         "Homonidae": {
                             "Homo": {
-                                "Sapiens": new Organism("<a href='#circ:double'>Double circulation</a> with a <a href='#circ:fourChamber'>4-chambered heart</a>",  "<a href='resp:lungs'>Lungs</a>","Kidneys to dispose of urea", "Internal Fertilization (no egg)", "<img src='https://static.tildacdn.com/tild3338-6436-4031-b039-323439643964/Ansatt_bilde_2SssSss.JPG'>")
+                                "Sapiens": new Organism(dcw4ch, lungs, kidneys, intFert, "<img src='https://static.tildacdn.com/tild3338-6436-4031-b039-323439643964/Ansatt_bilde_2SssSss.JPG'>")
                             }
                         }
                     },
                     "Carnivora": {
                         "Canidae": {
                             "Canis": {
-                                "Lupus": new Organism("<a href='#circ:double'>Double circulation</a> with a <a href='#circ:fourChamber'>4-chambered heart</a>", "<a href='resp:lungs'>Lungs</a>", "Kidneys to dispose of urea", "Internal fertilization (no egg)", "<img src='https://imgur.com/RVcmipS.jpg'>")
+                                "Lupus": new Organism(dcw4ch, lungs, kidneys, intFert, "<img src='https://imgur.com/RVcmipS.jpg'>")
                             },
+                            "Vulpes": {
+                                "Vulpes": new Organism(dcw4ch, lungs, kidneys, intFert, "")
+                            }
                         },
                         "Felidae": {
                             "Felis": {
-                                "Catus": new Organism("<a href='#circ:double'>Double circulation</a> with a <a href='#circ:fourChamber'>4-chambered heart</a>", "<a href='#circ:lungs'>Lungs</a>", "Kidneys to dispose of urea", "Internal fertilization (no egg)", "<img src='https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png'>")
+                                "Catus": new Organism(dcw4ch, lungs, kidneys, intFert, "<img src='https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png'>")
                             }
                         }
                     }
@@ -187,7 +198,7 @@ const taxonomy = {
                 "Aves": {
                     "Accipitriformes": {
                         "Accipitridae": {
-                            "Haliaeetus": new Organism("<a href='#circ:fourChamber'>4-chambered heart</a>", "Two <a href='#resp:airSacks'>air sacks</a>", "Get rid of uric acid through mute", "External Fertilization (hard eggs)", "<img src='https://vignette.wikia.nocookie.net/angry-birds-universe/images/4/4f/MovieMightyEagle.png/revision/latest?cb=20181121061955'>")
+                            "Haliaeetus": new Organism("<a href='#circ:fourChamber'>4-chambered heart</a>", "Two <a href='#resp:airSacks'>air sacks</a>", "Get rid of <a href='#exc:medium:uricAcid'>uric acid</a> through mute", "External Fertilization (hard eggs)", "<img src='https://vignette.wikia.nocookie.net/angry-birds-universe/images/4/4f/MovieMightyEagle.png/revision/latest?cb=20181121061955'>")
                         }
                     }
                 },
