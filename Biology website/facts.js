@@ -261,7 +261,17 @@ const taxonomy = {
             }
         },
         "Fungi": {
-            //shrooms
+            "Basidiomycota":{
+                "Agaricomycetes":{
+                    "Agaricales":{
+                        "Amanitaceae Pouzar":{
+                            "Amanita":{
+                                "Muscaria": new Organism("A form of <a href='#circ:diffusion'>Diffusion</a>","Absorbes gas in the air and ground with micro-pockets.","CO<sub>2</sub> right through the outer layer","<a href='#reprod:asexual'>Asexual reproduction</a> with specialized gills","<a href='https://titan.uio.no/sites/default/files/styles/landscape_w480/public/thumbnails/image/amanita_muscaria-oslo-gaustadskogen1.jpg?itok=_FpaN6K1'><img src='https://titan.uio.no/sites/default/files/styles/landscape_w480/public/thumbnails/image/amanita_muscaria-oslo-gaustadskogen1.jpg?itok=_FpaN6K1'></a>")
+                            }
+                        }
+                    }
+                }
+            }
         },
         "Chromista": {
             //ocean plant
