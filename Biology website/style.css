@@ -55,7 +55,9 @@ button{
 }
 
 img:hover {
-  transform: scale(3.5);
+  transform: scale(2.5);
+  max-width: 100px;
+  max-height: 150px;
   border: grey;
   border-style: solid;
   border-width: 1px;
@@ -106,3 +108,7 @@ img:hover {
 
 /* Show the dropdown menu on hover */
 #headerNRG:hover .dropdown-content {display: block;}
+
+#comTable, #dropdowns{
+  margin-left: 10px;
+}

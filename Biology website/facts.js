@@ -158,8 +158,8 @@ const taxonomy = {
     // Domain
     "Prokaryote": {
         // Kingdom
-        "Bacteria": new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "Diffusion", "Mitosis", "Archaea.jpg"),
-        "Archea":   new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "Diffusion", "Mitosis", "Bacterium.jpg")
+        "Bacteria": new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "Archaea.jpg"),
+        "Archea":   new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "Bacterium.jpg")
     },
     "Eukaryote": {
         // Kingdom
@@ -190,6 +190,9 @@ const taxonomy = {
                         "Felidae": {
                             "Felis": {
                                 "Catus": new Organism(dcw4ch, lungs, kidneys, intFert, "<img src='https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png'>")
+                            },
+                            "Vulpes": {
+                                "Vulpes": new Organism(dcw4ch, lungs, kidneys, intFert, "")
                             }
                         }
                     }
