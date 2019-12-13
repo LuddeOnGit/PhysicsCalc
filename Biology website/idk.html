@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 
-<html>
+<div>
     <head>
         <script src="facts.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <title>Taxonomy and systems</title>
     </head>
     <body onload="JavaScript:startUp()"></body>
@@ -19,8 +20,9 @@
 
         <h1 style="text-align: center; position: relative;">Biology : Taxonomy and systems</h1>
     
-        <h2>Table of comparison</h2>
+        
         <div id="dropdowns">
+            <h2>Table of comparison</h2>
             <select name="domain" id="Domain" onchange="JavaScript:populateSelect(1)">
             </select>
             <select name="kingdom" id="Kingdom" onchange="JavaScript:populateSelect(2)">
@@ -38,7 +40,7 @@
             <select name="species" id="Species" onchange="JavaScript:setAddButtonState(true)">      
             </select>
     
-            <button type="submit" id="addToTableButton" onclick="JavaScript:addToTable()">Add to table</button>
+            <button type="submit" id="addToTableButton" onclick="JavaScript:addToTable()" class="btn btn-success" style="margin-bottom: 7px;">Add to table</button>
         </div>
         <!--Add table here-->
         <table style="width:80%;" id="comTable">
@@ -70,7 +72,7 @@
                 <tr>
                     <th>Diffusion</th>
                     <td><a href="https://en.wikipedia.org/wiki/Diffusion" target="_blank">Diffusion is net movement of anything from a region of higher concentration to a region of lower concentration.</a></td>
-                    <td><img src="https://biologydictionary.net/wp-content/uploads/2017/04/Simple-Diffusion.jpg"></td>
+                    <td><a href="https://en.wikipedia.org/wiki/Diffusion" target="_blank"><img src="https://biologydictionary.net/wp-content/uploads/2017/04/Simple-Diffusion.jpg"></a></td>
                 </tr>
                 <tr>
                     <th>(⌐■_■)</th>
@@ -78,7 +80,7 @@
                 </tr>
             </table>
         </div>
-        <div id="infoTables">
+        <div id="exc" id="infoTables">
             <h2>The different circulatory systems</h2>
             <p></p>
             <h3>The systems</h3>
@@ -93,16 +95,17 @@
                     <th><a id="circ:diffusion">Diffusion</a></th>
                     <td>This occurs when the organism is very small or very thin, down to one cell. At this scale, every cell in the organism can obtain vital nutrients and gas independently through the membrane.
                         The issue with using diffusion is that the organism needs to be moist and surrounded by the needed components. </td>
+                    <td><a href="#wordList">Diffusion</a></td>
                 </tr>
                 <tr>
                     <th id="circ:closed">Closed</th>
                     <td>A closed circulatory system is a system which is seperated from the rest of the bodly fluids. This makes exchange of gas and nutrients very effective because it goes through closed canals</td>
-                    <td><a href="https://study.com/cimages/multimages/16/Closed_circulatory_system.png" target="_blank"><img src="https://study.com/cimages/multimages/16/Closed_circulatory_system.png"></a></td>
+                    <td><a href="https://study.com/academy/lesson/closed-circulatory-system-definition-advantage-quiz.html" target="_blank"><img src="https://study.com/cimages/multimages/16/Closed_circulatory_system.png"></a></td>
                 </tr>
                 <tr>
                     <th id="circ:open">Open</th>
-                    <td>An open circulatory system mixes fluids and organs together. It contains one or more hearts with bloodveins that ends into a pool that leads the blood back to the heart.</td>
-                    <td><a href="https://static.wixstatic.com/media/fc159c_5f0094bac37b4663a4994f9d7c51b47f.png/v1/fill/w_420,h_238,al_c,lg_1,q_80/fc159c_5f0094bac37b4663a4994f9d7c51b47f.webp" target="_blank"><img src="https://static.wixstatic.com/media/fc159c_5f0094bac37b4663a4994f9d7c51b47f.png/v1/fill/w_420,h_238,al_c,lg_1,q_80/fc159c_5f0094bac37b4663a4994f9d7c51b47f.webp"></a></td>
+                    <td>An open circulatory system mixes fluids and organs together. It contains one or more hearts with bloodveins that ends into a pool that leads the blood back to the heart. The blood is called <a href="https://en.wikipedia.org/wiki/Hemolymph">hemoglyph</a>. The hemoglyph enters the body between contractions and surrounds the cells allowind gas and nutrients to exchange.</td>
+                    <td><a href="https://iresha97.wixsite.com/taxonomy/single-post/2015/06/09/Open-Circulatory-System" target="_blank"><img src="https://static.wixstatic.com/media/fc159c_5f0094bac37b4663a4994f9d7c51b47f.png/v1/fill/w_420,h_238,al_c,lg_1,q_80/fc159c_5f0094bac37b4663a4994f9d7c51b47f.webp"></a></td>
                 </tr>
             </table>
             <h3>The heart</h3>
@@ -110,54 +113,64 @@
                 <tr>
                     <th>Chambers</th>
                     <th>Function</th>
+                    <th>Illustration</th>
                 </tr>
                 <tr>
                     <th id="circ:twoChamber">Double-chambered</th>
                     <td>This means that the heart or hearts contain two chambers. This is often to differentiate the intake and outtake of blood from the heart. Double chambered hearts are common in singular system organisms. This solution requires less energy and organisms that are active in short periods of time, can benefit from this. However, the disatvantage is the low pressure that the two chambers can produce. The organisms that uses this heart structure can't sustain high activity levels for a long period of time.</td>
+                    <td><a href="https://study.com/academy/lesson/two-chambered-heart-definition-anatomy-quiz.html" target="_blank"><img src="https://study.com/cimages/videopreview/videopreview-full/sample_01015326_110121.jpg"></a></td>
                 </tr>
                 <tr>
                     <th id="circ:threeChamber">Three-chambered</th>
-                    <td>A tree-chambered heart has two separate chambers that comes from the lungs and body. As the blood enters the heart, it is mixed and sent onwards to lungs and body from one chamber. This results in the blood mixing, which can lead to inefficient transport of gas and nutrients. The three-chambered heart requires a bit more energy than a two-chambered heart, but it is also capable of pumping blood more efficiently and with more pressure.</td>
+                    <td>A three-chambered heart has two separate chambers that comes from the lungs and body. As the blood enters the heart, it is mixed and sent onwards to lungs and body from one chamber. This results in the blood mixing, which can lead to inefficient transport of gas and nutrients. The three-chambered heart requires a bit more energy than a two-chambered heart, but it is also capable of pumping blood more efficiently and with more pressure.</td>
+                    <td><a href="https://study.com/academy/lesson/three-chambered-heart-definition-anatomy-quiz.html" target="_blank"><img src="https://study.com/cimages/videopreview/videopreview-full/sample_01032427_110160.jpg"></a></td>
                 </tr>
                 <tr id="circ:fourChamber">
                     <th>Four-chambered</th>
-                    <td>Four-chambered hearts are ofted found in humans and primates. They provide seperate chambers for blood that is going to the respiratory system and blood that is being pumped out to the body. It also separates the blood coming in from the body and the blood coming from the lungs. NOT FINISHED</td>
+                    <td>Four-chambered hearts are often found in humans and other primates. They provide seperate chambers for blood that is going to the respiratory system and blood that is being pumped out to the body. It also separates the blood coming in from the body and the blood coming from the lungs. Four chambers give optimal blood transport with higher pressure and better separation of the blood.</td>
+                    <td><a href="https://qph.fs.quoracdn.net/main-qimg-b6da309c7929183892d6d58e1f712c0f.webp" target="_blank"><img src="https://qph.fs.quoracdn.net/main-qimg-b6da309c7929183892d6d58e1f712c0f.webp"></a></td>
                 </tr>
             </table>
+            
             <h2>The different respiratory systems</h2>
             <table style="width:60%">
                 <tr>
                     <th>System</th>
                     <th>Function</th>
+                    <th>Illustration</th>
                 </tr>
                 <tr>
                     <th id="resp:diffusion">Diffusion</th>
                     <td>Gas moves in and out of cells through the membrane</td>
+                    <td><a href="#wordList">Diffusion</a></td>
                 </tr>
                 <tr>
                     <th id="resp:gills">Gills</th>
                     <td>Bloodveins going against the current pick up oksygen from the water and remove carbondioxide from the blood. Gills are located on the outside of the fish because they are always in contact with water.</td>
+                    <td><a href="https://www.skretting.com/nb-NO/media/nyheter/gjellesykdommer-og-hva-vi-kan-gj-re/1582862" target="_blank"><img src="https://www.skretting.com/contentassets/dbdae3fbb71e415aa508cd4981299dc9/gjeller2.png"></a></td>
                 </tr>
                 <tr>
                     <th id="resp:lungs">Lungs</th>
                     <td>Air flows through thin pipes surrounded by bloodveins in a muscle that contracts and extends. The oxygen moves to the blood and carbondioxide moves into the lung. Every breath oxygen comes in and carbondioxide gets removed. The lungs are inside the body because otherwise they would dry out and stop working.</td>
+                    <td><a href="https://en.wikipedia.org/wiki/Lung" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Lungs_diagram_detailed.svg/1200px-Lungs_diagram_detailed.svg.png"></a></td>
                 </tr>
                 <tr>
                     <th id="resp:airSacks">Air sacks</th>
                     <td>Birds have two air sacks that contract and extend to remove and take in air. When a bird breathes the air goes into one sack. Then it contracts and sends the air through a set of thin pipes with bloodveins around. The oxygen goes to the blood with diffusion and carbondioxide goes out from the blood with the same prosess. The air then gets sucked into the second air sack and then out. This process allows for constant oxygen in the body and is much more effective than normal lungs. </td>
+                    <td><a href="http://www.dynamicscience.com.au/tester/solutions1/biology/respiratory/lungsavian.html" target="_blank"><img src="http://www.dynamicscience.com.au/tester/solutions1/biology/respiratory/avian1.gif"></a></td>
                 </tr>
             </table>
-
+            </div id="exc">
             <h2>The excretory and osmoregulation systems</h2>
             <h3>The excretory systems</h3>
             <p>Excretory systems are mainly to dispose of nitrogen waste. This is done with three different waste mediums (listed below), each with their pros and cons.</p>
-            <table style="width:40%">
+            <table id="exc:medium" style="width:40%">
                 <tr>
                     <th>Medium</th>
                     <th>Poisonousness</th>
                     <th>Solubility</th>
                 </tr>
-                    <th id="exc:medium:ammonia">Ammonia</th>
+                    <th id="exc:medium:ammonia">Ammonia (NH<sub>3</sub>)</th>
                     <td>Very</td>
                     <td>Water</td>
                 <tr>
@@ -176,8 +189,122 @@
             
             <p></p>
             <p>
-                Waste management in the body serves the purpose of osmoregulation and excretion. 
+                Waste management in the body serves the purposes of osmoregulation and excretion.
             </p>
+            <table style="width:60%">
+                <tr>
+                    <th>System</th>
+                    <th>Description</th>
+                    <th>Medium</th>
+                </tr>
+                <tr>
+                    <th id="exc:diffusion"> Diffusion</th>
+                    <td>Ammonia goes straight through the membrane and gets lost in the universe forever.</td>
+                    <td><a href="#exc:medium:ammonia">NH<sub>3</sub></a></td>
+                </tr>
+                <tr>
+                    <th id="exc:protonephridium">Proto-nephridium</th>
+                    <td>Often combined with diffusion, protonephridia are a primitive form of kidneys. They excrete through several openings on the surface of its organism. Found in flatworms.</td>
+                    <td><a href="#exc:medium:ammonia">NH<sub>3</sub></a></td>
+                </tr>
+                <tr>
+                    <th id="exc:metanephridium">Meta-nephridium</th>
+                    <td>The posh cousin of protonephridia, the metanephridium thinks it's all the rage just because it's connected to the blood stream. They excrete through a pipe in each segment of its organism. Found in annelids.</td>
+                    <td><a href="#exc:medium:ammonia">NH<sub>3</sub></a></td>
+                </tr>
+                <tr>
+                    <th id="exc:malphigianTubes">Malphigian tubes</th>
+                    <td>The malphagian tubes are found in in some insects, arachnids, myriapods, and tardigrades. It absorbs waste from the hemolymph on its way out through diffusion and pumpos, and send it out to the surface of the body.</td>
+                    <td><a href='#exc:medium:uricAcid'>Uric Acid</a></td>
+                </tr>
+                <tr>
+                    <th id="exc:gills">Gills</th>
+                    <td>Found in most fish, gills provide both respiration and excretion. Ammonia can diffuse through the thin membranes.</td>
+                    <td><a href="#exc:medium:ammonia">NH<sub>3</sub></a></td>
+                </tr>
+                <tr>
+                    <th id="exc:kidneys">Kidneys</th>
+                    <td>The state of the art in excretion, kidneys rinse the blood and ensure everything's in balance. Found in vertabrates.</td>
+                    <td><a href='#exc:medium:uricAcid'>Uric Acid</a> for birds and reptiles, <a href='#exc:medium:urea'>urea</a> for mammals.</td>
+                </tr>
+            </table>
+            <p></p>
+            <h3>The systems of osmoregulation</h3>
+            <p>Osmoregulation is management of the osmotic pressure, to manage fluid and salt balance.</p>
+            <table style="width:60%">
+                <tr>
+                    <th>System</th>
+                    <th>Description</th>
+                    <th>Medium</th>
+                </tr>
+                <tr>
+                    <th id="exc:osm:diffusion">Diffusion</th>
+                    <td>Ammonia goes through the membrane and gets lost in the universe forever.</td>
+                    <td><a href="#exc:medium:ammonia">NH<sub>3</sub></a></td>
+                </tr>
+                <tr>
+                    <th id="exc:osm:isoosmotic">Isoosmosic</th>
+                    <td>For saltwater creatures, keeping their salt balance in check is easy. Diffusion takes care of it for them.</td>
+                    <td><a href="#exc:medium:ammonia">NH<sub>3</sub></a></td>
+                </tr>
+                <tr>
+                    <th id="exc:osm:protonephridium">Proto-nephridium</th>
+                    <td>Often combined with diffusion, protonephridia are a primitive form of kidneys. They excrete through several openings on the surface of its organism. Found in flatworms.</td>
+                    <td><a href="#exc:medium:ammonia">NH<sub>3</sub></a></td>
+                </tr>
+                <tr>
+                    <th id="exc:osm:metanephridium">Meta-nephridium</th>
+                    <td>The posh cousin of protonephridia, the metanephridium thinks it's all the rage just because it's connected to the blood stream. They excrete through a pipe in each segment of its organism. Found in annelids.</td>
+                    <td><a href="#exc:medium:ammonia">NH<sub>3</sub></a></td>
+                </tr>
+                <tr>
+                    <th id="exc:osm:malphigianTubes">Malphigian tubes</th>
+                    <td>The malphagian tubes are found in in some insects, arachnids, myriapods, and tardigrades. It absorbs waste from the hemolymph on its way out through diffusion and pumpos, and send it out to the surface of the body.</td>
+                    <td><a href='#exc:medium:uricAcid'>Uric Acid</a></td>
+                </tr>
+                <tr>
+                    <th id="exc:osm:gills">Gills</th>
+                    <td>Gills also provide osmoregulation. In freshwater fish they let water come in to lessen the salt percentage, and in saltwater they let water get out to heighten the salt percentage.</td>
+                    <td><a href="#exc:medium:ammonia">NH<sub>3</sub></a></td>
+                </tr>
+                <tr>
+                    <th id="exc:osm:kidneys">Kidneys</th>
+                    <td>The state of the art in excretion, kidneys rinse the blood and ensure everything's in balance. Found in vertabrates.</td>
+                    <td><a href='#exc:medium:uricAcid'>Uric Acid</a> for birds and reptiles, <a href='#exc:medium:urea'>urea</a> for mammals.</td>
+                </tr>
+            </table>
+            </div>   
+            <div id="reprodSystem">
+                <h2>The reproductive systems</h2>
+                <p>Reproduction is a way for an organism to further its genes by producing new organisms</p>
+
+                <h3>Reproduction with genders</h3>
+                <table style="width: 60%;">
+                    <tr>
+                        <th id="reprod:asexual">Asexual reproduction</th>
+                        <td>Asexual reproduction is formation which is not bound by gender. Mitosis is an example of asexual reproduction. The cell can split in two parts or more to form copies of itself who can live separatly. Found in small organisms and rarely animals.</td>
+                    </tr>
+                    <tr>
+                        <th id="reprod:hermaphrodite">Hermaphrodite</th>
+                        <td>A hermaphrodite organism is an organism who is able to produce both gendercells within itself without help from the outside.</td>
+                    </tr>
+                    <tr>
+                        <th>Gendered reproduction</th>
+                        <td id="reprod:insect">Gendered reproduction, commonly knows as the reproduction system that humans use, involves a male gendercell and a female gendercell which formes a new organism. This usually requires two organisms of the same species unless the organism is hermaphrodite. In gendered reproduction, one of the organisms involved often keep both cells to reproduce. Some organisms put these two cells in an egg.</td>
+                    </tr>
+                </table>
+                <h3>Eggs</h3>
+                <table style="width:60%;">
+                    <tr>
+                        <th>Soft-shell</th>
+                        <td>Soft-shell eggs require moist and wet surroundings to survive, this is due to the thin structure of the shell.</td>
+                    </tr>
+                    <tr>
+                        <th>Hard-shell</th>
+                        <td>Hard-shell eggs have an extra layer of hard mineral outside of the soft-shell. These eggs often contain water to protect and nuture the fetus. Since these eggs are hard, they can be kept on land and not dry out. Hard-shelled eggs are often found in organisms that live on land.</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </body>
-</html>
+</div>

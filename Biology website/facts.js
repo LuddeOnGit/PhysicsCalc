@@ -158,16 +158,24 @@ const taxonomy = {
     // Domain
     "Prokaryote": {
         // Kingdom
-        "Bacteria": new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "Archaea.jpg"),
-        "Archea":   new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "Bacterium.jpg")
+        "Bacteria": new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "<img src='https://images.ctfassets.net/cnu0m8re1exe/1GK7c53yovuQSAqxYtlhyU/e0c50965178b6329c0de767bbd072af9/shutterstock_1026248248.jpg?w=650&h=433&fit=fill'>"),
+        "Archea":   new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "<img src='http://cheyanneslifeproject.weebly.com/uploads/1/0/1/8/10188800/589420358.jpg'>")
     },
     "Eukaryote": {
         // Kingdom
         "Animal": {
             //animals
-            "Porifera": new Organism("None", "<a href='#resp:diffusion'>Diffusion</a>", "Diffusion", "fragments regrow, two genders at the same time", "Spongebob.jpg"),
+            "Platyhelminthes": {
+                "Turbellaria": {
+                    "Polycladida": new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:medium:ammonia'>Ammonia</a>, <a href='#exc:protoNephridium'>Proto Nephridium</a>", "<a href='#reprod:hermaphrodite'>Hermaphrodite</a>, <a href='#reprod:insect'>Eggs</a>", "<img src='https://i.pinimg.com/originals/59/78/f6/5978f694949f6186eaa9a37511cf0dff.jpg'>")
+                }
+            },
+            "Porifera": new Organism("None", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:osm:diffusion'>Diffusion</a>", "<a href='#reprod:hemophrodite'>Hemophrodite</a>", "<img src='https://vignette.wikia.nocookie.net/sulleycinematicuniverse/images/0/07/SpongeBob_SquarePants.png/revision/latest?cb=20190729055447'>"),
             "Cnidaria": {
                 // Anders
+            },
+            "Arthropoda": {
+                "Insecta": new Organism("<a href='#circ:open'>Open system</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:malphigianTubes'>Malphigian tubules</a>", "<a href='#reprod:insect'>Eggs</a>")
             },
             "Chordata": {
                 "Mammals": {

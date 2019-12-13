@@ -2,6 +2,8 @@ body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 15px;
   background-color: ghostwhite;
+  padding-left: 15px;
+  padding-bottom: 25px;
 }
 h2{
   font-size: 30px;
@@ -35,7 +37,6 @@ button{
   border-style: solid;
   border-width: 5px;
   border-color: gray;
-  margin-top: 20px;
   padding-left: 25px;
   padding-bottom: 20px;
   /* Fix bobbing when image is enlarged */
