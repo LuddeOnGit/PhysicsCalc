@@ -42,7 +42,7 @@ def time(startV=None, endV=None,  a=None, ds=None):
 def acceleration(startV=None, endV=None, dt=None, ds=None):
     if None not in [endV, startV, dt]: return (endV - startV) / dt
     if None not in [ds, startV, dt]: return 2 * (ds - startV * dt) / dt ** 2
-    if None not in [startV, endV, ds]: return (endV * 2 - startV * 2) / (2 * ds)
+    if None not in [startV, endV, ds]: return (endV ** 2 - startV ** 2) / (2 * ds)
     print("Insufficient data given.")
     if startV == None:
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
@@ -51,7 +51,7 @@ def acceleration(startV=None, endV=None, dt=None, ds=None):
 def distance(startV=None, a=None, endV=None, dt=None):
     if None not in [startV, endV, dt]: return 1/2 * dt * (startV + endV) 
     if None not in [a, startV, dt]: return startV * dt + 1/2 * a * dt ** 2
-    if None not in [startV, endV, a]: return (startV * 2 - endV * 2) / (2 * a)
+    if None not in [startV, endV, a]: return (startV ** 2 - endV ** 2) / (2 * a)
     print("Insufficient data given.")
     if startV == None:
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
@@ -63,7 +63,7 @@ def distance(startV=None, a=None, endV=None, dt=None):
 def startVelocity(a=None, endV=None, dt=None, ds=None):
     if None not in [a, endV, dt]: return endV - a * dt
     if None not in [ds, endV, dt]: return 2 * ds / dt - endV
-    if None not in [ds, endV, a]: return (endV * 2 - 2 * a * ds) * (1/2)
+    if None not in [ds, endV, a]: return (endV ** 2 - 2 * a * ds) ** (1/2)
     print("Insufficient data given.")
     if a == None:
         print("Trying again assuming a is 9.81. If this is not correct, the answer will be wrong.")
