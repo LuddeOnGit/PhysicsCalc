@@ -35,9 +35,9 @@ def time(startV=None, endV=None,  a=None, ds=None):
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
         return time(startV=0, a=a, endV=endV, ds=ds)
     if a == None:
-        print("Trying again assuming a is 9.81. If it is not, you will get the wrong answer.")
-        return time(startV=startV, a=9.81, endV=endV, ds=ds)
-    
+        print("Trying again assuming a is -9.81. If it is not, you will get the wrong answer.")
+        return time(startV=startV, a=-9.81, endV=endV, ds=ds)
+
 def acceleration(startV=None, endV=None, dt=None, ds=None):
     if None not in [endV, startV, dt]: return (endV - startV) / dt #Formula 1
     if None not in [ds, startV, dt]  : return 2 * (ds - startV * dt) / dt ** 2 #Formula 3
@@ -46,7 +46,7 @@ def acceleration(startV=None, endV=None, dt=None, ds=None):
     if startV == None:
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
         return acceleration(startV=0, endV=endV, dt=dt, ds=ds)
-    
+
 def distance(startV=None, a=None, endV=None, dt=None):
     if None not in [startV, endV, dt]: return 1/2 * dt * (startV + endV) #Formula 2
     if None not in [a, startV, dt]   : return (2 * startV * dt + a * dt**2) / 2 #Formula 3
@@ -66,8 +66,8 @@ def startVelocity(a=None, endV=None, dt=None, ds=None):
     if None not in [ds, dt, a]   : return (2 * ds - a * dt**2) / (2 * dt) #Formula 4
     print("Insufficient data given.")
     if a == None:
-        print("Trying again assuming a is 9.81. If this is not correct, the answer will be wrong.")
-        return startVelocity(a=9.81, endV=endV, dt=dt, ds=ds)
+        print("Trying again assuming a is -9.81. If this is not correct, the answer will be wrong.")
+        return startVelocity(a=-9.81, endV=endV, dt=dt, ds=ds)
 
 
 # If you want the straight formulae without any funny business, here you go:
@@ -84,7 +84,7 @@ def second_equation_of_motion(startV, endV, dt):
     return dt / 2 * (startV + endV)
 
 """
-Calculates length something has moved from known start speed, time from start to end and acceleration 
+Calculates length something has moved from known start speed, time from start to end and acceleration
 """
 def third_equation_of_motion(startV, dt, a):
     return startV * dt + (1/2) * a * dt ** 2
@@ -97,6 +97,7 @@ def fourth_equation_of_motion(startV, endV):
 
 print()
 print("----Motion-py----")
+print("Positive direction is upwards")
 print("The defined formulae are as follows: ")
 print("velocity")
 print("time")
