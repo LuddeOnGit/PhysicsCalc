@@ -12,46 +12,46 @@ import Python4Physics
 
 def velocity(startV=None, a=None, dt=None, ds=None):
     if None not in [startV,a,dt] : return startV + a * dt # Formula 1
-    if None not in [dt,startV,ds]: return (ds/((1/2)*dt))-startV
+
+    if None not in [dt,startV,ds]: return (2*ds - dt*startV)/dt
+
     if None not in [a,ds,startV]  : return (2*a*ds + startV**2)**(1/2) # Can also be negative this.
     print("Insufficient data given.")
     if startV == None:
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
         return endVelocity(startV=0, a=a, dt=dt, ds=ds)
     if a == None:
-        print("Trying again assuming a is 9.81. If it is not, you will get the wrong answer.")
-        return endVelocity(startV=startV, a=9.81, dt=dt, ds=ds)
-    
+        print("Trying again assuming a is -9.81. If it is not, you will get the wrong answer.")
+        return endVelocity(startV=startV, a=-9.81, dt=dt, ds=ds)
+
 def time(startV=None, endV=None,  a=None, ds=None):
     if None not in [startV,endV, a]: return (endV - startV)/a
     if None not in [endV,startV,ds]: return 2*ds/(startV + endV)
-    if None not in [startV,a,ds]: 
-        sqrt = startV**2 + 2*a*ds
-        if sqrt >= 0:
-            value1 = (startV + sqrt**(1/2))/a
-            value2 = (startV - sqrt**(1/2))/a # TODO: find some way to determine which value is relevant
-            return value1
+    if None not in [startV,a,ds]:
+        value1 = (-startV + (startV**2 + 2*a*ds)**(1/2))/a
+        value2 = (-startV - (startV**2 + 2*a*ds)**(1/2))/a # TODO: find some way to determine which value is relevant
+        return (value1, value2)
     print("Insufficient data given.")
     if startV == None:
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
         return time(startV=0, a=a, endV=endV, ds=ds)
     if a == None:
-        print("Trying again assuming a is 9.81. If it is not, you will get the wrong answer.")
-        return time(startV=startV, a=9.81, endV=endV, ds=ds)
-    
+        print("Trying again assuming a is -9.81. If it is not, you will get the wrong answer.")
+        return time(startV=startV, a=-9.81, endV=endV, ds=ds)
+
 def acceleration(startV=None, endV=None, dt=None, ds=None):
     if None not in [endV, startV, dt]: return (endV - startV) / dt
-    if None not in [ds, startV, dt]: return 2 * (ds - startV * dt) / dt ** 2
+    if None not in [ds, startV, dt]: return 2 * (ds - startV * dt) / (dt ** 2)
     if None not in [startV, endV, ds]: return (endV ** 2 - startV ** 2) / (2 * ds)
     print("Insufficient data given.")
     if startV == None:
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
         return acceleration(startV=0, endV=endV, dt=dt, ds=ds)
-    
+
 def distance(startV=None, a=None, endV=None, dt=None):
-    if None not in [startV, endV, dt]: return 1/2 * dt * (startV + endV) 
+    if None not in [startV, endV, dt]: return 1/2 * dt * (startV + endV)
     if None not in [a, startV, dt]: return (2*startV*dt + a * dt**2)/2
-    if None not in [startV, endV, a]: return (startV ** 2 - endV ** 2) / (2 * a)
+    if None not in [startV, endV, a]: return (endV ** 2 - startV ** 2) / (2 * a)
     print("Insufficient data given.")
     if startV == None:
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
@@ -67,8 +67,8 @@ def startVelocity(a=None, endV=None, dt=None, ds=None):
     if None not in [ds, dt, a]: return (2*ds - a * dt**2)/(2*dt)
     print("Insufficient data given.")
     if a == None:
-        print("Trying again assuming a is 9.81. If this is not correct, the answer will be wrong.")
-        return startVelocity(a=9.81, endV=endV, dt=dt, ds=ds)
+        print("Trying again assuming a is -9.81. If this is not correct, the answer will be wrong.")
+        return startVelocity(a=-9.81, endV=endV, dt=dt, ds=ds)
 
 
 # If you want the straight formulae without any funny business, here you go:
@@ -85,7 +85,7 @@ def second_equation_of_motion(v_start, v_end, delta_time):
     return delta_time/2 * (v_start+v_end)
 
 """
-Calculates length something has moved from known start speed, time from start to end and acceleration 
+Calculates length something has moved from known start speed, time from start to end and acceleration
 """
 def third_equation_of_motion(v_start, delta_time, a):
     return v_start * delta_time + (1/2) * a * delta_time ** 2
@@ -98,6 +98,7 @@ def fourth_equation_of_motion(v_start, v_end):
 
 print()
 print("----Motion-py----")
+print("Positive direction is upwards")
 print("The defined formulae are as follows: ")
 print("velocity")
 print("time")
