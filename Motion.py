@@ -10,11 +10,11 @@ import Python4Physics
 
 # Usage: use the factor you want as the function name and type in the three values you already have as parameters. Don't enter the ones you don't have
 
-def endVelocity(startV=None, a=None, dt=None, ds=None):
+def velocity(startV=None, a=None, dt=None, ds=None):
     if None not in [startV,a,dt] : return startV + a * dt # Formula 1
-    if None not in [dt,startV,ds]: return startV - 2*ds/dt
-    if None not in [a,ds,startV]  : return (2*a*ds - startV**2)**(1/2)
-    return "Insufficient data given."
+    if None not in [dt,startV,ds]: return (2*ds - dt*startV)/dt
+    if None not in [a,ds,startV]  : return (2*a*ds - startV**2)**(1/2) # Can also be negative this.
+    print("Insufficient data given.")
     if startV == None:
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
         return endVelocity(startV=0, a=a, dt=dt, ds=ds)
@@ -24,7 +24,7 @@ def endVelocity(startV=None, a=None, dt=None, ds=None):
     
 def time(startV=None, endV=None,  a=None, ds=None):
     if None not in [startV,endV, a]: return (endV - startV)/a
-    if None not in [endV,startV,ds]: return ds/((startV + endV)/2)
+    if None not in [endV,startV,ds]: return 2*ds/(startV + endV)
     if None not in [startV,a,ds]: 
         sqrt = startV**2 + 2*a*ds
         if sqrt >= 0:
@@ -50,7 +50,7 @@ def acceleration(startV=None, endV=None, dt=None, ds=None):
     
 def distance(startV=None, a=None, endV=None, dt=None):
     if None not in [startV, endV, dt]: return 1/2 * dt * (startV + endV) 
-    if None not in [a, startV, dt]: return startV * dt + 1/2 * a * dt ** 2
+    if None not in [a, startV, dt]: return (2*startV*dt + a * dt**2)/2
     if None not in [startV, endV, a]: return (startV ** 2 - endV ** 2) / (2 * a)
     print("Insufficient data given.")
     if startV == None:
@@ -62,8 +62,9 @@ def distance(startV=None, a=None, endV=None, dt=None):
 
 def startVelocity(a=None, endV=None, dt=None, ds=None):
     if None not in [a, endV, dt]: return endV - a * dt
-    if None not in [ds, endV, dt]: return 2 * ds / dt - endV
-    if None not in [ds, endV, a]: return (endV ** 2 - 2 * a * ds) ** (1/2)
+    if None not in [ds, endV, dt]: return (2 * ds - dt * endV)/dt
+    if None not in [ds, endV, a]: return (endV ** 2 - 2 * a * ds) ** (1/2) # Can also be negative this.
+    if None not in [ds, dt, a]: return (2*ds - a * dt**2)/(2*dt)
     print("Insufficient data given.")
     if a == None:
         print("Trying again assuming a is 9.81. If this is not correct, the answer will be wrong.")
@@ -98,7 +99,7 @@ def fourth_equation_of_motion(v_start, v_end):
 print()
 print("----Motion-py----")
 print("The defined formulae are as follows: ")
-print("endVelocity")
+print("velocity")
 print("time")
 print("acceleration")
 print("distance")
