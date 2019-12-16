@@ -112,6 +112,9 @@ def work(F,s,a = 0): return (F*s*cos(radians(a)))
 
 def endVelocity(m,bh,ah,v,f=0,s=0,a=0,g = 9.81): return sqrt(((((potentialEnergy(m,bh)+kineticEnergy(m,v))+work(f,s,a))-potentialEnergy(m,ah))/0.5)/m)
 
+def kmToMps(km): return km/3.6
+
+def mpsToKm(mps): return mps*3.6
 
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')

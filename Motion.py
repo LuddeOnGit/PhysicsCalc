@@ -12,8 +12,8 @@ import Python4Physics
 
 def velocity(startV=None, a=None, dt=None, ds=None):
     if None not in [startV,a,dt] : return startV + a * dt # Formula 1
-    if None not in [dt,startV,ds]: return (2*ds - dt*startV)/dt
-    if None not in [a,ds,startV]  : return (2*a*ds - startV**2)**(1/2) # Can also be negative this.
+    if None not in [dt,startV,ds]: return (ds/((1/2)*dt))-startV
+    if None not in [a,ds,startV]  : return (2*a*ds + startV**2)**(1/2) # Can also be negative this.
     print("Insufficient data given.")
     if startV == None:
         print("Trying again assuming startV is 0. If it is not, you will get the wrong answer.")
