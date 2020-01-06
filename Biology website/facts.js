@@ -100,7 +100,7 @@ function addToTable() {
     let data = Object.values(objectAt(path)) //find the data for the selected species
 
     // Insert the data
-    for (j = 0; j <= 4; j++){
+    for (j = 0; j < data.length; j++){
         var newCell = newRow.insertCell(-1)
         newCell.innerHTML = data[j]
     }
@@ -130,7 +130,9 @@ function objectAt(path) {
 }
 
 class Organism {
-    constructor(circl, resp, waste, reprod, picture){
+    constructor(name, habitat, circl, resp, waste, reprod, picture){
+        this.name = name
+        this.habitat = habitat
         this.circl = circl
         this.resp = resp
         this.waste = waste
@@ -147,7 +149,7 @@ class Organism {
 let levels = ["Domain", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"]
 
 // The string for the basic mammmal systems, because I'm sick of copying them and they take up a lot of space
-let dcw4ch = "<a href='#circ:double'>Double circulation</a> with a <a href='#circ:fourChamber'>4-chambered heart</a>"
+let dcw4ch = "Double circulation< with a <a href='#circ:fourChamber'>4-chambered heart</a>"
 let lungs = "<a href='#resp:lungs'>Lungs</a>"
 let kidneys = "<a href='#exc:kidneys'> Kidneys</a> to dispose of <a href='exc:medium:urea'>urea</a>"
 let intFert = "<a href='#reprod:gendered'>Gendered reproduction</a>"
@@ -158,8 +160,8 @@ const taxonomy = {
     // Domain
     "Prokaryote": {
         // Kingdom
-        "Bacteria": new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "<img src='https://images.ctfassets.net/cnu0m8re1exe/1GK7c53yovuQSAqxYtlhyU/e0c50965178b6329c0de767bbd072af9/shutterstock_1026248248.jpg?w=650&h=433&fit=fill'>"),
-        "Archea":   new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "<img src='http://cheyanneslifeproject.weebly.com/uploads/1/0/1/8/10188800/589420358.jpg'>")
+        "Bacteria": new Organism("Bacterium","","<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "<img src='https://images.ctfassets.net/cnu0m8re1exe/1GK7c53yovuQSAqxYtlhyU/e0c50965178b6329c0de767bbd072af9/shutterstock_1026248248.jpg?w=650&h=433&fit=fill'>"),
+        "Archea":   new Organism("Archeon", "", "<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:diffusion'>Diffusion</a>", "Mitosis", "<img src='http://cheyanneslifeproject.weebly.com/uploads/1/0/1/8/10188800/589420358.jpg'>")
     },
     "Eukaryote": {
         // Kingdom
@@ -167,38 +169,38 @@ const taxonomy = {
             //animals
             "Platyhelminthes": {
                 "Turbellaria": {
-                    "Polycladida": new Organism("<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:medium:ammonia'>Ammonia</a>, <a href='#exc:protoNephridium'>Proto Nephridium</a>", "<a href='#reprod:hermaphrodite'>Hermaphrodite</a>, <a href='#reprod:gendered'>Eggs</a>", "<img src='https://i.pinimg.com/originals/59/78/f6/5978f694949f6186eaa9a37511cf0dff.jpg'>")
+                    "Polycladida": new Organism("Flatworm","","<a href='#circ:diffusion'>Diffusion</a>", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:medium:ammonia'>Ammonia</a>, <a href='#exc:protonephridium'>Proto Nephridium</a>", "<a href='#reprod:hermaphrodite'>Hermaphrodite</a>, <a href='#reprod:gendered'>Eggs</a>", "<img src='https://i.pinimg.com/originals/59/78/f6/5978f694949f6186eaa9a37511cf0dff.jpg'>")
                 }
             },
-            "Porifera": new Organism("None", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:osm:diffusion'>Diffusion</a>", "<a href='#reprod:hemophrodite'>Hemophrodite</a>", "<img src='https://vignette.wikia.nocookie.net/sulleycinematicuniverse/images/0/07/SpongeBob_SquarePants.png/revision/latest?cb=20190729055447'>"),
-            "Cnidaria": new Organism("None", "<a href='#resp:diffusion'>Diffusion</a>", ""),
+            "Porifera": new Organism("Sponge","Water","None", "<a href='#resp:diffusion'>Diffusion</a>", "<a href='#exc:osm:diffusion'>Diffusion</a>", "<a href='#reprod:hemophrodite'>Hemophrodite</a>", "<img src='https://vignette.wikia.nocookie.net/sulleycinematicuniverse/images/0/07/SpongeBob_SquarePants.png/revision/latest?cb=20190729055447'>"),
+            "Cnidaria": new Organism("Jellyfish","Water","None", "<a href='#resp:diffusion'>Diffusion</a>", ""),
             "Arthropoda": {
-                "Insecta": new Organism("<a href='#circ:open'>Open system</a>", "<a href='#resp:diffusion'>Diffusion</a>, <a href='#resp:lungs'>lungs</a>", "<a href='#exc:malphigianTubes'>Malphigian tubules</a>", "<a href='#reprod:gendered'>Eggs</a>", "<img src='https://media.nature.com/lw1024/magazine-assets/d41586-019-03241-9/d41586-019-03241-9_17308910.jpg'>")
+                "Insecta": new Organism("Insect","Air and ground","<a href='#circ:open'>Open system</a>", "<a href='#resp:diffusion'>Diffusion</a>, <a href='#resp:tracheae'>Tracheae</a>", "<a href='#exc:malphigianTubes'>Malphigian tubules</a>", "<a href='#reprod:gendered'>Eggs</a>", "<img src='https://media.nature.com/lw1024/magazine-assets/d41586-019-03241-9/d41586-019-03241-9_17308910.jpg'>")
             },
             "Chordata": {
                 "Mammals": {
                     "Primates": {
                         "Homonidae": {
                             "Homo": {
-                                "Sapiens": new Organism(dcw4ch, lungs, kidneys, intFert, "<img src='https://static.tildacdn.com/tild3338-6436-4031-b039-323439643964/Ansatt_bilde_2SssSss.JPG'>")
+                                "Sapiens": new Organism("Human", "land", dcw4ch, lungs, kidneys, intFert, "<img src='https://static.tildacdn.com/tild3338-6436-4031-b039-323439643964/Ansatt_bilde_2SssSss.JPG'>")
                             }
                         }
                     },
                     "Carnivora": {
                         "Canidae": {
                             "Canis": {
-                                "Lupus": new Organism(dcw4ch, lungs, kidneys, intFert, "<img src='https://imgur.com/RVcmipS.jpg'>")
+                                "Lupus": new Organism("Wolf", "<a href='#habitat:land'>Land</a>", dcw4ch, lungs, kidneys, intFert, "<img src='https://imgur.com/RVcmipS.jpg'>")
                             },
                             "Vulpes": {
-                                "Vulpes": new Organism(dcw4ch, lungs, kidneys, intFert, "<img src='https://previews.123rf.com/images/byrdyak/byrdyak1503/byrdyak150302116/37849985-red-fox-vulpes-vulpes-in-winter-time.jpg'>")
+                                "Vulpes": new Organism("Red fox", "land", dcw4ch, lungs, kidneys, intFert, "<img src='https://previews.123rf.com/images/byrdyak/byrdyak1503/byrdyak150302116/37849985-red-fox-vulpes-vulpes-in-winter-time.jpg'>")
                             }
                         },
                         "Felidae": {
                             "Felis": {
-                                "Catus": new Organism(dcw4ch, lungs, kidneys, intFert, "<img src='https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png'>")
+                                "Catus": new Organism("Cat", "land", dcw4ch, lungs, kidneys, intFert, "<img src='https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png'>")
                             },
                             "Lynx": {
-                                "Lynx": new Organism(dcw4ch, lungs, kidneys, intFert, "<img src='https://upload.wikimedia.org/wikipedia/commons/1/1a/Lynx_lynx_%28geypa%29-cropped.jpg'>")
+                                "Lynx": new Organism("Lynx", "land", dcw4ch, lungs, kidneys, intFert, "<img src='https://upload.wikimedia.org/wikipedia/commons/1/1a/Lynx_lynx_%28geypa%29-cropped.jpg'>")
                             }
                         }
                     }
@@ -207,25 +209,27 @@ const taxonomy = {
                 "Aves": {
                     "Accipitriformes": {
                         "Accipitridae": {
-                            "Haliaeetus": new Organism("<a href='#circ:fourChamber'>4-chambered heart</a>", "<a href='#resp:airSacks'>Air sacks</a> to assist the <a href='#resp:lungs'>lungs</a>", "Get rid of <a href='#exc:medium:uricAcid'>uric acid</a> through mute", "<a href='#reprod:gendered'>Eggs</a>", "<img src='https://vignette.wikia.nocookie.net/angry-birds-universe/images/4/4f/MovieMightyEagle.png/revision/latest?cb=20181121061955'>")
+                            "Haliaeetus": new Organism("Sea Eagle", "Air", "<a href='#circ:fourChamber'>4-chambered heart</a>", "<a href='#resp:airSacks'>Air sacks</a> to assist the <a href='#resp:lungs'>lungs</a>", "Get rid of <a href='#exc:medium:uricAcid'>uric acid</a> through mute", "<a href='#reprod:gendered'>Eggs</a>", "<img src='https://vignette.wikia.nocookie.net/angry-birds-universe/images/4/4f/MovieMightyEagle.png/revision/latest?cb=20181121061955'>")
                         }
                     }
                 },
                 "Actinopterygii": {
                     "Salmonifores": {
                         "Salmonidae": {
-                            "Salmo": new Organism("<a href='#circ:twoChamber'>2-chambered heart</a>", "<a href='#resp:gills'>Gills</a>", "Get rid of ammonia with gills and kidneys", "Externally <a href='#reprod:gendered'>fertilized</a> <a href='#reprod:soft-shell'>soft shell eggs</a>", "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Atlantic_salmon_Atlantic_fish.jpg/1024px-Atlantic_salmon_Atlantic_fish.jpg'>")
+                            "Salmo": new Organism("Salmon", "Fresh- and saltwater", "<a href='#circ:twoChamber'>2-chambered heart</a>", "<a href='#resp:gills'>Gills</a>", "Get rid of ammonia with gills and kidneys", "Externally <a href='#reprod:gendered'>fertilized</a> <a href='#reprod:soft-shell'>soft shell eggs</a>", "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Atlantic_salmon_Atlantic_fish.jpg/1024px-Atlantic_salmon_Atlantic_fish.jpg'>")
                         }
                     }
                 },
                 "Amphibia": {
                     "Anura": {
-                        "Frog": new Organism("<a href='#circ:closed'>Closed</a>, <a href='#circ:threeChamber'>Three-chambered heart</a>", "<a href='#resp:diffusion'>Diffusion</a>, <a href='#resp:lungs'>Lungs</a>", "Pair of <a href='#exc:kidneys'>kidneys</a>, reabsorb water from urine", "<a href='#reprod:gendered'>Gendered reproduction</a>", "<img src='https://en.wikipedia.org/wiki/Frog#/media/File:Variegated_golden_frog_(Mantella_baroni)_Ranomafana.jpg'>")
+                        "Frog": new Organism("Frog", "Water and land", "<a href='#circ:closed'>Closed</a>, <a href='#circ:threeChamber'>Three-chambered heart</a>", "<a href='#resp:diffusion'>Diffusion</a>, <a href='#resp:lungs'>Lungs</a>", "Pair of <a href='#exc:kidneys'>kidneys</a>, reabsorb water from urine", "<a href='#reprod:gendered'>Gendered reproduction</a>", "<img src='https://en.wikipedia.org/wiki/Frog#/media/File:Variegated_golden_frog_(Mantella_baroni)_Ranomafana.jpg'>")
                     }
                 },
                 "Reptilia": {
-                    "Snek": {
-                        "Titanboa": new Organism("<a href='#circ:threeChamber:'>Three-chambered heart</a>, kinda like <a href='#circ:fourChamber'>four-chambered heart</a>", "<a href='resp:lungs'>Lungs</a>", "<a href='#exc:kidneys'>Kidneys</a>, <a href='#exc:medium:uricAcid'>Uric acid</a>", "<a href='#reprod:gendered'>Gendered reproduction</a>, <a href='#reprod:hard-shell'>Hard-shell eggs</a>")
+                    "Squamata": {
+                        "Boidae": {
+                            "Titanoboa": new Organism("Extinct snake", "Tropical forest", "<a href='#circ:threeChamber:'>Three-chambered heart</a>, kinda like <a href='#circ:fourChamber'>four-chambered heart</a>", "<a href='resp:lungs'>Lungs</a>", "<a href='#exc:kidneys'>Kidneys</a>, <a href='#exc:medium:uricAcid'>Uric acid</a>", "<a href='#reprod:gendered'>Gendered reproduction</a>, <a href='#reprod:hard-shell'>Hard-shell eggs</a>")
+                        }
                     }
                 }
             }
@@ -238,7 +242,7 @@ const taxonomy = {
                     "Asterales":{
                         "Asteraceae":{
                             "Tussilago":{
-                                "Farfara": new Organism("None","Uses a modified kind of <a href='#circ:diffusion'>Diffusion</a> to absorb the Oxygen", "CO<sub>2</sub> produced in photosyntesis is disposed by releasing the substance through the skin.", "<a href='#reprod:asexual'>Asexual reproduction</a>", "<a href='https://en.wikipedia.org/wiki/Tussilago'><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Coltsfoot.jpg/330px-Coltsfoot.jpg'></a>")
+                                "Farfara": new Organism("Coltsfoot","Ground","None","Uses a modified kind of <a href='#circ:diffusion'>Diffusion</a> to absorb the Oxygen", "CO<sub>2</sub> produced in photosyntesis is disposed by releasing the substance through the skin.", "<a href='#reprod:asexual'>Asexual reproduction</a>", "<a href='https://en.wikipedia.org/wiki/Tussilago'><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Coltsfoot.jpg/330px-Coltsfoot.jpg'></a>")
                             }
                         }
                     }
@@ -253,7 +257,7 @@ const taxonomy = {
                     "Peniculida":{
                         "Parameciidae":{
                             "Paramecium":{
-                                "Aurelia": new Organism("<a href='#circ:diffusion'>Diffusion</a>","<a href='#resp:diffusion'>Diffusion</a>","<a href='#waste:diffusion'>Diffusion</a>", "<a href='#reprod:asexual'>Asexual reproduction</a> and <a href='#wordList'>mitosis</a>", "<a href='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Paramecium.jpg/330px-Paramecium.jpg'><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Paramecium.jpg/330px-Paramecium.jpg'></a>")
+                                "Aurelia": new Organism("Cell","Freshwater","<a href='#circ:diffusion'>Diffusion</a>","<a href='#resp:diffusion'>Diffusion</a>","<a href='#waste:diffusion'>Diffusion</a>", "<a href='#reprod:asexual'>Asexual reproduction</a> and <a href='#wordList'>mitosis</a>", "<a href='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Paramecium.jpg/330px-Paramecium.jpg'><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Paramecium.jpg/330px-Paramecium.jpg'></a>")
                             }
                         }
                     }
@@ -266,16 +270,16 @@ const taxonomy = {
                     "Agaricales":{
                         "Amanitaceae Pouzar":{
                             "Amanita":{
-                                "Muscaria": new Organism("A form of <a href='#circ:diffusion'>Diffusion</a>","Absorbes gas in the air and ground with micro-pockets.","CO<sub>2</sub> right through the outer layer","<a href='#reprod:asexual'>Asexual reproduction</a> with specialized gills","<a href='https://titan.uio.no/sites/default/files/styles/landscape_w480/public/thumbnails/image/amanita_muscaria-oslo-gaustadskogen1.jpg?itok=_FpaN6K1'><img src='https://titan.uio.no/sites/default/files/styles/landscape_w480/public/thumbnails/image/amanita_muscaria-oslo-gaustadskogen1.jpg?itok=_FpaN6K1'></a>")
+                                "Muscaria": new Organism("Fly agaric", "Ground", "A form of <a href='#circ:diffusion'>Diffusion</a>","Absorbes gas in the air and ground with micro-pockets.","CO<sub>2</sub> right through the outer layer","<a href='#reprod:asexual'>Asexual reproduction</a> with specialized gills","<a href='https://titan.uio.no/sites/default/files/styles/landscape_w480/public/thumbnails/image/amanita_muscaria-oslo-gaustadskogen1.jpg?itok=_FpaN6K1'><img src='https://titan.uio.no/sites/default/files/styles/landscape_w480/public/thumbnails/image/amanita_muscaria-oslo-gaustadskogen1.jpg?itok=_FpaN6K1'></a>")
                             }
                         }
                     }
                 }
             }
-        },
+        }/*,
         "Chromista": {
             //ocean plant
             //wikipedia said it
-        }
+        }*/
     }
 }; 
