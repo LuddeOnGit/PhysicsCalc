@@ -507,6 +507,7 @@ STV = [#formula | state | dEnthalpy | dGibbs | dEntropy |
        STVFormula("Na^+","g",609.358,None,None),
        STVFormula("Na2CO3","s",-1130.68,-1044.44,134.98),
        STVFormula("Na2O","s",-414.22,-375.46,75.06),
+       STVFormula("NaOH","s",-425.6, None, None),
        STVFormula("NaBr","s",-361.062,-348.983,86.82),
        STVFormula("NaCl","s",-411.153,-384.138,72.13),
        STVFormula("NaF","s",-573.647,-543.494,51.46),

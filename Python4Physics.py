@@ -25,6 +25,14 @@ B : Bohr's constant. In J
 u : Atomic mass unit (mass at atomic levels)
 mn: Mass neutron. In u
 mp: Mass proton. In u
+
+Banelengde: total flytting
+Forflyttning: arealet under grafen
+Strekning: samme som forflyttning
+Posisjon: der du er
+
+Hastighet har retning det har ikke fart
+Luftmotstand: k*v^2
 """
 c,cv,h,B,u,mn,mp = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18, 1.66e-27, 1.00866491595, 1.007825032241
 
@@ -104,7 +112,7 @@ def kineticEnergy(m,v): return (1/2)*m*(v**2)
 
 def potentialEnergy(m, h, g = 9.81): return m*g*h
 
-def effect(m,g,h,t): return (m*g*h)/t
+def effect(m,g,h,t): return (m*g*h)/t #or arbeid(kraft)/t
 
 def efficiency(n,u): return n/u
 
