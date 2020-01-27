@@ -290,3 +290,40 @@ def solve_sin_second_degree(a,b,c):
     correct_result = list(set(correct_result))
     
     return correct_result
+
+def sphereSurfaceDistance(lat1, long1, lat2, long2, r):
+    # Convert the equator prime meridian based degrees
+    # to north pole prime meridian based radians
+    
+    u1 = (90 - lat1) * pi/180
+    v1 = long1 * pi/180
+
+    u2 = (90 - lat2) * pi/180
+    v2 = long2 * pi/180
+
+    pos1 = (r*sin(u1)*cos(v1), r*sin(u1)*sin(v1), r*cos(u1))
+    pos2 = (r*sin(u2)*cos(v2), r*sin(u2)*sin(v2), r*cos(u2))
+
+    angle = acos((pos1[0]*pos2[0]+pos1[1]*pos2[1]+pos1[2]*pos2[2])/(r*r))
+    
+    return angle * r
+
+def  leftStairSum(function, a, b, n):
+    dX = (b-a)/n
+    return sum([function(a + i*dX) * dX for i in range(n)])
+    
+def rightStairSum(function, a, b, n):
+    dX = (b-a)/n
+    return sum([function(a + i*dX) * dX for i in range(1,n+1)])
+
+def trapezoidSum(function, a, b, n):
+    dX = (b-a)/n
+    return sum([dX * (function(a + i * dX) + function(a + (i + 1) * dX))/2 for i in range(n)])
+
+def simpsonsWay(function, a, b, n):
+    dX = (b-a)/n
+    print(function(a))
+    print(function(b))
+    print([function(a + i*dX) * 4 for i in range(1,n, 2)])
+    print([function(a + i*dX) * 2 for i in range(2,n-1, 2)])
+    return (dX/3)*sum([function(a), function(b)] + [function(a + i*dX) * 4 for i in range(1,n, 2)] + [function(a + i*dX) * 2 for i in range(2,n-1, 2)])
