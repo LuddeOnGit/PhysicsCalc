@@ -7,6 +7,8 @@ Created on Fri Feb  7 11:41:27 2020
 
 import math
 
+q = 1.63e-19
+
 def spenning(R,I): return R*I #Volt
 
 def strøm(R,U): return U/R #Ampere
