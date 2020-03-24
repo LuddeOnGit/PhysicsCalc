@@ -124,7 +124,7 @@ def kmToMps(km): return km/3.6
 
 def mpsToKm(mps): return mps*3.6
 
-def wfl(temp): return temp/WIENS
+def wfl(temp): return WIENS/temp
 
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
