@@ -35,7 +35,7 @@ Hastighet har retning det har ikke fart
 Luftmotstand: k*v^2
 """
 c,cv,h,B,u,mn,mp = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18, 1.66e-27, 1.00866491595, 1.007825032241
-
+WIENS = 2.9e-3
 """
 The energy level of a given electron shell (in Bohr's atomic model) for a hydrogen atom
 """
@@ -123,6 +123,8 @@ def endVelocity(m,bh,ah,v,f=0,s=0,a=0,g = 9.81): return sqrt(((((potentialEnergy
 def kmToMps(km): return km/3.6
 
 def mpsToKm(mps): return mps*3.6
+
+def wfl(temp): return temp/WIENS
 
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
