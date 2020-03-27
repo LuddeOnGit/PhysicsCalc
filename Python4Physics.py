@@ -4,7 +4,7 @@ author: NRG
 """
 If you want to get your answers written cleaner, use this in console: %precision %.4e
 """
-from math import cos, radians, sqrt
+from math import cos, radians, sqrt, pi
 
 # SI prefixes
 """
@@ -36,6 +36,7 @@ Luftmotstand: k*v^2
 """
 c,cv,h,B,u,mn,mp = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18, 1.66e-27, 1.00866491595, 1.007825032241
 WIENS = 2.9e-3
+SIGMA = 5.67e-8
 """
 The energy level of a given electron shell (in Bohr's atomic model) for a hydrogen atom
 """
@@ -124,7 +125,19 @@ def kmToMps(km): return km/3.6
 
 def mpsToKm(mps): return mps*3.6
 
+
+
+
+
 def wfl(temp): return WIENS/temp
+
+def lightyear(ly): return ly*9.46e15
+
+def areaOfSphere(r): return 4*pi*(r**2)
+
+def sbl(r,T): return areaOfSphere(r)*SIGMA*(T**4)
+
+def sblWithE(r,E): return areaOfSphere(r)*E
 
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
