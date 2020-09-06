@@ -125,7 +125,17 @@ class IsotopeFrame:
         massLabel = Label(frame, text=str(isotope.mass) + "u", font="none 10", bg="white", height=1, width=4)
         massLabel.grid(row=1, column=0, sticky=W+E)
 
-        # TODO: Add decay modes and an add button
+        decayModes = ""
+        decayModes += ("α " if isotope.decayMode & Elements.alpha != 0 else "")
+        decayModes += ("β- " if isotope.decayMode & Elements.betaN != 0 else "")
+        decayModes += ("β+ " if isotope.decayMode & Elements.betaP != 0 else "")
+        decayModes += ("γ" if isotope.decayMode & Elements.gamma != 0 else "")
+        
+        decayLabel = Label(frame, text=decayModes, font="none 11", bg="white", height=1, width= 6)
+        decayLabel.grid(row=2, column= 0)
+
+        
+        # TODO: Make an add button for the reaction builder thing
 
 
 def PeriodicTable():
