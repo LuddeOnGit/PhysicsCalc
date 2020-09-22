@@ -4,7 +4,7 @@ author: NRG
 """
 If you want to get your answers written cleaner, use this in console: %precision %.4e
 """
-from math import cos, radians, sqrt, pi
+from math import cos, radians, sqrt, pi, sin, tan
 
 # SI prefixes
 """
@@ -37,6 +37,7 @@ Luftmotstand: k*v^2
 c,cv,h,B,u,mn,mp = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18, 1.66e-27, 1.00866491595, 1.007825032241
 WIENS = 2.9e-3
 SIGMA = 5.67e-8
+g = 9.81
 """
 The energy level of a given electron shell (in Bohr's atomic model) for a hydrogen atom
 """
@@ -138,6 +139,36 @@ def areaOfSphere(r): return 4*pi*(r**2)
 def sbl(r,T): return areaOfSphere(r)*SIGMA*(T**4)
 
 def sblWithE(r,E): return areaOfSphere(r)*E
+
+
+def grav(m): return m*g 
+
+def mov(m,v,lorentz=False): return lor(v)*m*v if lorentz else m*v
+
+def lor(v): return 1/sqrt(1-((v**2)/(c**2)))
+
+"""
+v_x and v_y represents vectors in 2d space.
+They were named according to their usual appearance, but in some task they might be opposite.
+"""
+def v_x(v, a): return v*cos(radians(a))
+def v_y(v, a): return v*sin(radians(a))
+
+def circAcc(v, r): return v**2/r
+
+def p(m, v): return m*v #bevegelsesmengde kgm/s
+def sumWithP(m, v0, v1, t): return (p(m,v1)-p(m,v0))/t
+
+"""
+The functions below are task-specialized, please use caution when you use them!
+"""
+
+def findTensionSym(m, a): return (m*g)/(2*sin(radians(a))) #Works with typical two rope system where angles are identical. return F_rope of each
+
+def findTensionUnsym(m, a1, a2): return (m*g)/(sin(radians(a1))+cos(radians(a1))*tan(radians(a2))), (m*g)/(sin(radians(a2))+cos(radians(a2))*tan(radians(a1))) #This does the same as above, but is used when the ropes are different. returns (F_1,F_2), takes mass and two angles as input
+
+def accObjectDownSlope(m, a, friction=False): return g*(sin(radians(a)) - cos(radians(a))*friction) if friction else g*sin(radians(a)) # Based on tasks about acceleration of an objects going down a slope. If friction is involved, please enter the number as the last parameter when calling the function, else just enter mass and angle of slope.
+
 
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
