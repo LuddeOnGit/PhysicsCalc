@@ -1,5 +1,6 @@
 from Elements import *
 from Subscript import *
+from math import log
 
 numbers = '0123456789'
 
@@ -188,3 +189,20 @@ def coefficient(num, varList):
         return 1
 
 def gibbsFull(testIn, temp = 25): return gibbsValue(temp, enthalpy(testIn, True), entropy(testIn, True))
+
+
+"""
+Buffer
+"""
+
+def pH(pKa, c_acid, c_base): return pKa + log((c_base/c_acid), 10)
+
+def bufferCap(concentrationOfBuffer, name_acid, c_acid, c_base):
+    pKa = 0
+    for element in acids:
+        if element.formula == name_acid:
+            pKa = element.pKa
+    buffer_pH = pH(pKa, c_acid, c_base)
+    potential_acid = ((10*c_base)-c_acid)/11
+    potential_base = ((10*c_acid)-c_base)/11
+    return potential_acid*(1/concentrationOfBuffer), potential_base*(1/concentrationOfBuffer)

@@ -632,3 +632,23 @@ STV = [#formula | state | dEnthalpy | dGibbs | dEntropy |
        STVFormula("Zr","s",0,0,53.39 ),
        
        ]
+
+
+class acidConstant:
+    def __init__(self, formula, k_a, pKa):
+        self.formula = formula
+        self.k_a = k_a
+        self.pKa = pKa
+
+acids = [
+    acidConstant("C_8H_7O_2COOH", 3.3e-4, 3.48),
+    acidConstant("NH_4^+", 5.6e-10, 9.25),
+    acidConstant("C_6H_5COOH", 6.5e-5, 4.2),
+    acidConstant("HCN", 4.9e-10, 9.31),
+    acidConstant("H_3BO_3", 6.4e-10, 9.19),
+    acidConstant("C_3H_7COOH", 1.5e-5, 4.82),
+    acidConstant("CH_3COOH", 1.8e-5, 4.74),
+    acidConstant("HF", 3.5e-4, 3.46),
+    acidConstant("H_3PO_4", 7.5e-3, 2.12),
+    acidConstant("HCOOH", 1.8e-4, 3.74)
+    ]

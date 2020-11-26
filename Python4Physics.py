@@ -25,19 +25,29 @@ B : Bohr's constant. In J
 u : Atomic mass unit (mass at atomic levels)
 mn: Mass neutron. In u
 mp: Mass proton. In u
-
-Banelengde: total flytting
-Forflyttning: arealet under grafen
-Strekning: samme som forflyttning
-Posisjon: der du er
-
-Hastighet har retning det har ikke fart
-Luftmotstand: k*v^2
 """
 c,cv,h,B,u,mn,mp = 3e8, 0.751*3e8, 6.63e-34, 2.18e-18, 1.66e-27, 1.00866491595, 1.007825032241
 WIENS = 2.9e-3
 SIGMA = 5.67e-8
 g = 9.81
+
+"""
+Magnetism constants
+"""
+k_e = 8.99e9
+mu = 4*pi*(10**(-7))
+charge_of_proton = 1.6e-19
+charge_of_electron = -charge_of_proton
+mass_of_proton = 1.6726219e-27
+mass_of_electron = 9.10938e-31
+
+"""
+Gravity constants
+"""
+gamma = 6.67e-11
+dist_earth = 3.485e6
+mass_earth = 5.972e24
+
 """
 The energy level of a given electron shell (in Bohr's atomic model) for a hydrogen atom
 """
@@ -169,6 +179,38 @@ def findTensionUnsym(m, a1, a2): return (m*g)/(sin(radians(a1))+cos(radians(a1))
 
 def accObjectDownSlope(m, a, friction=False): return g*(sin(radians(a)) - cos(radians(a))*friction) if friction else g*sin(radians(a)) # Based on tasks about acceleration of an objects going down a slope. If friction is involved, please enter the number as the last parameter when calling the function, else just enter mass and angle of slope.
 
+
+def potString(k,x):
+    return 0.5*k*pow(x,2)
+
+def workOnSpring(k,x1,x2):
+    return 0.5*k*(pow(x2,2)-pow(x1,2))
+
+"""
+Electic and magnetic fields
+"""
+
+def fieldStrength(Q, r): return k_e*Q/r**2
+
+def fieldStrength_wire(amps, distance_from_wire): return mu*amps/(2*pi*distance_from_wire) #outputs Tesla
+
+def singlePointCharge(B, q, v, theta): return B*q*v*sin(radians(theta))
+
+def circularPath_spc(m,v,B,q): return m*v/(B*q)
+
+def cLaw(q1,q2,r): return k_e*q1*q2/(r**2)
+
+def flux(B,A,theta=90): return B*A*cos(radians(theta)) #unit is webber, which is 1Tesla * m^2
+
+def induced_emf(N, delta_flux, delta_t): return (-N)*delta_flux/delta_t
+
+
+
+"""
+Gravity
+"""
+
+def F_g(m,M,r): return gamma*m*M/(r**2)
 
 print('This is a modified Python Console made for Physics 1')
 print('The following constants have been defined:')
